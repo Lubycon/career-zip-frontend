@@ -1,12 +1,12 @@
-import React from 'react';
 import { css } from '@emotion/react';
 
-const App = () => {
-  return (
-    <div css={css`
+const App = () => (
+  <div css={css`
     color: blue;
-  `}>Hello world!</div>
-  )
-};
+  `}
+  >
+    Hello world!
+  </div>
+);
 
 export default App;
