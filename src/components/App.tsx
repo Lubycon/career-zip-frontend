@@ -1,9 +1,11 @@
 import React from 'react';
-
+import { css } from '@emotion/react';
 
 const App = () => {
   return (
-    <div>Hello world!</div>
+    <div css={css`
+    color: blue;
+  `}>Hello world!</div>
   )
 };
 

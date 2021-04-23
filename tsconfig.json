@@ -2,12 +2,13 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "commonjs",
     "target": "es5",
     "allowJs": true,
-    "baseUrl": "src",
-    "jsx": "react",
     "sourceMap": true,
+    "baseUrl": "src",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react"
   },
   "include": ["src/**/*"],
   "exclude": [
