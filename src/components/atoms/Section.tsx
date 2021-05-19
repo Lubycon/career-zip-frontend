@@ -1,10 +1,10 @@
 import { BoxProps, Flex } from 'rebass';
 
-const Section = ({ children, bg, height, padding, id }: BoxProps) => (
+const Section = ({ children, backgroundColor, height, padding, id }: BoxProps) => (
   <Flex
     as="section"
     id={id}
-    bg={bg}
+    backgroundColor={backgroundColor}
     height={height}
     padding={padding}
     flexDirection="column"

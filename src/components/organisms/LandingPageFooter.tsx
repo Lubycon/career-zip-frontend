@@ -6,7 +6,12 @@ import LinkButton from 'components/atoms/LinkButton';
 const LandingPageFooter = () => {
   return (
     <Footer>
-      <Flex bg="gray" height="450px" justifyContent="space-between" padding="100px 300px">
+      <Flex
+        backgroundColor="gray"
+        height="450px"
+        justifyContent="space-between"
+        padding="100px 300px"
+      >
         <Box>
           <Logo />
           <Text>
