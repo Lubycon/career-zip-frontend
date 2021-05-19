@@ -24,7 +24,8 @@
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/jsx-uses-react": 0,
     "react/react-in-jsx-scope": 0,
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0
   },
   "settings": {
     "import/resolver": {
