@@ -31,7 +31,8 @@
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "rebass": "^4.0.7"
+    "rebass": "^4.0.7",
+    "reset-css": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
@@ -48,6 +49,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
     "dotenv-webpack": "^7.0.2",
     "eslint": "^7.24.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
@@ -61,6 +63,7 @@
     "husky": "^6.0.0",
     "prettier": "^2.2.1",
     "redux-devtools": "^3.7.0",
+    "style-loader": "^2.0.0",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.2.4",
     "webpack": "^5.35.0",
