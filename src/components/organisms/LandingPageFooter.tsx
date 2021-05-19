@@ -1,7 +1,7 @@
-import ATag from 'components/atoms/ATag';
+import { Box, Flex, Text } from 'rebass';
 import Footer from 'components/atoms/Footer';
 import Logo from 'components/atoms/Logo';
-import { Box, Flex, Text } from 'rebass';
+import LinkButton from 'components/atoms/LinkButton';
 
 const LandingPageFooter = () => {
   return (
@@ -15,21 +15,30 @@ const LandingPageFooter = () => {
         </Box>
         <Flex flexDirection="column">
           <Text>Contact : official@career-zip.com</Text>
-          <ATag href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3">
+          <LinkButton
+            href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3"
+            margin="10px 0 0 0"
+          >
             개인정보처리방침
-          </ATag>
-          <ATag href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3">
+          </LinkButton>
+          <LinkButton
+            href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3"
+            margin="10px 0 0 0"
+          >
             Instagram
-          </ATag>
+          </LinkButton>
         </Flex>
         <Flex flexDirection="column">
-          <ATag href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3">
+          <LinkButton href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3">
             FAQ
-          </ATag>
-          <ATag href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3">
+          </LinkButton>
+          <LinkButton
+            href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3"
+            margin="10px 0 0 0"
+          >
             업데이트 노트
-          </ATag>
-          <Text>제휴문의</Text>
+          </LinkButton>
+          <Text margin="10px 0 0 0">제휴문의</Text>
         </Flex>
       </Flex>
     </Footer>
