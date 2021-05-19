@@ -2,6 +2,7 @@ import { Box, Flex, Text } from 'rebass';
 import Footer from 'components/atoms/Footer';
 import Logo from 'components/atoms/Logo';
 import LinkButton from 'components/atoms/LinkButton';
+import linkStyle from 'styles/link';
 
 const LandingPageFooter = () => {
   return (
@@ -19,7 +20,9 @@ const LandingPageFooter = () => {
           </Text>
         </Box>
         <Flex flexDirection="column">
-          <Text>Contact : official@career-zip.com</Text>
+          <a href="mailto:official@career-zip.com" css={linkStyle}>
+            Contact : official@career-zip.com
+          </a>
           <LinkButton
             href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3"
             margin="10px 0 0 0"
