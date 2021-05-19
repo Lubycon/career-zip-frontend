@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import LoginButton from 'components/atoms/LoginButton';
 import Logo from 'components/atoms/Logo';
 import { Flex } from 'rebass';
+import linkStyle from 'styles/link';
 
 const navButtonStyle = css`
   display: flex;
@@ -9,14 +10,7 @@ const navButtonStyle = css`
   justify-content: center;
   align-items: center;
   margin-right: 40px;
-  text-decoration: none;
-  color: inherit;
-  :hover,
-  :focus,
-  :active {
-    text-decoration: none;
-    color: inherit;
-  }
+  ${linkStyle}
 `;
 
 const NavigationBar = () => {

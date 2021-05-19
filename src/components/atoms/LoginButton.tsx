@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import linkStyle from 'styles/link';
 
 interface LoginButtonProps {
   text: string;
@@ -12,14 +13,7 @@ const style = css`
   color: #fff;
   font-size: 30px;
   font-weight: bold;
-  text-decoration: none;
-
-  :hover,
-  :focus,
-  :active {
-    text-decoration: none;
-    color: inherit;
-  }
+  ${linkStyle}
 `;
 
 const LoginButton = ({ text }: LoginButtonProps) => {

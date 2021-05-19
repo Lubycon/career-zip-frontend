@@ -1,5 +1,6 @@
 /* eslint-disable react/require-default-props */
 import { css } from '@emotion/react';
+import linkStyle from 'styles/link';
 
 interface LinkButtonProps {
   href: string;
@@ -14,15 +15,8 @@ const LinkButton = ({ href, children, margin }: LinkButtonProps) => {
       target="_blank"
       rel="noopener noreferrer"
       css={css`
-        text-decoration: none;
-        color: inherit;
         margin: ${margin};
-        :hover,
-        :focus,
-        :active {
-          text-decoration: none;
-          color: inherit;
-        }
+        ${linkStyle}
       `}
     >
       {children}
