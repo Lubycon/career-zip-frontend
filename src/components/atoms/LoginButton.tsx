@@ -12,6 +12,14 @@ const style = css`
   color: #fff;
   font-size: 30px;
   font-weight: bold;
+  text-decoration: none;
+
+  :hover,
+  :focus,
+  :active {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 const LoginButton = ({ text }: LoginButtonProps) => {
