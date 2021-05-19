@@ -4,7 +4,7 @@ import NavigationBar from 'components/molecules/NavigationBar';
 import LandingPageFooter from 'components/organisms/LandingPageFooter';
 import { Button, Flex, Heading, Image, Text } from 'rebass';
 
-const Home = (): JSX.Element => {
+const Home = () => {
   return (
     <Flex flexDirection="column">
       <NavigationBar />

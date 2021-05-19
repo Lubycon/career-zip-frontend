@@ -4,6 +4,6 @@ interface FooterProps {
   children: React.ReactNode;
 }
 
-const Footer = ({ children }: FooterProps): JSX.Element => <Box as="footer">{children}</Box>;
+const Footer = ({ children }: FooterProps) => <Box as="footer">{children}</Box>;
 
 export default Footer;

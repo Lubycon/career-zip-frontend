@@ -11,7 +11,7 @@ const aStyle = css`
   margin-right: 40px;
 `;
 
-const NavigationBar = (): JSX.Element => {
+const NavigationBar = () => {
   return (
     <Flex bg="lightBlue" justifyContent="space-between" padding="10px 80px">
       <Logo />

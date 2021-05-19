@@ -14,7 +14,7 @@ const style = css`
   font-weight: bold;
 `;
 
-const LoginButton = ({ text }: LoginButtonProps): JSX.Element => {
+const LoginButton = ({ text }: LoginButtonProps) => {
   return (
     <Link to="/login" css={style}>
       {text}

@@ -1,6 +1,6 @@
 import { Box } from 'rebass';
 
-const Logo = (): JSX.Element => {
+const Logo = () => {
   return (
     <Box
       width="300px"

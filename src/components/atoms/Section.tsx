@@ -1,6 +1,6 @@
 import { BoxProps, Flex } from 'rebass';
 
-const Section = ({ children, bg, height, padding, id }: BoxProps): JSX.Element => (
+const Section = ({ children, bg, height, padding, id }: BoxProps) => (
   <Flex
     as="section"
     id={id}

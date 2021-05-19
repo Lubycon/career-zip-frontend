@@ -3,7 +3,7 @@ interface ATagProps {
   children: React.ReactNode;
 }
 
-const ATag = ({ href, children }: ATagProps): JSX.Element => {
+const ATag = ({ href, children }: ATagProps) => {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer">
       {children}

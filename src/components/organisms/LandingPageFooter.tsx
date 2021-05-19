@@ -3,7 +3,7 @@ import Footer from 'components/atoms/Footer';
 import Logo from 'components/atoms/Logo';
 import { Box, Flex, Text } from 'rebass';
 
-const LandingPageFooter = (): JSX.Element => {
+const LandingPageFooter = () => {
   return (
     <Footer>
       <Flex bg="gray" height="450px" justifyContent="space-between" padding="100px 300px">
