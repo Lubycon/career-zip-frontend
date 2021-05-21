@@ -3,6 +3,7 @@ import LoginButton from 'components/atoms/LoginButton';
 import Logo from 'components/atoms/Logo';
 import { Flex } from 'rebass';
 import linkStyle from 'styles/link';
+import { externaURL } from 'utils/url';
 
 const navButtonStyle = css`
   display: flex;
@@ -21,12 +22,7 @@ const NavigationBar = () => {
         <a href="#about" css={navButtonStyle}>
           About
         </a>
-        <a
-          href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3"
-          target="_blank"
-          rel="noopener noreferrer"
-          css={navButtonStyle}
-        >
+        <a href={externaURL.FAQ} target="_blank" rel="noopener noreferrer" css={navButtonStyle}>
           FAQ
         </a>
         <LoginButton text="로그인" />
