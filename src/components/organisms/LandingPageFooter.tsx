@@ -3,6 +3,7 @@ import Footer from 'components/atoms/Footer';
 import Logo from 'components/atoms/Logo';
 import LinkButton from 'components/atoms/LinkButton';
 import linkStyle from 'styles/link';
+import { externaURL } from 'utils/url';
 
 const LandingPageFooter = () => {
   return (
@@ -23,27 +24,16 @@ const LandingPageFooter = () => {
           <a href="mailto:official@career-zip.com" css={linkStyle}>
             Contact : official@career-zip.com
           </a>
-          <LinkButton
-            href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3"
-            margin="10px 0 0 0"
-          >
+          <LinkButton href={externaURL.privacyPolicy} margin="10px 0 0 0">
             개인정보처리방침
           </LinkButton>
-          <LinkButton
-            href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3"
-            margin="10px 0 0 0"
-          >
+          <LinkButton href={externaURL.instagram} margin="10px 0 0 0">
             Instagram
           </LinkButton>
         </Flex>
         <Flex flexDirection="column">
-          <LinkButton href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3">
-            FAQ
-          </LinkButton>
-          <LinkButton
-            href="https://www.notion.so/public-test-page-ccad85ae25ae4a0082bf3905b169c1d3"
-            margin="10px 0 0 0"
-          >
+          <LinkButton href={externaURL.FAQ}>FAQ</LinkButton>
+          <LinkButton href={externaURL.updateNote} margin="10px 0 0 0">
             업데이트 노트
           </LinkButton>
           <Text margin="10px 0 0 0">제휴문의</Text>
