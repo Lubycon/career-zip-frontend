@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import client from 'api/client';
 import { getJWT } from 'api/auth';
 import useQuery from 'hooks';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { useHistory, withRouter } from 'react-router';
 
-const Auth = ({ history }: RouteComponentProps) => {
+const Auth = () => {
+  const history = useHistory();
   const tempToken = useQuery().get('authorizationToken');
 
   useEffect(() => {
