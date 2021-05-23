@@ -8,8 +8,10 @@ const Auth = ({ history }: RouteComponentProps) => {
   const tempToken = useQuery().get('authorizationToken');
 
   useEffect(() => {
-    if (tempToken) {
-      issueJWT(tempToken)
+    if (tempToken === undefined) {
+      return;
+    }
+    issueJWT(tempToken)
         .then((res) => {
           if (res.headers.authorization && res.headers.authorization.split(' ')[0] === 'Bearer') {
             const jwt = res.headers.authorization.split(' ')[1];

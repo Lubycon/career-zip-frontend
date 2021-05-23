@@ -12,10 +12,10 @@ const Modal = ({ width, height, padding, margin, children }: ModalProps) => {
   return (
     <Box
       sx={{
-        width: `${width}`,
-        height: `${height}`,
-        margin: `${margin}`,
-        padding: `${padding}`,
+        width,
+        height,
+        margin,
+        padding,
         borderRadius: '20px',
       }}
       backgroundColor="white"
