@@ -1,6 +1,6 @@
 import client from './client';
 
-export const issueJWT = (tempToken: string) =>
+export const getJWT = (tempToken: string) =>
   client.post(
     '/accounts/auth',
     {},
