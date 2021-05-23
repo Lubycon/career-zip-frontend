@@ -1,8 +1,7 @@
 import React from 'react';
-import { Flex } from 'rebass';
+import { Flex, FlexProps } from 'rebass';
 
-interface BackgroundContainerProps {
-  padding?: string;
+interface BackgroundContainerProps extends FlexProps {
   children: React.ReactNode;
 }
 
