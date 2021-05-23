@@ -1,12 +1,12 @@
 import React from 'react';
 import { Flex } from 'rebass';
 
-interface BackgroundContainerPropsType {
+interface BackgroundContainerProps {
   padding?: string;
   children: React.ReactNode;
 }
 
-const BackgroundContainer = ({ children, padding }: BackgroundContainerPropsType) => {
+const BackgroundContainer = ({ children, padding }: BackgroundContainerProps) => {
   return (
     <Flex
       flexDirection="column"

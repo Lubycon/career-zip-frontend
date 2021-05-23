@@ -1,6 +1,6 @@
 import { Box } from 'rebass';
 
-interface ModalPropsType {
+interface ModalProps {
   width?: string;
   height?: string;
   margin?: string;
@@ -8,7 +8,7 @@ interface ModalPropsType {
   children: React.ReactNode;
 }
 
-const Modal = ({ width, height, padding, margin, children }: ModalPropsType) => {
+const Modal = ({ width, height, padding, margin, children }: ModalProps) => {
   return (
     <Box
       sx={{
