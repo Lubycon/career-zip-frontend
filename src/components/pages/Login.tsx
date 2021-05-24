@@ -2,8 +2,8 @@ import BackgroundContainer from 'components/atoms/BackgroundContainer';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { Flex, Heading, Link as ExternalLink } from 'rebass';
-import Modal from 'components/atoms/Modal';
 import linkStyle from 'styles/link';
+import Modal from 'components/atoms/Modal';
 
 const internalLinkButtonStyle = css`
   font-size: 30px;
@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <BackgroundContainer padding="33px 324px">
       <Link to="/" css={internalLinkButtonStyle}>{`< 홈으로`}</Link>
-      <Modal height="630px" margin="auto" padding="120px 160px">
+      <Modal>
         <Flex flexDirection="column" height="100%" justifyContent="space-between">
           <Heading as="h1" fontSize="52px" marginBottom="auto" textAlign="center">
             커리어 세이브 포인트
