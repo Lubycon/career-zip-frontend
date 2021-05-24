@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import client from 'api/client';
 import { getJWT } from 'api/auth';
 import useQuery from 'hooks';
-import { useHistory, withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 
 const Auth = () => {
   const history = useHistory();
@@ -29,4 +29,4 @@ const Auth = () => {
   return <div>로그인 중...</div>;
 };
 
-export default withRouter(Auth);
+export default Auth;
