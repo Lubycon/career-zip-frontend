@@ -1,27 +1,22 @@
-import { Box } from 'rebass';
+import { css } from '@emotion/react';
 
 interface ModalProps {
-  width?: string;
-  height?: string;
-  margin?: string;
-  padding?: string;
   children: React.ReactNode;
 }
 
-const Modal = ({ width, height, padding, margin, children }: ModalProps) => {
+const Modal = ({ children }: ModalProps) => {
   return (
-    <Box
-      sx={{
-        width,
-        height,
-        margin,
-        padding,
-        borderRadius: '20px',
-      }}
-      backgroundColor="white"
+    <div
+      css={css`
+        display: flex;
+        padding: 120px 160px;
+        margin: auto;
+        background-color: white;
+        border-radius: 20px;
+      `}
     >
       {children}
-    </Box>
+    </div>
   );
 };
 
