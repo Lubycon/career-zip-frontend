@@ -11,7 +11,7 @@ const Auth = () => {
   }>().query;
 
   useEffect(() => {
-    if (tempToken === undefined) {
+    if (tempToken == null) {
       return;
     }
     getJWT(tempToken)
