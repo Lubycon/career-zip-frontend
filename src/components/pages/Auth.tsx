@@ -14,8 +14,9 @@ const Auth = () => {
     if (tempToken == null) {
       return;
     }
-    getJWT(tempToken)
-      .then((res) => {
+    const getJWTAsync = async (token: string) => {
+      try {
+        const res = await getJWT(token);
         const [authorizationHeader, jwt] = res.headers.authorization.split(' ');
         if (authorizationHeader && authorizationHeader === 'Bearer') {
           client.defaults.headers = {
@@ -23,10 +24,11 @@ const Auth = () => {
           };
           history.push('/main');
         }
-      })
-      .catch((err) => {
+      } catch (err) {
         history.push('/login');
-      });
+      }
+    };
+    getJWTAsync(tempToken);
   }, [tempToken]);
   return <div>로그인 중...</div>;
 };
