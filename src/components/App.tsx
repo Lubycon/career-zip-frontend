@@ -10,18 +10,10 @@ const App = () => (
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/auth">
-          <Auth />
-        </Route>
-        <Route path="/main">
-          <Main />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/auth" component={Auth} />
+        <Route path="/main" component={Main} />
       </Switch>
     </BrowserRouter>
   </Provider>
