@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import client from 'api/client';
 import { getJWT } from 'api/auth';
-import useQuery from 'hooks';
 import { useHistory } from 'react-router';
+import useQueryStringAndParam from 'hooks';
 
 const Auth = () => {
   const history = useHistory();
-  const tempToken = useQuery().get('authorizationToken');
+  const { authorizationToken: tempToken } = useQueryStringAndParam<{
+    authorizationToken: string;
+  }>().query;
 
   useEffect(() => {
     if (tempToken === undefined) {
