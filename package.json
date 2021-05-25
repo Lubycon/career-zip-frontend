@@ -24,6 +24,7 @@
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
+    "@reduxjs/toolkit": "^1.5.1",
     "axios": "^0.21.1",
     "babel-runtime": "^6.26.0",
     "query-string": "^7.0.0",
