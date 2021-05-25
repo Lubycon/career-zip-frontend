@@ -16,8 +16,8 @@ const Auth = () => {
     }
     getJWT(tempToken)
       .then((res) => {
-        if (res.headers.authorization && res.headers.authorization.split(' ')[0] === 'Bearer') {
-          const jwt = res.headers.authorization.split(' ')[1];
+        const [authorizationHeader, jwt] = res.headers.authorization.split(' ');
+        if (authorizationHeader && authorizationHeader === 'Bearer') {
           client.defaults.headers = {
             Authorization: `Bearer ${jwt}`,
           };
