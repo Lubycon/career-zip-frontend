@@ -1,10 +1,26 @@
 import { useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
 import client from 'api/client';
 import { getJWT } from 'api/auth';
 import { useHistory } from 'react-router';
 import useQueryStringAndParam from 'hooks';
+import { useDispatch } from 'react-redux';
+import { setAccountInfo } from 'slices/account';
+
+interface TDecodedJWT {
+  id: number;
+  name: string;
+  job: string;
+  email: string;
+  avatarUrl: string;
+  role: string;
+  iat: number;
+  iss: string;
+  exp: number;
+}
 
 const Auth = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const { authorizationToken: tempToken } = useQueryStringAndParam<{
     authorizationToken: string;
@@ -19,6 +35,8 @@ const Auth = () => {
         const res = await getJWT(token);
         const [authorizationHeader, jwt] = res.headers.authorization.split(' ');
         if (authorizationHeader && authorizationHeader === 'Bearer') {
+          const { iat, iss, exp, ...rest } = jwt_decode<TDecodedJWT>(jwt);
+          dispatch(setAccountInfo(rest));
           client.defaults.headers = {
             Authorization: `Bearer ${jwt}`,
           };

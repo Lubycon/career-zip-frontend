@@ -28,6 +28,14 @@
     "react/require-default-props": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0
   },
+  "overrides": [
+    {
+      "files": ["./src/slices/*.ts"],
+      "rules": {
+        "no-param-reassign": 0
+      }
+    }
+  ],
   "settings": {
     "import/resolver": {
       "node": {
