@@ -1,14 +1,12 @@
 import { css } from '@emotion/react';
-
-interface TUserProfile {
-  name: string;
-  profileImageUrl: string;
-}
+import { useSelector } from 'react-redux';
+import { RootState } from 'slices';
 
 const defaultAvatarUrl =
   'https://cdn6.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumbCard.jpg';
 
-const UserProfile = ({ name, profileImageUrl = defaultAvatarUrl }: TUserProfile) => {
+const UserProfile = () => {
+  const { name, avatarUrl = defaultAvatarUrl } = useSelector((state: RootState) => state.account);
   return (
     <div
       css={css`
@@ -25,7 +23,7 @@ const UserProfile = ({ name, profileImageUrl = defaultAvatarUrl }: TUserProfile)
           border-radius: 100%;
         `}
         alt="profile"
-        src={profileImageUrl}
+        src={avatarUrl}
       />
       <span
         css={css`
