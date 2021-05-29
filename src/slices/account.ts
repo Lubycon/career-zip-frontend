@@ -1,5 +1,4 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
-import { RootState } from 'slices';
 import { withPayloadType } from '../utils/slices';
 
 interface TAccountInfo {
@@ -38,5 +37,4 @@ const accountSlice = createSlice({
   },
 });
 
-export const selectAccountInfo = (state: RootState) => state.account;
 export default accountSlice.reducer;
