@@ -1,26 +1,59 @@
-import { css } from '@emotion/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { modal } from 'styles/element';
+import Dimmer from './Dimmer';
 
 interface ModalProps {
-  padding?: string;
+  isVisible: boolean;
+  onOpened?: VoidFunction;
+  onClosed?: VoidFunction;
   closeButton?: React.ReactNode;
   children: React.ReactNode;
 }
 
-const Modal = ({ padding = '30px', closeButton, children }: ModalProps) => {
+const Modal = ({ isVisible, onOpened, onClosed, closeButton, children }: ModalProps) => {
+  const [defaultScrollStyle, setDefaultScrollStyle] = useState({
+    x: '',
+    y: '',
+  });
+
+  const disableScroll = () => {
+    document.body.style.overflowX = 'hidden';
+    document.body.style.overflowY = 'hidden';
+  };
+
+  const enableScroll = () => {
+    document.body.style.overflowX = defaultScrollStyle.x;
+    document.body.style.overflowY = defaultScrollStyle.y;
+  };
+
+  useEffect(() => {
+    setDefaultScrollStyle({
+      x: document.body.style.overflowX,
+      y: document.body.style.overflowY,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      onOpened?.();
+      disableScroll();
+      return;
+    }
+    onClosed?.();
+    enableScroll();
+  }, [isVisible]);
+
   return (
-    <div
-      css={css`
-        display: flex;
-        margin: auto;
-        background-color: white;
-        border-radius: 20px;
-        padding: ${padding};
-      `}
-    >
-      {closeButton}
-      {children}
-    </div>
+    <>
+      {isVisible && (
+        <Dimmer>
+          <div css={modal}>
+            {closeButton}
+            {children}
+          </div>
+        </Dimmer>
+      )}
+    </>
   );
 };
 
