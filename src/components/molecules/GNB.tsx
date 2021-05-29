@@ -1,12 +1,12 @@
 import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
-import { selectAccountInfo } from 'slices/account';
+import { RootState } from 'slices';
 import Logo from 'components/atoms/Logo';
 import SearchInput from './SearchInput';
 import UserProfile from './UserProfile';
 
 const GNB = () => {
-  const { name, avatarUrl } = useSelector(selectAccountInfo);
+  const { name, avatarUrl } = useSelector((state: RootState) => state.account);
   return (
     <div
       css={css`
