@@ -15,4 +15,4 @@ const useQueryStringAndParam = <T>() => {
   }, [params]);
 };
 
-export default useQueryStringAndParam;
+export { useQueryStringAndParam };

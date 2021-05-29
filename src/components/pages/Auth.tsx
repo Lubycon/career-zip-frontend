@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import client from 'api/client';
 import { getJWT } from 'api/auth';
 import { useHistory } from 'react-router';
-import useQueryStringAndParam from 'hooks';
+import { useQueryStringAndParam } from 'hooks';
 import { useDispatch } from 'react-redux';
 import { setAccountInfo } from 'slices/account';
 

@@ -1,15 +1,11 @@
 import { css } from '@emotion/react';
 import GNB from 'components/molecules/GNB';
 import SideMenu from 'components/molecules/SideMenu';
+import { flexColumn } from 'styles/element';
 
 const MainTemplate = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-      `}
-    >
+    <div css={flexColumn}>
       <GNB />
       <div
         css={css`
