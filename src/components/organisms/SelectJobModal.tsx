@@ -46,7 +46,9 @@ const SelectJobModal = ({
                   margin: 10px 0;
                   font-size: 20px;
                 `}
-              >{`입력하신 직업은 <마이페이지>에서 변경할 수 있어요.`}</span>
+              >
+                입력하신 직업은 &lt;마이페이지&gt;에서 변경할 수 있어요.
+              </span>
               <div
                 css={css`
                   display: flex;
