@@ -3,13 +3,14 @@ import SelectJobModal from 'components/organisms/SelectJobModal';
 import MainTemplate from 'components/templates/MainTemplate';
 import { useSelector } from 'react-redux';
 import { RootState } from 'slices';
+import { getLocalStorageItem, setLocalStorageItem } from 'utils/localstorage';
 
 const Main = () => {
   const job = useSelector((state: RootState) => state.account.job);
   const [jobModalVisible, setJobModalVisible] = useState<boolean>();
 
   useEffect(() => {
-    const selectJobNextTime = JSON.parse(localStorage.getItem('selectJobNextTime'));
+    const selectJobNextTime = getLocalStorageItem<boolean>('selectJobNextTime');
     if (selectJobNextTime || job) {
       setJobModalVisible(false);
       return;
@@ -18,7 +19,7 @@ const Main = () => {
   }, []);
 
   const handleSelectNextTimeButton = () => {
-    localStorage.setItem('selectJobNextTime', 'true');
+    setLocalStorageItem<boolean>('selectJobNextTime', true);
     setJobModalVisible(false);
   };
 
