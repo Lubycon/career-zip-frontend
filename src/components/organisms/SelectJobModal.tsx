@@ -4,6 +4,7 @@ import Dimmer from 'components/atoms/Dimmer';
 import Modal from 'components/atoms/Modal';
 import JobCard from 'components/atoms/JobCard';
 import TextButton from 'components/atoms/TextButton';
+import { flexColumn, flexRow } from 'styles/element';
 
 const dummy = 'https://cdn6.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumbCard.jpg';
 
@@ -21,8 +22,7 @@ const SelectJobModal = ({
           <Modal padding="30px 60px">
             <div
               css={css`
-                display: flex;
-                flex-direction: column;
+                ${flexColumn}
                 text-align: center;
               `}
             >
@@ -49,20 +49,12 @@ const SelectJobModal = ({
               >
                 입력하신 직업은 &lt;마이페이지&gt;에서 변경할 수 있어요.
               </span>
-              <div
-                css={css`
-                  display: flex;
-                `}
-              >
+              <div css={flexRow}>
                 <JobCard backgroundImageUrl={dummy}>개발</JobCard>
                 <JobCard backgroundImageUrl={dummy}>디자인</JobCard>
                 <JobCard backgroundImageUrl={dummy}>기획</JobCard>
               </div>
-              <div
-                css={css`
-                  display: flex;
-                `}
-              >
+              <div css={flexRow}>
                 <JobCard backgroundImageUrl={dummy}>마케팅</JobCard>
                 <JobCard backgroundImageUrl={dummy}>HR/경영지원</JobCard>
                 <JobCard backgroundImageUrl={dummy}>기타</JobCard>
