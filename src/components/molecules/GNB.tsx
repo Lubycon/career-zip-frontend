@@ -8,7 +8,6 @@ const GNB = () => {
     <div
       css={css`
         display: flex;
-        flex-direction: row;
         padding: 10px 20px;
         background-color: gray;
       `}
