@@ -5,7 +5,10 @@ interface TUserProfile {
   profileImageUrl: string;
 }
 
-const UserProfile = ({ name, profileImageUrl }: TUserProfile) => {
+const defaultAvatarUrl =
+  'https://cdn6.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumbCard.jpg';
+
+const UserProfile = ({ name, profileImageUrl = defaultAvatarUrl }: TUserProfile) => {
   return (
     <div
       css={css`
