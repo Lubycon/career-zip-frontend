@@ -1,32 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SelectJobModal from 'components/organisms/SelectJobModal';
 import MainTemplate from 'components/templates/MainTemplate';
 import { useSelector } from 'react-redux';
 import { RootState } from 'slices';
 import { getLocalStorageItem, setLocalStorageItem } from 'utils/localstorage';
+import { useModal } from 'hooks';
 
 const Main = () => {
   const job = useSelector((state: RootState) => state.account.job);
-  const [jobModalVisible, setJobModalVisible] = useState<boolean>();
+  const { isModalVisible, handleOpenModal, handleCloseModal } = useModal();
 
   useEffect(() => {
     const selectJobNextTime = getLocalStorageItem<boolean>('selectJobNextTime');
     if (selectJobNextTime || job) {
-      setJobModalVisible(false);
+      handleCloseModal();
       return;
     }
-    setJobModalVisible(true);
+    handleOpenModal();
   }, []);
 
   const handleSelectNextTimeButton = () => {
     setLocalStorageItem<boolean>('selectJobNextTime', true);
-    setJobModalVisible(false);
+    handleCloseModal();
   };
 
   return (
     <>
       <SelectJobModal
-        isVisible={jobModalVisible}
+        isVisible={isModalVisible}
         onClickSelectNextTimeButton={handleSelectNextTimeButton}
       />
       <MainTemplate>moyaho</MainTemplate>
