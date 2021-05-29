@@ -16,7 +16,7 @@ const useQueryStringAndParam = <T>() => {
 };
 
 const useModal = () => {
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalVisible(true);
