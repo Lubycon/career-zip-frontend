@@ -1,9 +1,12 @@
 import { css } from '@emotion/react';
+import { useSelector } from 'react-redux';
+import { selectAccountInfo } from 'slices/account';
 import Logo from 'components/atoms/Logo';
 import SearchInput from './SearchInput';
 import UserProfile from './UserProfile';
 
 const GNB = () => {
+  const { name, avatarUrl } = useSelector(selectAccountInfo);
   return (
     <div
       css={css`
@@ -15,10 +18,7 @@ const GNB = () => {
     >
       <Logo />
       <SearchInput />
-      <UserProfile
-        name="Junimo"
-        profileImageUrl="https://cdn6.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumbCard.jpg"
-      />
+      <UserProfile name={name} profileImageUrl={avatarUrl} />
     </div>
   );
 };
