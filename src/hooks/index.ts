@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useParams } from 'react-router';
 
 const useQueryStringAndParam = <T>() => {
@@ -15,4 +15,22 @@ const useQueryStringAndParam = <T>() => {
   }, [params]);
 };
 
-export default useQueryStringAndParam;
+const useModal = () => {
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+
+  return {
+    isModalVisible,
+    handleOpenModal,
+    handleCloseModal,
+  };
+};
+
+export { useQueryStringAndParam, useModal };
