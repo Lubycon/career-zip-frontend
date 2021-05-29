@@ -1,5 +1,7 @@
+import MainTemplate from 'components/templates/MainTemplate';
+
 const Main = () => {
-  return <div>메인임니다</div>;
+  return <MainTemplate>moyaho</MainTemplate>;
 };
 
 export default Main;
