@@ -18,7 +18,7 @@ const SelectJobModal = ({
     <>
       {isVisible && (
         <Dimmer>
-          <Modal closable={false} padding="30px 60px">
+          <Modal padding="30px 60px">
             <div
               css={css`
                 display: flex;

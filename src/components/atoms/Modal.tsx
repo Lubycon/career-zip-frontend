@@ -1,13 +1,13 @@
 import { css } from '@emotion/react';
+import React from 'react';
 
 interface ModalProps {
   padding?: string;
-  closable: boolean;
-  onClose?: () => void;
+  closeButton?: React.ReactNode;
   children: React.ReactNode;
 }
 
-const Modal = ({ padding = '30px', closable, children, onClose }: ModalProps) => {
+const Modal = ({ padding = '30px', closeButton, children }: ModalProps) => {
   return (
     <div
       css={css`
@@ -18,11 +18,7 @@ const Modal = ({ padding = '30px', closable, children, onClose }: ModalProps) =>
         padding: ${padding};
       `}
     >
-      {closable && (
-        <button type="button" onClick={onClose}>
-          X
-        </button>
-      )}
+      {closeButton}
       {children}
     </div>
   );
