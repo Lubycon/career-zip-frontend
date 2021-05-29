@@ -8,15 +8,15 @@ import TextButton from 'components/atoms/TextButton';
 const dummy = 'https://cdn6.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumbCard.jpg';
 
 const SelectJobModal = ({
-  visible = false,
+  isVisible = false,
   onClickSelectNextTimeButton,
 }: {
-  visible: boolean;
+  isVisible: boolean;
   onClickSelectNextTimeButton: () => void;
 }) => {
   return (
     <>
-      {visible && (
+      {isVisible && (
         <Dimmer>
           <Modal closable={false} padding="30px 60px">
             <div

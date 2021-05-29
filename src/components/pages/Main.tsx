@@ -25,7 +25,7 @@ const Main = () => {
   return (
     <>
       <SelectJobModal
-        visible={jobModalVisible}
+        isVisible={jobModalVisible}
         onClickSelectNextTimeButton={handleSelectNextTimeButton}
       />
       <MainTemplate>moyaho</MainTemplate>
