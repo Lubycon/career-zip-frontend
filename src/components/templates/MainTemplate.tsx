@@ -18,7 +18,7 @@ const MainTemplate = ({ children }: { children: React.ReactNode }) => {
           css={css`
             flex: 1;
             max-width: 100vw;
-            padding: 20px;
+            padding: 40px 60px;
             background-color: greenyellow;
           `}
         >
