@@ -10,7 +10,7 @@ export enum OrderBy {
 
 interface IInitialState {
   isLoading: boolean;
-  orderBy: OrderBy.ASC | OrderBy.DESC;
+  orderBy: OrderBy;
   totalDataCount: number;
   list: {
     id: number;
@@ -41,7 +41,7 @@ const initialState: IInitialState = {
   },
 };
 
-export const setOrderBy = createAction<OrderBy.ASC | OrderBy.DESC>('setOrderBy');
+export const setOrderBy = createAction<OrderBy>('setOrderBy');
 
 export const getArchivingListAsync = createAsyncThunk<IArchivingList, void, { state: RootState }>(
   'getArchivingListAsync',
