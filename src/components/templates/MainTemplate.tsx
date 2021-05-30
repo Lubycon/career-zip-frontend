@@ -10,7 +10,7 @@ const MainTemplate = ({ children }: { children: React.ReactNode }) => {
       <div
         css={css`
           display: flex;
-          height: calc(100vh - 65px);
+          min-height: calc(100vh - 65px);
         `}
       >
         <SideMenu />
