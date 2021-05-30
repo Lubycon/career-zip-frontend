@@ -2,6 +2,22 @@ export interface IProject {
   id: number;
   title: string;
 }
+
+export interface IQuestion {
+  id: number;
+  priority: number;
+  inputType: string;
+  description: string;
+  example: string;
+  selectOptions: string[];
+  anwsers: {
+    id: number;
+    comment: string;
+    important: number;
+    project: IProject;
+  }[];
+}
+
 export interface IArchivingList {
   pageDetails: {
     totalPages: number;
@@ -26,18 +42,5 @@ export interface IArchive {
   endDate: string;
   createdDateTime: string;
   selectedProjects: IProject[];
-  questions: {
-    id: number;
-    priority: number;
-    inputType: string;
-    description: string;
-    example: string;
-    selectOptions: string[];
-    anwsers: {
-      id: number;
-      comment: string;
-      important: number;
-      project: IProject;
-    }[];
-  }[];
+  questions: IQuestion[];
 }
