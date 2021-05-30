@@ -10,7 +10,7 @@ export interface IQuestion {
   description: string;
   example: string;
   selectOptions: string[];
-  anwsers: {
+  answers: {
     id: number;
     comment: string;
     important: number;
