@@ -1,7 +1,15 @@
+import ArchiveForm from 'components/templates/ArchiveForm';
 import MainTemplate from 'components/templates/MainTemplate';
+import { useQueryStringAndParam } from 'hooks';
 
 const ArchivingDetail = () => {
-  return <MainTemplate>호로롤로</MainTemplate>;
+  const { id } = useQueryStringAndParam<{ id: number }>().query;
+
+  return (
+    <MainTemplate>
+      <ArchiveForm archiveId={id} />
+    </MainTemplate>
+  );
 };
 
 export default ArchivingDetail;
