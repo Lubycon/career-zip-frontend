@@ -13,6 +13,7 @@ const wrapper = css`
   justify-content: center;
   align-items: ceneter;
   align-content: center;
+  margin-bottom: 30px;
 `;
 
 const ArchiveFormHeader = ({ date, createdAt, onEdit, onDelete }: IArchiveFormHeader) => {
