@@ -3,14 +3,16 @@ import { RootState } from 'slices';
 import { IArchivingList } from 'types/index';
 import { getArchivingList } from 'api/archiving-list';
 
-export enum OrderBy {
-  ASC = 'asc',
-  DESC = 'desc',
-}
+export const ORDER_BY = {
+  ASC: 'asc',
+  DESC: 'desc',
+} as const;
+
+export type TOrderBy = typeof ORDER_BY[keyof typeof ORDER_BY];
 
 interface IInitialState {
   isLoading: boolean;
-  orderBy: OrderBy;
+  orderBy: TOrderBy;
   totalDataCount: number;
   list: {
     id: number;
@@ -30,7 +32,7 @@ interface IInitialState {
 const PAGE_SIZE = 50;
 const initialState: IInitialState = {
   isLoading: false,
-  orderBy: OrderBy.DESC,
+  orderBy: ORDER_BY.DESC,
   totalDataCount: 0,
   list: [],
   page: {
@@ -41,7 +43,7 @@ const initialState: IInitialState = {
   },
 };
 
-export const setOrderBy = createAction<OrderBy>('setOrderBy');
+export const setOrderBy = createAction<TOrderBy>('setOrderBy');
 
 export const getArchivingListAsync = createAsyncThunk<IArchivingList, void, { state: RootState }>(
   'getArchivingListAsync',

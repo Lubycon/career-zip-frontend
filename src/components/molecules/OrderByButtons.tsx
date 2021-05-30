@@ -1,7 +1,13 @@
 import { css } from '@emotion/react';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getArchivingListAsync, selectOrderBy, setOrderBy, OrderBy } from 'slices/archiving-list';
+import {
+  getArchivingListAsync,
+  selectOrderBy,
+  setOrderBy,
+  ORDER_BY,
+  TOrderBy,
+} from 'slices/archiving-list';
 import { SKY_BLUE } from 'styles/colors';
 import { flexRow } from 'styles/element';
 
@@ -17,7 +23,7 @@ const OrderByButtons = () => {
   const dispatch = useDispatch();
   const orderBy = useSelector(selectOrderBy);
 
-  const handleClick = useCallback((type: OrderBy) => {
+  const handleClick = useCallback((type: TOrderBy) => {
     dispatch(setOrderBy(type));
     dispatch(getArchivingListAsync());
   }, []);
@@ -36,16 +42,16 @@ const OrderByButtons = () => {
           ${button};
           margin-right: 10px;
         `}
-        className={orderBy === OrderBy.DESC && 'selected'}
-        onClick={() => handleClick(OrderBy.DESC)}
+        className={orderBy === ORDER_BY.DESC && 'selected'}
+        onClick={() => handleClick(ORDER_BY.DESC)}
       >
         최신순
       </button>
       <button
         type="button"
         css={button}
-        className={orderBy === OrderBy.ASC && 'selected'}
-        onClick={() => handleClick(OrderBy.ASC)}
+        className={orderBy === ORDER_BY.ASC && 'selected'}
+        onClick={() => handleClick(ORDER_BY.ASC)}
       >
         오래된순
       </button>
