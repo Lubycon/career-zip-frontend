@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArchivingListAsync, selectOrderBy, setOrderBy, OrderBy } from 'slices/archiving-list';
 import { SKY_BLUE } from 'styles/colors';
@@ -16,15 +17,10 @@ const OrderByButtons = () => {
   const dispatch = useDispatch();
   const orderBy = useSelector(selectOrderBy);
 
-  const handleOrderByDesc = () => {
-    dispatch(setOrderBy(OrderBy.DESC));
+  const handleClick = useCallback((type: OrderBy) => {
+    dispatch(setOrderBy(type));
     dispatch(getArchivingListAsync());
-  };
-
-  const handleOrderByAsc = () => {
-    dispatch(setOrderBy(OrderBy.ASC));
-    dispatch(getArchivingListAsync());
-  };
+  }, []);
 
   return (
     <div
@@ -41,7 +37,7 @@ const OrderByButtons = () => {
           margin-right: 10px;
         `}
         className={orderBy === OrderBy.DESC && 'selected'}
-        onClick={handleOrderByDesc}
+        onClick={() => handleClick(OrderBy.DESC)}
       >
         최신순
       </button>
@@ -49,7 +45,7 @@ const OrderByButtons = () => {
         type="button"
         css={button}
         className={orderBy === OrderBy.ASC && 'selected'}
-        onClick={handleOrderByAsc}
+        onClick={() => handleClick(OrderBy.ASC)}
       >
         오래된순
       </button>
