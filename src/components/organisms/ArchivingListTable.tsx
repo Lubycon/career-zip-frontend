@@ -85,14 +85,14 @@ const ArchivingListTable = () => {
 
   return (
     <div css={listWrapper}>
-      {list.map((el, i) => (
+      {list.map(({ id, startDate, endDate, createdDateTime, projects }, i) => (
         <Archiving
-          key={el.id}
+          key={id}
           number={i + 1}
-          id={el.id}
-          date={`${el.startDate}(월) ~ ${el.endDate}(금)`}
-          createdAt={el.createdDateTime}
-          projects={el.projects}
+          id={id}
+          date={`${startDate}(월) ~ ${endDate}(금)`}
+          createdAt={createdDateTime}
+          projects={projects}
         />
       ))}
     </div>
