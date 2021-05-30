@@ -1,3 +1,7 @@
+interface IProject {
+  id: number;
+  title: string;
+}
 export interface IArchivingList {
   pageDetails: {
     totalPages: number;
@@ -12,7 +16,7 @@ export interface IArchivingList {
     startDate: string;
     endDate: string;
     createdDateTime: string;
-    projects: { id: number; title: string }[];
+    projects: IProject[];
   }[];
 }
 
@@ -21,19 +25,19 @@ export interface IArchive {
   startDate: string;
   endDate: string;
   createdDateTime: string;
-  selectedProjects: { id: number; title: string }[];
+  selectedProjects: IProject[];
   questions: {
     id: number;
     priority: number;
     inputType: string;
     description: string;
-    example: string | null;
+    example: string;
     selectOptions: string[];
     anwsers: {
       id: number;
       comment: string;
       important: number;
-      project: { id: number; title: string };
+      project: IProject;
     }[];
   }[];
 }
