@@ -8,7 +8,7 @@ const Section = ({ children, backgroundColor, height, padding, alignItems, id }:
     height={height}
     padding={padding}
     flexDirection="column"
-    alignItems={alignItems || 'center'}
+    alignItems={alignItems ?? 'center'}
   >
     {children}
   </Flex>
