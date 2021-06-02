@@ -5,7 +5,7 @@ const LoginLoadingBackground = styled.div`
   height: 100vh;
   background-image: url('/public/images/login_loading.svg');
   background-position: center;
-  background-size: contain;
+  background-size: cover;
 `;
 
 export default LoginLoadingBackground;
