@@ -22,6 +22,8 @@ export const mainLoginButton = css`
   margin-top: 24px;
   font-weight: bold;
   box-shadow: 0px 0px 15px 5px #104ef24d;
+  font-size: 20px;
+  border: none;
   ${linkStyle}
 `;
 
