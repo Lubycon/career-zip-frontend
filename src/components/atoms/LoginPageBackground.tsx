@@ -7,7 +7,7 @@ const LoginPageBackground = styled.div`
   height: 100vh;
   background-image: url('/public/images/login_bg.svg');
   background-position: center;
-  background-size: contain;
+  background-size: cover;
 `;
 
 export default LoginPageBackground;
