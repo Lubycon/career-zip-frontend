@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import Logo from 'components/atoms/Logo';
+import GrayLogo from 'components/atoms/GrayLogo';
 import SearchInput from './SearchInput';
 import UserProfile from './UserProfile';
 
@@ -8,11 +8,11 @@ const GNB = () => {
     <div
       css={css`
         display: flex;
-        padding: 10px 20px;
+        padding: 0 240px;
         background-color: gray;
       `}
     >
-      <Logo />
+      <GrayLogo />
       <SearchInput />
       <UserProfile />
     </div>

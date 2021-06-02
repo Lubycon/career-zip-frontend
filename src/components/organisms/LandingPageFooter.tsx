@@ -1,42 +1,56 @@
+import styled from '@emotion/styled';
 import { Box, Flex, Text } from 'rebass';
-import Footer from 'components/atoms/Footer';
-import Logo from 'components/atoms/Logo';
-import LinkButton from 'components/atoms/LinkButton';
-import linkStyle from 'styles/link';
 import { externaURL } from 'utils/url';
+import { GRAY } from 'styles/colors';
+import linkStyle from 'styles/link';
+import GrayLogo from 'components/atoms/GrayLogo';
+import React from 'react';
+
+const Footer = styled.footer`
+  background-color: ${GRAY[4]};
+  justify-content: space-between;
+  padding: 180px 0;
+  a {
+    width: 224px;
+    margin-right: 20px;
+    font-size: 16px;
+    color: ${GRAY[2]};
+    height: 40px;
+    ${linkStyle}
+  }
+`;
+
+const ExternalLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer">
+    {children}
+  </a>
+);
 
 const LandingPageFooter = () => {
   return (
     <Footer>
-      <Flex
-        backgroundColor="gray"
-        height="450px"
-        justifyContent="space-between"
-        padding="100px 300px"
-      >
+      <Flex width="1440px" margin="auto" justifyContent="center" alignItems="center">
         <Box>
-          <Logo />
-          <Text>
-            커리어 세이브 포인트 <br /> Career.zip
+          <GrayLogo />
+          <Text fontSize="20px" lineHeight="32px" color={GRAY[3]} marginTop="10px">
+            커리어 세이브 포인트
           </Text>
         </Box>
-        <Flex flexDirection="column">
-          <a href="mailto:official@career-zip.com" css={linkStyle}>
-            Contact : official@career-zip.com
-          </a>
-          <LinkButton href={externaURL.privacyPolicy} margin="10px 0 0 0">
-            개인정보처리방침
-          </LinkButton>
-          <LinkButton href={externaURL.instagram} margin="10px 0 0 0">
-            Instagram
-          </LinkButton>
-        </Flex>
-        <Flex flexDirection="column">
-          <LinkButton href={externaURL.FAQ}>FAQ</LinkButton>
-          <LinkButton href={externaURL.updateNote} margin="10px 0 0 0">
-            업데이트 노트
-          </LinkButton>
-          <Text margin="10px 0 0 0">제휴문의</Text>
+        <Flex marginLeft="283px">
+          <Flex flexDirection="column">
+            <ExternalLink href="mailto:official@career-zip.com">
+              official@career-zip.com
+            </ExternalLink>
+            <ExternalLink href={externaURL.privacyPolicy}>이용약관</ExternalLink>
+          </Flex>
+          <Flex flexDirection="column">
+            <ExternalLink href={externaURL.instagram}>Instagram</ExternalLink>
+            <ExternalLink href={externaURL.updateNote}>업데이트 노트</ExternalLink>
+          </Flex>
+          <Flex flexDirection="column">
+            <ExternalLink href={externaURL.FAQ}>FAQ</ExternalLink>
+            <ExternalLink href="mailto:official@career-zip.com">제휴문의</ExternalLink>
+          </Flex>
         </Flex>
       </Flex>
     </Footer>
