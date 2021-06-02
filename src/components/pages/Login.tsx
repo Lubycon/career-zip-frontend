@@ -1,29 +1,47 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
-import useModal from 'hooks/useModal';
 import linkStyle from 'styles/link';
-import BackgroundContainer from 'components/atoms/BackgroundContainer';
+import LoginPageBackground from 'components/atoms/LoginPageBackground';
 import LoginModalContent from 'components/organisms/LoginModalContent';
+import { Flex } from 'rebass';
+import { modal } from 'styles/element';
 
-const internalLinkButtonStyle = css`
-  font-size: 30px;
+const homeButton = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 32px;
+  font-size: 18px;
   font-weight: bold;
+  border-radius: 5px;
+  background: rgba(122, 160, 255, 0.5);
+  color: #fff;
   ${linkStyle}
+
+  >img {
+    margin-right: 10px;
+  }
 `;
 
 const Login = () => {
-  const { handleOpenModal, renderModal } = useModal({});
-
-  useEffect(() => {
-    handleOpenModal();
-  }, []);
-
   return (
-    <BackgroundContainer padding="33px 324px">
-      <Link to="/" css={internalLinkButtonStyle}>{`< 홈으로`}</Link>
-      {renderModal(<LoginModalContent />)}
-    </BackgroundContainer>
+    <LoginPageBackground>
+      <Flex width="1440px" padding="30px 0" height="100%" margin="auto" flexDirection="column">
+        <Link to="/" css={homeButton}>
+          <img src="/public/icons/left_arrow.svg" alt="left arrow" /> 홈으로
+        </Link>
+        <div
+          css={css`
+            ${modal};
+            width: fit-content;
+            margin: auto 0;
+          `}
+        >
+          <LoginModalContent />
+        </div>
+      </Flex>
+    </LoginPageBackground>
   );
 };
 
