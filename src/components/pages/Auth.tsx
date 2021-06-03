@@ -1,23 +1,11 @@
 import { useEffect } from 'react';
-import jwt_decode from 'jwt-decode';
 import client from 'api/client';
 import { getJWT } from 'api/auth';
 import { useHistory } from 'react-router';
 import { useQueryStringAndParam } from 'hooks';
 import { useDispatch } from 'react-redux';
 import { setAccountInfo } from 'slices/account';
-
-interface TDecodedJWT {
-  id: number;
-  name: string;
-  job: string;
-  email: string;
-  avatarUrl: string;
-  role: string;
-  iat: number;
-  iss: string;
-  exp: number;
-}
+import LoginLoadingBackground from 'components/atoms/LoginLoadingBackground';
 
 const Auth = () => {
   const dispatch = useDispatch();
@@ -35,8 +23,7 @@ const Auth = () => {
         const res = await getJWT(token);
         const [authorizationHeader, jwt] = res.headers.authorization.split(' ');
         if (authorizationHeader && authorizationHeader === 'Bearer') {
-          const { iat, iss, exp, ...rest } = jwt_decode<TDecodedJWT>(jwt);
-          dispatch(setAccountInfo(rest));
+          dispatch(setAccountInfo(res.data.data));
           client.defaults.headers = {
             Authorization: `Bearer ${jwt}`,
           };
@@ -48,7 +35,7 @@ const Auth = () => {
     };
     getJWTAsync(tempToken);
   }, [tempToken]);
-  return <div>로그인 중...</div>;
+  return <LoginLoadingBackground />;
 };
 
 export default Auth;

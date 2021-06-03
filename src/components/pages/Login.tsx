@@ -1,29 +1,26 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
-import useModal from 'hooks/useModal';
-import linkStyle from 'styles/link';
-import BackgroundContainer from 'components/atoms/BackgroundContainer';
+import LoginPageBackground from 'components/atoms/LoginPageBackground';
 import LoginModalContent from 'components/organisms/LoginModalContent';
-
-const internalLinkButtonStyle = css`
-  font-size: 30px;
-  font-weight: bold;
-  ${linkStyle}
-`;
+import { Flex } from 'rebass';
+import { modal } from 'styles/element';
+import HomeButton from 'components/molecules/HomeButton';
 
 const Login = () => {
-  const { handleOpenModal, renderModal } = useModal({});
-
-  useEffect(() => {
-    handleOpenModal();
-  }, []);
-
   return (
-    <BackgroundContainer padding="33px 324px">
-      <Link to="/" css={internalLinkButtonStyle}>{`< 홈으로`}</Link>
-      {renderModal(<LoginModalContent />)}
-    </BackgroundContainer>
+    <LoginPageBackground>
+      <Flex width="1440px" padding="30px 0" height="100%" margin="auto" flexDirection="column">
+        <HomeButton />
+        <div
+          css={css`
+            ${modal};
+            width: fit-content;
+            margin: auto 0;
+          `}
+        >
+          <LoginModalContent />
+        </div>
+      </Flex>
+    </LoginPageBackground>
   );
 };
 

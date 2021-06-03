@@ -2,11 +2,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Auth from 'components/pages/Auth';
 import Home from 'components/pages/Home';
 import Login from 'components/pages/Login';
-import Main from 'components/pages/Main';
-import ArchivingList from 'components/pages/ArchivingList';
-import CareerzipReport from 'components/pages/CareerzipReport';
-import ProjectManagement from 'components/pages/ProjectManagement';
-import Archive from 'components/pages/Archive';
+import TempMain from 'components/pages/TempMain';
+// import ArchivingList from 'components/pages/ArchivingList';
+// import CareerzipReport from 'components/pages/CareerzipReport';
+// import ProjectManagement from 'components/pages/ProjectManagement';
+// import Archive from 'components/pages/Archive';
 
 const Router = () => {
   return (
@@ -15,11 +15,11 @@ const Router = () => {
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/auth" component={Auth} />
-        <Route path="/main" component={Main} />
-        <Route path="/archiving-list" component={ArchivingList} />
+        <Route path="/main" component={TempMain} />
+        {/* <Route path="/archiving-list" component={ArchivingList} />
         <Route path="/archive/:id" component={Archive} />
         <Route path="/careerzip-report" component={CareerzipReport} />
-        <Route path="/project-management" component={ProjectManagement} />
+        <Route path="/project-management" component={ProjectManagement} /> */}
       </Switch>
     </BrowserRouter>
   );
