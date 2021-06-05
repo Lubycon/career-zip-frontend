@@ -1,7 +1,7 @@
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import Toast from 'components/atoms/Toast';
 
-const useToast = () => {
+const useToast = (time = 2000) => {
   const [isVisible, setVisible] = useState(false);
 
   const handleShowToast = useCallback(() => {
@@ -10,7 +10,7 @@ const useToast = () => {
 
   useEffect(() => {
     if (isVisible) {
-      const showToast = setTimeout(() => setVisible(false), 2000);
+      const showToast = setTimeout(() => setVisible(false), time);
 
       return () => {
         clearTimeout(showToast);
