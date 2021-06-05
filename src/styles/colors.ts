@@ -26,7 +26,7 @@ export const LIGHT_GRAY = {
 
 export const DARK_GRAY = {
   1: '#191F28',
-  2: '#6B7684',
+  2: '#3D3D3D',
 };
 
 export const RED = '#F35750';
