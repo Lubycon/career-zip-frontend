@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import useToast from 'hooks/useToast';
 import { Flex, Text } from 'rebass';
-import { BLUE, GRAY } from 'styles/colors';
+import { BLUE, DARK_GRAY, GRAY } from 'styles/colors';
 
 const Background = styled.div`
   display: flex;
@@ -37,7 +37,11 @@ const HomeShareSection = () => {
 
   return (
     <>
-      {renderToast(<Text fontWeight="bold">🔗 공유 링크가 복사 되었습니다!</Text>)}
+      {renderToast(
+        <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+          🔗 공유 링크가 복사 되었습니다!
+        </Text>
+      )}
       <Background>
         <Flex flexDirection="column" padding="145px 0" margin="auto" alignItems="center">
           <Text fontSize="52px" fontWeight="bold" lineHeight="72.8px">
