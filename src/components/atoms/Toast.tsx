@@ -17,7 +17,7 @@ const ToastContent = styled.div`
   display: inline-block;
   margin: auto;
   text-align: center;
-  padding: 22px;
+  padding: 22px 0;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 0px 30px 0px rgba(196, 196, 196, 0.4);
