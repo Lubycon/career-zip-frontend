@@ -8,7 +8,7 @@ const Background = styled.div`
   display: flex;
   width: 100%;
   height: 570px;
-  /* background-image: url('/public/images/section03_bg.svg'); */
+  background-image: url('/public/images/section03_bg.png');
   background-position: center;
 `;
 
