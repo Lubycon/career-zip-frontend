@@ -30,7 +30,7 @@ const Auth = () => {
           history.push('/main');
         }
       } catch (err) {
-        history.push('/login');
+        history.push('/login?error=invalid-auth');
       }
     };
     getJWTAsync(tempToken);
