@@ -19,6 +19,16 @@ export const GRAY = {
   4: '#F9FAFB',
 };
 
+export const LIGHT_GRAY = {
+  1: '#B0B8C1',
+  2: '#F9FAFB',
+};
+
+export const DARK_GRAY = {
+  1: '#191F28',
+  2: '#6B7684',
+};
+
 export const RED = '#F35750';
 
 export const GREEN = '#31CB84';
