@@ -23,7 +23,12 @@ const ToastContent = styled.div`
   box-shadow: 0px 0px 30px 0px rgba(196, 196, 196, 0.4);
 `;
 
-const Toast = ({ isVisible, children }: { isVisible: boolean; children: ReactNode }) => (
+interface ToastProps {
+  isVisible: boolean;
+  children: ReactNode;
+}
+
+const Toast = ({ isVisible, children }: ToastProps) => (
   <Wrapper className={isVisible ? 'show' : undefined}>
     <ToastContent>{children}</ToastContent>
   </Wrapper>
