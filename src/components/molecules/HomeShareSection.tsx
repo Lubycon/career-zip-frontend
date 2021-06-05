@@ -1,12 +1,14 @@
+import React from 'react';
 import styled from '@emotion/styled';
+import useToast from 'hooks/useToast';
 import { Flex, Text } from 'rebass';
-import { BLUE, GRAY } from 'styles/colors';
+import { BLUE, DARK_GRAY, GRAY } from 'styles/colors';
 
 const Background = styled.div`
   display: flex;
   width: 100%;
   height: 570px;
-  background-image: url('/public/images/section03_bg.svg');
+  background-image: url('/public/images/section03_bg.png');
   background-position: center;
 `;
 
@@ -27,24 +29,37 @@ const ShareButton = styled.button`
 `;
 
 const HomeShareSection = () => {
+  const { handleShowToast, renderToast } = useToast();
+
+  const handleClick = () => {
+    handleShowToast();
+  };
+
   return (
-    <Background>
-      <Flex flexDirection="column" padding="145px 0" margin="auto" alignItems="center">
-        <Text fontSize="52px" fontWeight="bold" lineHeight="72.8px">
-          주변 지인과 공유하고 함께 성장하세요!
+    <>
+      {renderToast(
+        <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+          🔗 공유 링크가 복사 되었습니다!
         </Text>
-        <Text
-          fontSize="32px"
-          fontWeight="bold"
-          color={GRAY[2]}
-          lineHeight="44.8px"
-          marginTop="20px"
-        >
-          현재 000명이 공유중
-        </Text>
-        <ShareButton>함께 성장하기</ShareButton>
-      </Flex>
-    </Background>
+      )}
+      <Background>
+        <Flex flexDirection="column" padding="145px 0" margin="auto" alignItems="center">
+          <Text fontSize="52px" fontWeight="bold" lineHeight="72.8px">
+            주변 지인과 공유하고 함께 성장하세요!
+          </Text>
+          <Text
+            fontSize="32px"
+            fontWeight="600"
+            color={GRAY[2]}
+            lineHeight="44.8px"
+            marginTop="20px"
+          >
+            현재 000명이 공유중
+          </Text>
+          <ShareButton onClick={handleClick}>함께 성장하기</ShareButton>
+        </Flex>
+      </Background>
+    </>
   );
 };
 

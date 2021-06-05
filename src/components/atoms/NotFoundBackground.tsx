@@ -5,7 +5,7 @@ const NotFoundBackground = styled.div`
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background-image: url('/public/images/404page.svg');
+  background-image: url('/public/images/404page.png');
   background-position: center;
   background-size: cover;
 `;
