@@ -30,7 +30,7 @@ export interface ToastProps {
 
 const Toast = ({ isVisible = false, message }: ToastProps) => {
   return (
-    <Wrapper className={isVisible ? 'show' : 'toast'}>
+    <Wrapper className={isVisible ? 'show' : undefined}>
       <ToastContent>{message}</ToastContent>
     </Wrapper>
   );
