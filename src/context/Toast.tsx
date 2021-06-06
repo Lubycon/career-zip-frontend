@@ -23,7 +23,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (options.isVisible) {
       const showToast = setTimeout(() => {
-        document.getElementsByClassName('show')[0].classList.remove('show');
+        setOptions({ ...options, isVisible: false });
       }, options.duration);
 
       return () => {
