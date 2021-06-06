@@ -23,15 +23,17 @@ const ToastContent = styled.div`
   box-shadow: 0px 0px 30px 0px rgba(196, 196, 196, 0.4);
 `;
 
-interface ToastProps {
-  isVisible: boolean;
-  children: ReactNode;
+export interface ToastProps {
+  isVisible?: boolean;
+  message: ReactNode;
 }
 
-const Toast = ({ isVisible, children }: ToastProps) => (
-  <Wrapper className={isVisible ? 'show' : undefined}>
-    <ToastContent>{children}</ToastContent>
-  </Wrapper>
-);
+const Toast = ({ isVisible = false, message }: ToastProps) => {
+  return (
+    <Wrapper className={isVisible ? 'show' : 'toast'}>
+      <ToastContent>{message}</ToastContent>
+    </Wrapper>
+  );
+};
 
 export default Toast;
