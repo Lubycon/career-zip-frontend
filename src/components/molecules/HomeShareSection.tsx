@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import useToast from 'hooks/useToast';
 import { Flex, Text } from 'rebass';
 import { BLUE, DARK_GRAY, GRAY } from 'styles/colors';
+import { useToast } from 'context/Toast';
 
 const Background = styled.div`
   display: flex;
@@ -29,19 +29,20 @@ const ShareButton = styled.button`
 `;
 
 const HomeShareSection = () => {
-  const { handleShowToast, renderToast } = useToast();
+  const { showToast } = useToast();
 
   const handleClick = () => {
-    handleShowToast();
+    showToast({
+      message: (
+        <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+          🔗 공유 링크가 복사 되었습니다!
+        </Text>
+      ),
+    });
   };
 
   return (
     <>
-      {renderToast(
-        <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
-          🔗 공유 링크가 복사 되었습니다!
-        </Text>
-      )}
       <Background>
         <Flex flexDirection="column" padding="145px 0" margin="auto" alignItems="center">
           <Text fontSize="52px" fontWeight="bold" lineHeight="72.8px">
