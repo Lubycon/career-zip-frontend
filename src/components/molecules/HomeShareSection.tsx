@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Flex, Text } from 'rebass';
 import { BLUE, DARK_GRAY, GRAY } from 'styles/colors';
 import { useToast } from 'context/Toast';
+import { getLocalStorageItem, setLocalStorageItem } from 'utils/localstorage';
+import { getShareCount, increaseShareCount } from 'api/common';
 
 const Background = styled.div`
   display: flex;
@@ -30,8 +32,27 @@ const ShareButton = styled.button`
 
 const HomeShareSection = () => {
   const { showToast } = useToast();
+  const [shareCount, setShareCount] = useState(0);
 
-  const handleClick = () => {
+  useEffect(() => {
+    const getShareCountAsync = async () => {
+      const {
+        data: { data },
+      } = await getShareCount();
+      setShareCount(data);
+    };
+    getShareCountAsync();
+  }, []);
+
+  const handleClick = async () => {
+    navigator.clipboard.writeText(window.location.href);
+
+    const hasEverShared = getLocalStorageItem<boolean>('hasEverShared');
+    if (!hasEverShared) {
+      setLocalStorageItem<boolean>('hasEverShared', true);
+      await increaseShareCount();
+    }
+
     showToast({
       message: (
         <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
@@ -55,7 +76,7 @@ const HomeShareSection = () => {
             lineHeight="44.8px"
             marginTop="20px"
           >
-            현재 000명이 공유중
+            {`현재 ${shareCount}명이 공유중`}
           </Text>
           <ShareButton onClick={handleClick}>함께 성장하기</ShareButton>
         </Flex>
