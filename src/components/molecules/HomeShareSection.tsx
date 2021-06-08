@@ -45,21 +45,23 @@ const HomeShareSection = () => {
   }, []);
 
   const handleClick = async () => {
-    navigator.clipboard.writeText(window.location.href);
-
-    const hasEverShared = getLocalStorageItem<boolean>('hasEverShared');
-    if (!hasEverShared) {
-      setLocalStorageItem<boolean>('hasEverShared', true);
-      await increaseShareCount();
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      showToast({
+        message: (
+          <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+            🔗 공유 링크가 복사 되었습니다!
+          </Text>
+        ),
+      });
+      const hasEverShared = getLocalStorageItem<boolean>('hasEverShared');
+      if (!hasEverShared) {
+        setLocalStorageItem<boolean>('hasEverShared', true);
+        await increaseShareCount();
+      }
+    } catch (err) {
+      throw new Error('an error has occured');
     }
-
-    showToast({
-      message: (
-        <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
-          🔗 공유 링크가 복사 되었습니다!
-        </Text>
-      ),
-    });
   };
 
   return (
