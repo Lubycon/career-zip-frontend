@@ -45,6 +45,7 @@ const HomeShareSection = () => {
   }, []);
 
   const handleClick = async () => {
+    let isCopied = false;
     try {
       await navigator.clipboard.writeText(window.location.href);
       showToast({
@@ -54,13 +55,18 @@ const HomeShareSection = () => {
           </Text>
         ),
       });
+      isCopied = true;
+    } catch (err) {
+      <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+        문제가 발생하여 링크를 복사하지 못했어요.😥 다시 시도해주세요.
+      </Text>;
+    }
+    if (isCopied) {
       const hasEverShared = getLocalStorageItem<boolean>('hasEverShared');
       if (!hasEverShared) {
         setLocalStorageItem<boolean>('hasEverShared', true);
         await increaseShareCount();
       }
-    } catch (err) {
-      throw new Error('an error has occured');
     }
   };
 
