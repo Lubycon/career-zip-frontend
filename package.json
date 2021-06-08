@@ -52,6 +52,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.0",
     "css-loader": "^5.2.4",
     "dotenv-webpack": "^7.0.2",
     "eslint": "^7.24.0",
