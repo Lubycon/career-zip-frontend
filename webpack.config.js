@@ -35,6 +35,7 @@ module.exports = {
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/,
         type: 'asset',
+        loader: 'file-loader',
       },
       {
         test: /\.css$/i,
