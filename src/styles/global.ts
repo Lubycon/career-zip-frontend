@@ -4,7 +4,7 @@ const global = css`
   body {
     box-sizing: border-box;
     font-family: 'NanumBarunGothic', sans-serif;
-    letter-spacing: -2%;
+    letter-spacing: -0.02em;
   }
 `;
 
