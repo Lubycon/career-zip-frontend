@@ -6,7 +6,7 @@ const defaultAvatarUrl =
   'https://cdn6.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumbCard.jpg';
 
 const UserProfile = () => {
-  const { name, avatarUrl = defaultAvatarUrl } = useSelector((state: RootState) => state.account);
+  const { avatarUrl = defaultAvatarUrl } = useSelector((state: RootState) => state.account);
   return (
     <div
       css={css`
@@ -23,16 +23,8 @@ const UserProfile = () => {
           border-radius: 100%;
         `}
         alt="profile"
-        src={avatarUrl}
+        src={avatarUrl || defaultAvatarUrl}
       />
-      <span
-        css={css`
-          font-weight: bold;
-          margin-left: 10px;
-        `}
-      >
-        {name}
-      </span>
     </div>
   );
 };
