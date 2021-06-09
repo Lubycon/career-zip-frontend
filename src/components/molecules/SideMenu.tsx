@@ -104,11 +104,11 @@ const SideMenu = () => {
       <CollapsedButtonWrapper>
         <CollapsedButton isCollapsed={isCollapsed} type="button" onClick={handleIsCollapsed}>
           <img
-            alt={isCollapsed ? 'double left chevron' : 'double right chevron'}
+            alt={isCollapsed ? 'double right chevron' : 'double left chevron'}
             src={
               isCollapsed
-                ? '/public/icons/double_left_chevron.svg'
-                : '/public/icons/double_right_chevron.svg'
+                ? '/public/icons/double_right_chevron.svg'
+                : '/public/icons/double_left_chevron.svg'
             }
           />
         </CollapsedButton>

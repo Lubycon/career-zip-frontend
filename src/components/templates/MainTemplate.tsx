@@ -8,9 +8,7 @@ const MainTemplate = ({ children }: { children: React.ReactNode }) => {
       <SideMenu />
       <Flex flexDirection="column" flex="1">
         <GNB />
-        <Box padding="10px 240px 10px 160px" backgroundColor="yellow">
-          {children}
-        </Box>
+        <Box padding="10px 240px 10px 160px">{children}</Box>
       </Flex>
     </Flex>
   );
