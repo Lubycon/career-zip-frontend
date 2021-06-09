@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Auth from 'components/pages/Auth';
 import Home from 'components/pages/Home';
 import Login from 'components/pages/Login';
-import TempMain from 'components/pages/TempMain';
+import Main from 'components/pages/Main';
 import NotFoundPage from 'components/pages/NotFoundPage';
 // import ArchivingList from 'components/pages/ArchivingList';
 // import CareerzipReport from 'components/pages/CareerzipReport';
@@ -16,7 +16,7 @@ const Router = () => {
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/auth" component={Auth} />
-        <Route path="/main" component={TempMain} />
+        <Route path="/main" component={Main} />
         <Route component={NotFoundPage} />
         {/* <Route path="/archiving-list" component={ArchivingList} />
         <Route path="/archive/:id" component={Archive} />
