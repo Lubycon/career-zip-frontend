@@ -4,6 +4,7 @@ import BetaLogo from 'components/atoms/BetaLogo';
 import { BLUE, GRAY } from 'styles/colors';
 import ShortLogo from 'components/atoms/ShortLogo';
 import { Box } from 'rebass';
+import { useHistory } from 'react-router';
 
 const StyledSideMenu = styled.nav`
   display: flex;
@@ -82,13 +83,18 @@ const MenuButton = ({ className, isCollapsed = false, emoji, name, onClick }: Me
 };
 
 const SideMenu = () => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const history = useHistory();
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const handleIsCollapsed = () => {
     setIsCollapsed(!isCollapsed);
   };
 
-  const handleClickMenu = () => {};
+  const handleClickMenu = (page: string) => () => {
+    history.push(page);
+  };
+
+  const handleClickCopyURL = () => {};
 
   return (
     <StyledSideMenu className={isCollapsed ? 'collapsed' : undefined}>
@@ -111,13 +117,13 @@ const SideMenu = () => {
         isCollapsed={isCollapsed}
         emoji="🗄"
         name="아카이빙 리스트"
-        onClick={handleClickMenu}
+        onClick={handleClickMenu('/archiving-list')}
       />
       <MenuButton
         isCollapsed={isCollapsed}
         emoji="📝"
         name="커리어 아카이빙"
-        onClick={handleClickMenu}
+        onClick={handleClickMenu('/archive')}
       />
       {!isCollapsed && (
         <MenuButton
@@ -125,7 +131,7 @@ const SideMenu = () => {
           isCollapsed={isCollapsed}
           emoji="🔗"
           name="친구에게 커리어집 공유하기"
-          onClick={handleClickMenu}
+          onClick={handleClickCopyURL}
         />
       )}
     </StyledSideMenu>
