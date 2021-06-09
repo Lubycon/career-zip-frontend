@@ -4,7 +4,7 @@ import Home from 'components/pages/Home';
 import Login from 'components/pages/Login';
 import Main from 'components/pages/Main';
 import NotFoundPage from 'components/pages/NotFoundPage';
-// import ArchivingList from 'components/pages/ArchivingList';
+import ArchivingList from 'components/pages/ArchivingList';
 // import CareerzipReport from 'components/pages/CareerzipReport';
 // import ProjectManagement from 'components/pages/ProjectManagement';
 // import Archive from 'components/pages/Archive';
@@ -17,11 +17,11 @@ const Router = () => {
         <Route path="/login" component={Login} />
         <Route path="/auth" component={Auth} />
         <Route path="/main" component={Main} />
+        <Route path="/archiving-list" component={ArchivingList} />
         <Route component={NotFoundPage} />
-        {/* <Route path="/archiving-list" component={ArchivingList} />
-        <Route path="/archive/:id" component={Archive} />
-        <Route path="/careerzip-report" component={CareerzipReport} />
-        <Route path="/project-management" component={ProjectManagement} /> */}
+        {/* // <Route path="/archive/:id" component={Archive} />
+        // <Route path="/careerzip-report" component={CareerzipReport} />
+        // <Route path="/project-management" component={ProjectManagement} /> */}
       </Switch>
     </BrowserRouter>
   );
