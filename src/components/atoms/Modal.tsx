@@ -1,5 +1,6 @@
+import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
-import { modal } from 'styles/element';
+import { Box } from 'rebass';
 import Dimmer from './Dimmer';
 
 interface ModalProps {
@@ -9,6 +10,13 @@ interface ModalProps {
   closeButton?: React.ReactNode;
   children: React.ReactNode;
 }
+
+const StyledModal = styled.div`
+  margin: auto;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+`;
 
 const Modal = ({ isVisible, onOpened, onClosed, closeButton, children }: ModalProps) => {
   const [defaultScrollStyle, setDefaultScrollStyle] = useState({
@@ -47,10 +55,12 @@ const Modal = ({ isVisible, onOpened, onClosed, closeButton, children }: ModalPr
     <>
       {isVisible && (
         <Dimmer>
-          <div css={modal}>
-            {closeButton}
+          <StyledModal>
+            <Box display="flex" justifyContent="flex-end">
+              {closeButton}
+            </Box>
             {children}
-          </div>
+          </StyledModal>
         </Dimmer>
       )}
     </>
