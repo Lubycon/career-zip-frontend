@@ -84,12 +84,6 @@ const ArchivePostTemplate = ({ selectedProjects }: ArchivePostFormProps) => {
   const [formData, setFormData] = useState<IQuestionPaper>();
 
   useEffect(() => {
-    client.defaults.headers = {
-      Authorization:
-        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDYXJlZXItemlwIiwiaWF0IjoxNjIzNDk0MDE0LCJleHAiOjE2MjM1ODA0MTQsImlkIjoxLCJlbWFpbCI6Imh5ZWluLmp1OTJAZ21haWwuY29tIn0.T-2qvdMUzEPSaD9mmLnnIPMgGpHp0qONKqM8Wh_yVvc',
-    };
-  }, []);
-  useEffect(() => {
     const getQuestionPaperAsync = async () => {
       const {
         data: { data },
