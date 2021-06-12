@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getQuestionPaper, postArchive } from 'api/archive';
 import { Box, Flex, Text } from 'rebass';
 import { IProject, IQuestion, IQuestionPaper } from 'types';
-import client from 'api/client';
 import ArchivePeriod from 'components/atoms/ArchivePeriod';
 import { DARK_GRAY, GRAY } from 'styles/colors';
 import ProjectsBlock from 'components/molecules/ProjectsBlock';
