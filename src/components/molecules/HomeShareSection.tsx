@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Flex, Text } from 'rebass';
-import { BLUE, DARK_GRAY, GRAY } from 'styles/colors';
-import { useToast } from 'context/Toast';
+import { BLUE, GRAY } from 'styles/colors';
 import { getLocalStorageItem, setLocalStorageItem } from 'utils/localstorage';
 import { getShareCount, increaseShareCount } from 'api/common';
+import useCopyLink from 'hooks/useCopyLink';
 
 const Background = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const ShareButton = styled.button`
 `;
 
 const HomeShareSection = () => {
-  const { showToast } = useToast();
+  const { copyLink } = useCopyLink();
   const [shareCount, setShareCount] = useState(0);
 
   useEffect(() => {
@@ -45,28 +45,11 @@ const HomeShareSection = () => {
   }, []);
 
   const handleClick = async () => {
-    let isCopied = false;
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      showToast({
-        message: (
-          <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
-            🔗 공유 링크가 복사 되었습니다!
-          </Text>
-        ),
-      });
-      isCopied = true;
-    } catch (err) {
-      <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
-        문제가 발생하여 링크를 복사하지 못했어요.😥 다시 시도해주세요.
-      </Text>;
-    }
-    if (isCopied) {
-      const hasEverShared = getLocalStorageItem<boolean>('hasEverShared');
-      if (!hasEverShared) {
-        setLocalStorageItem<boolean>('hasEverShared', true);
-        await increaseShareCount();
-      }
+    copyLink();
+    const hasEverShared = getLocalStorageItem<boolean>('hasEverShared');
+    if (!hasEverShared) {
+      setLocalStorageItem<boolean>('hasEverShared', true);
+      await increaseShareCount();
     }
   };
 
