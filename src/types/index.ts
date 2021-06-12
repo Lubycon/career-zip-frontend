@@ -10,12 +10,19 @@ export interface IQuestion {
   description: string;
   example: string;
   selectOptions: string[];
-  answers: {
+  answers?: {
     id: number;
     comment: string;
     important: number;
     project: IProject;
   }[];
+}
+
+export interface IQuestionPaper {
+  id: number;
+  startDate: string;
+  endDate: string;
+  questions: IQuestion[];
 }
 
 export interface IArchivingList {
