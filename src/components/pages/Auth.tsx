@@ -27,7 +27,7 @@ const Auth = () => {
           client.defaults.headers = {
             Authorization: `Bearer ${jwt}`,
           };
-          history.push('/main');
+          history.push('/archiving-list');
         }
       } catch (err) {
         history.push('/login?error=invalid-auth');
