@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Box, Flex, Text } from 'rebass';
+import { Flex, Text } from 'rebass';
 import { mainLoginButton } from 'styles/link';
 
 const HomeSubSection = () => {
@@ -12,7 +12,7 @@ const HomeSubSection = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Box minWidth="659px" minHeight="496px" backgroundColor="lightGray" />
+      <img alt="main page preview" src="public/images/landing_img.png" />
       <Flex flexDirection="column" marginLeft="123px">
         <Text fontSize="46px" fontWeight="bold" lineHeight="64.4px">
           바쁘게 돌아가는 프로젝트 속에서 <br /> 나의 커리어 중간 저장하기
