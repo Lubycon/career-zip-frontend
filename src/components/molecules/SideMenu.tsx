@@ -5,6 +5,7 @@ import { BLUE, GRAY } from 'styles/colors';
 import ShortLogo from 'components/atoms/ShortLogo';
 import { Box } from 'rebass';
 import { useHistory } from 'react-router';
+import useCopyLink from 'hooks/useCopyLink';
 
 const StyledSideMenu = styled.nav`
   display: flex;
@@ -84,6 +85,7 @@ const MenuButton = ({ className, isCollapsed = false, emoji, name, onClick }: Me
 
 const SideMenu = () => {
   const history = useHistory();
+  const { copyLink } = useCopyLink();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const handleIsCollapsed = () => {
@@ -94,7 +96,9 @@ const SideMenu = () => {
     history.push(page);
   };
 
-  const handleClickCopyURL = () => {};
+  const handleClickCopyURL = () => {
+    copyLink();
+  };
 
   return (
     <StyledSideMenu className={isCollapsed ? 'collapsed' : undefined}>
