@@ -6,11 +6,19 @@ import MainTemplate from 'components/templates/MainTemplate';
 import CloseButton from 'components/atoms/CloseButton';
 import ArchivePostTemplate from 'components/templates/ArchivePostTemplate';
 import { IProject } from 'types';
+import CompleteArchivingModalContent from 'components/organisms/CompleteArchivingModalContent';
 
 const ArchivePost = () => {
   const history = useHistory();
   const [selectedProjects, setSelectedProjects] = useState<IProject[]>([]);
+  const [isCompleted, setIsCompleted] = useState(false);
   const { handleOpenModal, renderModal, handleCloseModal } = useModal({});
+
+  useEffect(() => {
+    if (isCompleted) {
+      handleOpenModal();
+    }
+  }, [isCompleted]);
 
   useEffect(() => {
     if (selectedProjects.length === 0) handleOpenModal();
@@ -26,15 +34,27 @@ const ArchivePost = () => {
     handleCloseModal();
   };
 
+  const handleSubmitCallback = () => {
+    setIsCompleted(true);
+  };
+
   return (
     <>
-      {renderModal(
-        <SelectProjectModalContent onClickNextButton={handleClickNextButton} />,
-        <CloseButton onClick={handleClickCloseButton} />
-      )}
+      {isCompleted
+        ? renderModal(
+            <CompleteArchivingModalContent onClickHomeButton={handleClickCloseButton} />,
+            <CloseButton onClick={handleClickCloseButton} />
+          )
+        : renderModal(
+            <SelectProjectModalContent onClickNextButton={handleClickNextButton} />,
+            <CloseButton onClick={handleClickCloseButton} />
+          )}
       <MainTemplate>
-        {selectedProjects.length !== 0 && (
-          <ArchivePostTemplate selectedProjects={selectedProjects} />
+        {selectedProjects.length !== 0 && !isCompleted && (
+          <ArchivePostTemplate
+            selectedProjects={selectedProjects}
+            onSubmitCallback={handleSubmitCallback}
+          />
         )}
       </MainTemplate>
     </>

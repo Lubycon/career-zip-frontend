@@ -3,21 +3,22 @@ import { getQuestionPaper, postArchive } from 'api/archive';
 import { Box, Flex, Text } from 'rebass';
 import { IProject, IQuestion, IQuestionPaper } from 'types';
 import ArchivePeriod from 'components/atoms/ArchivePeriod';
-import { DARK_GRAY, GRAY } from 'styles/colors';
 import ProjectsBlock from 'components/molecules/ProjectsBlock';
 import QuestionBlock from 'components/molecules/QuestionBlock';
 import Button from 'components/atoms/Button';
-import { useHistory } from 'react-router';
 import { useToast } from 'context/Toast';
+import { DARK_GRAY, GRAY } from 'styles/colors';
 
 interface ArchivePostFormProps {
   selectedProjects: IProject[];
+  onSubmitCallback: VoidFunction;
 }
 
 interface QuestionBlocksProps {
   questionId: number;
   questions: IQuestion[];
   selectedProjects: IProject[];
+  onSubmitCallback: VoidFunction;
 }
 
 interface IAnswer {
@@ -26,8 +27,12 @@ interface IAnswer {
   comment: string;
 }
 
-const Form = ({ questionId, questions, selectedProjects }: QuestionBlocksProps) => {
-  const history = useHistory();
+const Form = ({
+  questionId,
+  questions,
+  selectedProjects,
+  onSubmitCallback,
+}: QuestionBlocksProps) => {
   const { showToast } = useToast();
   const [answers, setAnswers] = useState<IAnswer[]>([]);
 
@@ -40,11 +45,8 @@ const Form = ({ questionId, questions, selectedProjects }: QuestionBlocksProps) 
 
   const handleSubmit = async () => {
     try {
-      const {
-        data: { data: archiveId },
-      } = await postArchive({ questionPaperId: questionId, answers });
-
-      history.push(`/archive/${archiveId}`);
+      await postArchive({ questionPaperId: questionId, answers });
+      onSubmitCallback();
     } catch (err) {
       showToast({
         duration: 4000,
@@ -79,7 +81,7 @@ const Form = ({ questionId, questions, selectedProjects }: QuestionBlocksProps) 
   );
 };
 
-const ArchivePostTemplate = ({ selectedProjects }: ArchivePostFormProps) => {
+const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePostFormProps) => {
   const [formData, setFormData] = useState<IQuestionPaper>();
 
   useEffect(() => {
@@ -106,7 +108,12 @@ const ArchivePostTemplate = ({ selectedProjects }: ArchivePostFormProps) => {
         description="선택된 프로젝트를 변경하시려면 뒤로 가기를 클릭해 프로젝트 설정 팝업에서 재선택해주세요."
         projectList={selectedProjects}
       />
-      <Form questionId={id} questions={questions} selectedProjects={selectedProjects} />
+      <Form
+        questionId={id}
+        questions={questions}
+        selectedProjects={selectedProjects}
+        onSubmitCallback={onSubmitCallback}
+      />
     </Box>
   );
 };
