@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   display: flex;
   top: -70px;
   transition: top 350ms;
-
+  z-index: 9999;
   &.show {
     top: 5%;
   }
