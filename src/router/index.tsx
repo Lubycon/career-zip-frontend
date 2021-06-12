@@ -5,6 +5,7 @@ import Login from 'components/pages/Login';
 import NotFoundPage from 'components/pages/NotFoundPage';
 import ArchivingList from 'components/pages/ArchivingList';
 import Archive from 'components/pages/Archive';
+import ArchivePost from 'components/pages/ArchivePost';
 
 const Router = () => {
   return (
@@ -13,7 +14,7 @@ const Router = () => {
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/auth" component={Auth} />
-        <Route path="/archive" component={Archive} />
+        <Route exact path="/archive/post" component={ArchivePost} />
         <Route path="/archiving-list" component={ArchivingList} />
         <Route path="/archive/:id" component={Archive} />
         <Route component={NotFoundPage} />
