@@ -12,10 +12,12 @@ interface ModalProps {
 }
 
 const StyledModal = styled.div`
+  width: 950px;
   margin: auto;
   background-color: white;
   border-radius: 20px;
-  padding: 40px;
+  padding: 30px 40px 50px 40px;
+  box-shadow: 0px 0px 45px rgba(0, 0, 0, 0.25);
 `;
 
 const Modal = ({ isVisible, onOpened, onClosed, closeButton, children }: ModalProps) => {
@@ -39,6 +41,8 @@ const Modal = ({ isVisible, onOpened, onClosed, closeButton, children }: ModalPr
       x: document.body.style.overflowX,
       y: document.body.style.overflowY,
     });
+
+    return () => enableScroll();
   }, []);
 
   useEffect(() => {
