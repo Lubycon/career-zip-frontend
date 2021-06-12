@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import styled from '@emotion/styled';
 import { Flex, Text } from 'rebass';
 import { IProject } from 'types';
 import { useToast } from 'context/Toast';
-import styled from '@emotion/styled';
 import CheckBox from 'components/atoms/CheckBox';
 import { addProject, getProjectList } from 'api/project';
 import { BLUE, DARK_GRAY, GRAY, LIGHT_GRAY } from 'styles/colors';
@@ -73,7 +73,7 @@ const NextButton = styled.button`
 `;
 
 interface SelectProjectModalContentProps {
-  onClickNextButton: (projectIds: number[]) => void;
+  onClickNextButton: (projectList: IProject[]) => void;
 }
 
 const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalContentProps) => {
@@ -82,18 +82,29 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
   const { showToast } = useToast();
   const [isAddProjectInputActive, setIsAddProjectInputActive] = useState(false);
   const [projectList, setProjectList] = useState<IProject[]>([]);
-  const [selectedProjectIds, setSelectedProjectIds] = useState([]);
+  const [selectedProjects, setSelectedProjects] = useState<IProject[]>([]);
 
   useEffect(() => {
     const getProjectListAsync = async () => {
-      const {
-        data: { data },
-      } = await getProjectList();
-      if (data.length > 0) {
-        setProjectList(data);
-        setSelectedProjectIds(data.map(({ id }) => id));
-      } else {
-        setIsAddProjectInputActive(true);
+      try {
+        const {
+          data: { data },
+        } = await getProjectList();
+        if (data.length > 0) {
+          setProjectList(data);
+          setSelectedProjects(data);
+        } else {
+          setIsAddProjectInputActive(true);
+        }
+      } catch (err) {
+        showToast({
+          duration: 3000,
+          message: (
+            <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+              문제가 발생하였습니다. 다시 시도해주세요😥
+            </Text>
+          ),
+        });
       }
     };
 
@@ -114,7 +125,7 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
         data: { data },
       } = await addProject(title);
       setProjectList([...projectList, { id: data, title }]);
-      setSelectedProjectIds([...selectedProjectIds, data]);
+      setSelectedProjects([...selectedProjects, { id: data, title }]);
       setIsAddProjectInputActive(false);
       projectListScrollToBottom();
     } catch (err) {
@@ -130,10 +141,10 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
   };
 
   const handleClickCheckBox = () => {
-    if (projectList.length === selectedProjectIds.length) {
-      setSelectedProjectIds([]);
+    if (projectList.length === selectedProjects.length) {
+      setSelectedProjects([]);
     } else {
-      setSelectedProjectIds(projectList.map(({ id }) => id));
+      setSelectedProjects(projectList);
     }
   };
 
@@ -142,12 +153,12 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
     projectListScrollToBottom();
   };
 
-  const handleClickProject = (projectId: number) => {
-    if (!selectedProjectIds.includes(projectId)) {
-      setSelectedProjectIds([...selectedProjectIds, projectId]);
+  const handleClickProject = (project: IProject) => {
+    if (!selectedProjects.map(({ id }) => id).includes(project.id)) {
+      setSelectedProjects([...selectedProjects, project]);
       return;
     }
-    setSelectedProjectIds(selectedProjectIds.filter((id) => id !== projectId));
+    setSelectedProjects(selectedProjects.filter(({ id }) => id !== project.id));
   };
 
   const handleKeyDownInput = (e: React.KeyboardEvent) => {
@@ -195,9 +206,7 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
         <CheckBox
           margin="0 0 0 auto"
           name="전체 선택"
-          checked={
-            selectedProjectIds.length !== 0 && selectedProjectIds.length === projectList.length
-          }
+          checked={selectedProjects.length !== 0 && selectedProjects.length === projectList.length}
           onClick={handleClickCheckBox}
         />
         <Flex
@@ -207,13 +216,13 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
           maxHeight="312px"
           overflowY="auto"
         >
-          {projectList?.map(({ id, title }) => (
+          {projectList?.map((project) => (
             <ProjectButton
-              key={id}
-              className={selectedProjectIds.includes(id) && 'selected'}
-              onClick={() => handleClickProject(id)}
+              key={project.id}
+              className={selectedProjects.map(({ id }) => id).includes(project.id) && 'selected'}
+              onClick={() => handleClickProject(project)}
             >
-              {title}
+              {project.title}
             </ProjectButton>
           ))}
           {isAddProjectInputActive && (
@@ -235,8 +244,8 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
         </AddProjectButton>
       </Flex>
       <NextButton
-        disabled={selectedProjectIds.length === 0}
-        onClick={() => onClickNextButton(selectedProjectIds)}
+        disabled={selectedProjects.length === 0}
+        onClick={() => onClickNextButton(selectedProjects)}
       >
         다음
       </NextButton>

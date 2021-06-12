@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import useModal from 'hooks/useModal';
 import SelectProjectModalContent from 'components/organisms/SelectProjectModalContent';
 import MainTemplate from 'components/templates/MainTemplate';
-import useModal from 'hooks/useModal';
 import CloseButton from 'components/atoms/CloseButton';
-import { useHistory } from 'react-router';
+import ArchivePostTemplate from 'components/templates/ArchivePostTemplate';
+import { IProject } from 'types';
 
 const ArchivePost = () => {
   const history = useHistory();
-  const [selectedProjectIds, setSelectedProjectIds] = useState([]);
+  const [selectedProjects, setSelectedProjects] = useState<IProject[]>([]);
   const { handleOpenModal, renderModal, handleCloseModal } = useModal({});
 
   useEffect(() => {
-    if (selectedProjectIds.length === 0) handleOpenModal();
-  }, [selectedProjectIds]);
+    if (selectedProjects.length === 0) handleOpenModal();
+  }, [selectedProjects]);
 
   const handleClickCloseButton = () => {
     handleCloseModal();
     history.push('/archiving-list');
   };
 
-  const handleClickNextButton = (projectIds: number[]) => {
-    setSelectedProjectIds(projectIds);
+  const handleClickNextButton = (projects: IProject[]) => {
+    setSelectedProjects(projects);
     handleCloseModal();
   };
 
@@ -31,7 +33,9 @@ const ArchivePost = () => {
         <CloseButton onClick={handleClickCloseButton} />
       )}
       <MainTemplate>
-        <div>포스팅하기</div>
+        {selectedProjects.length !== 0 && (
+          <ArchivePostTemplate selectedProjects={selectedProjects} />
+        )}
       </MainTemplate>
     </>
   );
