@@ -182,8 +182,8 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
         <Text marginTop="10px" fontSize="16px" color={GRAY[2]} lineHeight="22.4px">
           {projectList.length === 0 ? (
             <>
-              커리어집의 아카이빙은 프로젝트 단위로 이뤄져요. 아직 생성된 프로젝트가 없다면,
-              <br /> 프로젝트를 추가해주세요!
+              커리어집의 아카이빙은 프로젝트 단위로 이뤄져요. <br />
+              아직 생성된 프로젝트가 없다면, 프로젝트를 추가해주세요!
             </>
           ) : (
             <>
