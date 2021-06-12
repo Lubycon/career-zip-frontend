@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Flex, Text } from 'rebass';
 import { IProject } from 'types';
 import { useToast } from 'context/Toast';
@@ -180,8 +180,17 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
           프로젝트 설정
         </Text>
         <Text marginTop="10px" fontSize="16px" color={GRAY[2]} lineHeight="22.4px">
-          이번주에 기록할 프로젝트를 1개 이상 추가하고,
-          <br /> 커리어집과 함께 기록을 시작해볼까요?
+          {projectList.length === 0 ? (
+            <>
+              커리어집의 아카이빙은 프로젝트 단위로 이뤄져요. <br />
+              아직 생성된 프로젝트가 없다면, 프로젝트를 추가해주세요!
+            </>
+          ) : (
+            <>
+              이번주 아카이빙 하실 프로젝트를 선택한 뒤, <br /> 커리어집과 함께 기록을 시작
+              해볼까요?
+            </>
+          )}
         </Text>
         <CheckBox
           margin="0 0 0 auto"
