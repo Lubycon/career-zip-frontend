@@ -123,7 +123,7 @@ const SideMenu = () => {
         isCollapsed={isCollapsed}
         emoji="📝"
         name="커리어 아카이빙"
-        onClick={handleClickMenu('/archive')}
+        onClick={handleClickMenu('/archive/post')}
       />
       {!isCollapsed && (
         <MenuButton

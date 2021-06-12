@@ -21,7 +21,7 @@ export const GRAY = {
 
 export const LIGHT_GRAY = {
   1: '#B0B8C1',
-  2: '#F9FAFB',
+  2: '#DFDFDF',
 };
 
 export const DARK_GRAY = {
