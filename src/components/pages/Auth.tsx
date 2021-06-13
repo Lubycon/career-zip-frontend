@@ -6,6 +6,7 @@ import { useQueryStringAndParam } from 'hooks';
 import { useDispatch } from 'react-redux';
 import { setAccountInfo } from 'slices/account';
 import LoginLoadingBackground from 'components/atoms/LoginLoadingBackground';
+import { setLocalStorageItem } from 'utils/localstorage';
 
 const Auth = () => {
   const dispatch = useDispatch();
@@ -19,18 +20,16 @@ const Auth = () => {
       return;
     }
     const getJWTAsync = async (token: string) => {
-      try {
-        const res = await getJWT(token);
-        const [authorizationHeader, jwt] = res.headers.authorization.split(' ');
-        if (authorizationHeader && authorizationHeader === 'Bearer') {
-          dispatch(setAccountInfo(res.data.data));
-          client.defaults.headers = {
-            Authorization: `Bearer ${jwt}`,
-          };
-          history.push('/archiving-list');
-        }
-      } catch (err) {
-        history.push('/login?error=invalid-auth');
+      const res = await getJWT(token);
+      const [authorizationHeader, jwt] = res.headers.authorization.split(' ');
+      if (authorizationHeader && authorizationHeader === 'Bearer') {
+        dispatch(setAccountInfo(res.data.data));
+        client.defaults.headers = {
+          Authorization: `Bearer ${jwt}`,
+        };
+        setLocalStorageItem('accessToken', `Bearer ${jwt}`);
+        setLocalStorageItem('user', res.data.data);
+        history.push('/archiving-list');
       }
     };
     getJWTAsync(tempToken);

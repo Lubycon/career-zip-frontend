@@ -18,12 +18,14 @@ const Login = () => {
   const { showToast } = useToast();
 
   useEffect(() => {
-    if (error === 'invalid-auth') {
+    if (error) {
       showToast({
         duration: 4000,
         message: (
           <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
-            로그인 과정에서 오류가 발생하였습니다. 다시 시도해주세요.
+            {error === 'expired-auth'
+              ? '인증 정보가 만료되었습니다. 다시 로그인해주세요.'
+              : '로그인이 필요합니다.'}
           </Text>
         ),
       });
