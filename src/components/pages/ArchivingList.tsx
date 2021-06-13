@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import styled from '@emotion/styled';
 import { getArchivingListAsync } from 'slices/archiving-list';
 import MainTemplate from 'components/templates/MainTemplate';
@@ -20,10 +21,15 @@ const StyledButton = styled.button`
 
 const ArchivingList = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getArchivingListAsync());
   }, []);
+
+  const handleClick = () => {
+    history.push('/archive/post');
+  };
 
   return (
     <MainTemplate>
@@ -32,7 +38,7 @@ const ArchivingList = () => {
           <Text as="h1" fontSize="32px" fontWeight="bold" color={GRAY[1]}>
             아카이빙 리스트
           </Text>
-          <StyledButton>커리어 아카이빙 하기</StyledButton>
+          <StyledButton onClick={handleClick}>커리어 아카이빙 하기</StyledButton>
         </Flex>
         <OrderByButtons />
         <ArchivingListTable />
