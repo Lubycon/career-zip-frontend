@@ -49,7 +49,7 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
           onChangeTextArea={handleChangeTextArea}
         />
       ))}
-      <Flex flexDirection="column" margin="130px 0 147px 0" alignItems="center">
+      <Flex flexDirection="column" margin="130px 0 0 0" alignItems="center">
         <Text color={GRAY[2]} margin="0 0 18px 0">
           이번 한 주도 고생많으셨어요! 다음주에 또 만나요 👋
         </Text>

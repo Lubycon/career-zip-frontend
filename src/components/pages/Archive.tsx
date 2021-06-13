@@ -1,4 +1,4 @@
-import ArchiveForm from 'components/templates/ArchiveForm';
+import ArchiveTemplate from 'components/templates/ArchiveTemplate';
 import MainTemplate from 'components/templates/MainTemplate';
 import { useQueryStringAndParam } from 'hooks';
 
@@ -7,7 +7,7 @@ const ArchivingDetail = () => {
 
   return (
     <MainTemplate>
-      <ArchiveForm archiveId={id} />
+      <ArchiveTemplate archiveId={id} />
     </MainTemplate>
   );
 };
