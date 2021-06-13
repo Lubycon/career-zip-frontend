@@ -8,6 +8,8 @@ import { useHistory } from 'react-router';
 import useCopyLink from 'hooks/useCopyLink';
 
 const StyledSideMenu = styled.nav`
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   width: 342px;
