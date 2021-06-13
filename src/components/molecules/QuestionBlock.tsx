@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { Flex, Text } from 'rebass';
 import { GRAY } from 'styles/colors';
@@ -32,33 +32,31 @@ const StyledTextArea = styled.textarea`
 `;
 
 interface ArchiveAnswerBlockProps {
-  data: IQuestion;
+  question: IQuestion;
   selectedProjects: IProject[];
-  onChangeTextArea: (projectId: number, value: string) => void;
+  onChangeTextArea: (questionId: number, projectId: number, value: string) => void;
 }
 
 interface AnswerBlockProps {
+  questionId: number;
   project: IProject;
-  onChange: (projectId: number, value: string) => void;
+  onChange: (questionId: number, projectId: number, value: string) => void;
 }
 
-const AnswerBlock = ({ project, onChange }: AnswerBlockProps) => {
-  const debounced = useCallback(
-    debounce(
-      (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        onChange(project.id, e.target.value);
-      },
-      500,
-      { leading: false, trailing: true }
-    ),
-    []
+const AnswerBlock = ({ questionId, project, onChange }: AnswerBlockProps) => {
+  const debounced = debounce(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      onChange(questionId, project.id, e.target.value);
+    },
+    500,
+    { leading: false, trailing: true }
   );
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.target.style.height = 'auto';
     e.target.style.height = `${e.target.scrollHeight}px`;
     debounced(e);
-  }, []);
+  };
 
   return (
     <AnswerBlockWrapper>
@@ -77,9 +75,14 @@ const AnswerBlock = ({ project, onChange }: AnswerBlockProps) => {
   );
 };
 
-const QuestionBlock = ({ data, selectedProjects, onChangeTextArea }: ArchiveAnswerBlockProps) => {
-  if (!data) return null;
-  const { description, priority } = data;
+const QuestionBlock = ({
+  question,
+  selectedProjects,
+  onChangeTextArea,
+}: ArchiveAnswerBlockProps) => {
+  if (!question) return null;
+
+  const { description, priority } = question;
   return (
     <Flex flexDirection="column" margin="70px 0 0 0">
       <Text
@@ -89,7 +92,12 @@ const QuestionBlock = ({ data, selectedProjects, onChangeTextArea }: ArchiveAnsw
       >{`${priority}. ${description}`}</Text>
       <Flex flexDirection="column" margin="20px 0 0 0">
         {selectedProjects.map((project) => (
-          <AnswerBlock key={project.id} project={project} onChange={onChangeTextArea} />
+          <AnswerBlock
+            key={project.id}
+            questionId={question.id}
+            project={project}
+            onChange={onChangeTextArea}
+          />
         ))}
       </Flex>
     </Flex>
