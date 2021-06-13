@@ -1,14 +1,19 @@
 import styled from '@emotion/styled';
 import { BLUE, GRAY } from 'styles/colors';
 
-const Button = styled.button<{ width: string; height: string; margin?: string }>`
+const Button = styled.button<{
+  width: string;
+  height: string;
+  margin?: string;
+  backgroundColor?: string;
+}>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   border-radius: 10px;
   font-weight: bold;
   font-size: 18px;
-  background-color: ${BLUE[1]};
+  background-color: ${(props) => props.backgroundColor || BLUE[1]};
   color: white;
 
   :disabled {
