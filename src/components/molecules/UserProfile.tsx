@@ -1,12 +1,9 @@
 import { css } from '@emotion/react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'slices';
-
-const defaultAvatarUrl =
-  'https://cdn6.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumbCard.jpg';
+import { getLocalStorageItem } from 'utils/localstorage';
 
 const UserProfile = () => {
-  const { avatarUrl = defaultAvatarUrl } = useSelector((state: RootState) => state.account);
+  const { avatarUrl } = getLocalStorageItem('user');
+
   return (
     <div
       css={css`
@@ -23,7 +20,7 @@ const UserProfile = () => {
           border-radius: 100%;
         `}
         alt="profile"
-        src={avatarUrl || defaultAvatarUrl}
+        src={avatarUrl || '/public/icons/profile.svg'}
       />
     </div>
   );
