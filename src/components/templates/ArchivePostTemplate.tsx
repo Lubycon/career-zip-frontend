@@ -30,7 +30,7 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
 
   const handleChangeTextArea = (questionId: number, projectId: number, comment: string) => {
     setAnswers([
-      ...answers.filter((a) => a.questionId !== projectId || a.projectId !== projectId),
+      ...answers.filter((a) => a.questionId !== questionId || a.projectId !== projectId),
       { questionId, projectId, comment },
     ]);
   };
