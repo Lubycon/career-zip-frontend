@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getQuestionPaper, postArchive } from 'api/archive';
 import { Box, Flex, Text } from 'rebass';
+import { useToast } from 'context/Toast';
 import { IProject, IQuestion, IQuestionPaper } from 'types';
 import ArchivePeriod from 'components/atoms/ArchivePeriod';
 import ProjectsBlock from 'components/molecules/ProjectsBlock';
 import QuestionBlock from 'components/molecules/QuestionBlock';
 import Button from 'components/atoms/Button';
-import { useToast } from 'context/Toast';
 import { DARK_GRAY, GRAY } from 'styles/colors';
 
 interface ArchivePostFormProps {
   selectedProjects: IProject[];
   onSubmitCallback: VoidFunction;
 }
-
-interface QuestionBlocksProps {
-  questionId: number;
+interface FormBlockProps {
   questions: IQuestion[];
   selectedProjects: IProject[];
-  onSubmitCallback: VoidFunction;
+  onSubmit: (T: any) => void;
 }
 
 interface IAnswer {
@@ -27,36 +25,18 @@ interface IAnswer {
   comment: string;
 }
 
-const Form = ({
-  questionId,
-  questions,
-  selectedProjects,
-  onSubmitCallback,
-}: QuestionBlocksProps) => {
-  const { showToast } = useToast();
+const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
   const [answers, setAnswers] = useState<IAnswer[]>([]);
 
-  const handleChangeTextArea = (projectId: number, comment: string) => {
+  const handleChangeTextArea = (questionId: number, projectId: number, comment: string) => {
     setAnswers([
-      ...answers.filter((answer) => answer.projectId !== projectId),
+      ...answers.filter((a) => a.questionId !== questionId || a.projectId !== projectId),
       { questionId, projectId, comment },
     ]);
   };
 
-  const handleSubmit = async () => {
-    try {
-      await postArchive({ questionPaperId: questionId, answers });
-      onSubmitCallback();
-    } catch (err) {
-      showToast({
-        duration: 4000,
-        message: (
-          <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
-            문제가 발생하였습니다. 다시 시도해주세요😥
-          </Text>
-        ),
-      });
-    }
+  const handleSubmit = () => {
+    onSubmit(answers);
   };
 
   return (
@@ -64,7 +44,7 @@ const Form = ({
       {questions.map((question) => (
         <QuestionBlock
           key={question.id}
-          data={question}
+          question={question}
           selectedProjects={selectedProjects}
           onChangeTextArea={handleChangeTextArea}
         />
@@ -82,6 +62,7 @@ const Form = ({
 };
 
 const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePostFormProps) => {
+  const { showToast } = useToast();
   const [formData, setFormData] = useState<IQuestionPaper>();
 
   useEffect(() => {
@@ -94,8 +75,28 @@ const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePost
     getQuestionPaperAsync();
   }, []);
 
+  const handleSubmit = useCallback(
+    async (answers: IAnswer[]) => {
+      try {
+        await postArchive({ questionPaperId: formData.id, answers });
+        onSubmitCallback();
+      } catch (err) {
+        showToast({
+          duration: 4000,
+          message: (
+            <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+              문제가 발생하였습니다. 다시 시도해주세요😥
+            </Text>
+          ),
+        });
+      }
+    },
+    [formData]
+  );
+
   if (!formData) return null;
-  const { id, startDate, endDate, questions } = formData;
+  const { startDate, endDate, questions } = formData;
+
   return (
     <Box>
       <ArchivePeriod>{`${startDate} ~ ${endDate}`}</ArchivePeriod>
@@ -108,12 +109,7 @@ const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePost
         description="선택된 프로젝트를 변경하시려면 뒤로 가기를 클릭해 프로젝트 설정 팝업에서 재선택해주세요."
         projectList={selectedProjects}
       />
-      <Form
-        questionId={id}
-        questions={questions}
-        selectedProjects={selectedProjects}
-        onSubmitCallback={onSubmitCallback}
-      />
+      <Form questions={questions} selectedProjects={selectedProjects} onSubmit={handleSubmit} />
     </Box>
   );
 };

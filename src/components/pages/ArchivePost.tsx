@@ -5,8 +5,8 @@ import SelectProjectModalContent from 'components/organisms/SelectProjectModalCo
 import MainTemplate from 'components/templates/MainTemplate';
 import CloseButton from 'components/atoms/CloseButton';
 import ArchivePostTemplate from 'components/templates/ArchivePostTemplate';
-import { IProject } from 'types';
 import CompleteArchivingModalContent from 'components/organisms/CompleteArchivingModalContent';
+import { IProject } from 'types';
 
 const ArchivePost = () => {
   const history = useHistory();
@@ -40,15 +40,14 @@ const ArchivePost = () => {
 
   return (
     <>
-      {isCompleted
-        ? renderModal(
-            <CompleteArchivingModalContent onClickHomeButton={handleClickCloseButton} />,
-            <CloseButton onClick={handleClickCloseButton} />
-          )
-        : renderModal(
-            <SelectProjectModalContent onClickNextButton={handleClickNextButton} />,
-            <CloseButton onClick={handleClickCloseButton} />
-          )}
+      {renderModal(
+        isCompleted ? (
+          <CompleteArchivingModalContent onClickHomeButton={handleClickCloseButton} />
+        ) : (
+          <SelectProjectModalContent onClickNextButton={handleClickNextButton} />
+        ),
+        <CloseButton onClick={handleClickCloseButton} />
+      )}
       <MainTemplate>
         {selectedProjects.length !== 0 && !isCompleted && (
           <ArchivePostTemplate
