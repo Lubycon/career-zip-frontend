@@ -6,13 +6,14 @@ const Button = styled.button<{
   height: string;
   margin?: string;
   backgroundColor?: string;
+  fontSize: string;
 }>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   border-radius: 10px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: ${(props) => props.fontSize};
   background-color: ${(props) => props.backgroundColor || BLUE[1]};
   color: white;
 
