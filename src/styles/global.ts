@@ -6,6 +6,8 @@ const global = css`
     box-sizing: border-box;
     font-family: 'NanumBarunGothic', sans-serif;
     letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   button {
     cursor: pointer;
