@@ -1,28 +1,32 @@
-import { css } from '@emotion/react';
+import { useState } from 'react';
+import { Flex } from 'rebass';
+import ProfileImage from 'components/atoms/ProfileImage';
+import AccountMenu from 'components/organisms/AccountMenu';
 import { getLocalStorageItem } from 'utils/localstorage';
+import useLoginStatus from 'hooks/useLoginStatus';
 
 const UserProfile = () => {
-  const { avatarUrl } = getLocalStorageItem('user');
+  const { isLoggedIn } = useLoginStatus();
+  const [isAccountMenuVisible, setIsAccountMenuVisible] = useState(false);
 
+  const handleToggleMenu = () => {
+    setIsAccountMenuVisible(!isAccountMenuVisible);
+  };
+
+  const handleCloseMenu = () => {
+    setIsAccountMenuVisible(false);
+  };
+  if (!isLoggedIn) return null;
+  const { avatarUrl } = getLocalStorageItem('user');
   return (
-    <div
-      css={css`
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: auto;
-      `}
-    >
-      <img
-        css={css`
-          width: 45px;
-          height: 45px;
-          border-radius: 100%;
-        `}
-        alt="profile"
-        src={avatarUrl || '/public/icons/profile.svg'}
-      />
-    </div>
+    <Flex justifyContent="center" alignItems="center" marginLeft="auto">
+      <Flex flexDirection="column">
+        <button type="button" onClick={handleToggleMenu}>
+          <ProfileImage src={avatarUrl ?? undefined} />
+        </button>
+        <AccountMenu isVisible={isAccountMenuVisible} onClose={handleCloseMenu} />
+      </Flex>
+    </Flex>
   );
 };
 

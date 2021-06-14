@@ -18,11 +18,11 @@ const MainTemplate = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
   return (
-    <Flex minHeight="100vh" maxHeight="100vh">
+    <Flex minHeight="100vh" maxHeight="100vh" minWidth="1440px">
       <SideMenu />
       <Flex flexDirection="column" flex="1" maxHeight="100vh" overflowY="auto">
         <GNB />
-        <Box padding="10px 240px 147px 160px">{children}</Box>
+        <Box padding="50px 240px 147px 160px">{children}</Box>
       </Flex>
     </Flex>
   );
