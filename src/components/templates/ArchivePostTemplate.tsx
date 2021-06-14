@@ -25,8 +25,28 @@ interface IAnswer {
   comment: string;
 }
 
+const generateAnswersModel = (questionIds: number[], selectedProjectIds: number[]): IAnswer[] => {
+  const array: IAnswer[] = [];
+  questionIds.forEach((q) => {
+    selectedProjectIds.forEach((p) =>
+      array.push({
+        questionId: q,
+        projectId: p,
+        comment: '',
+      })
+    );
+  });
+  return array;
+};
+
 const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
-  const [answers, setAnswers] = useState<IAnswer[]>([]);
+  const { showToast } = useToast();
+  const [answers, setAnswers] = useState<IAnswer[]>(
+    generateAnswersModel(
+      questions.map((q) => q.id),
+      selectedProjects.map((p) => p.id)
+    )
+  );
 
   const handleChangeTextArea = (questionId: number, projectId: number, comment: string) => {
     setAnswers([
@@ -36,7 +56,20 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
   };
 
   const handleSubmit = () => {
-    onSubmit(answers);
+    const hasEmptyComment = answers.map((answer) => answer.comment).includes('');
+
+    if (hasEmptyComment) {
+      showToast({
+        duration: 3000,
+        message: (
+          <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+            📌 응답하지 않은 항목이 있어요!
+          </Text>
+        ),
+      });
+    } else {
+      onSubmit(answers);
+    }
   };
 
   return (
