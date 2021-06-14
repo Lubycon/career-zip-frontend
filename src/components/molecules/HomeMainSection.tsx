@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { Text } from 'rebass';
+import useLoginStatus from 'hooks/useLoginStatus';
 
 import { BLUE } from 'styles/colors';
 import { mainLoginButton } from 'styles/link';
@@ -25,6 +26,7 @@ const Content = styled.div`
 `;
 
 const HomeMainSection = () => {
+  const { isLoggedIn } = useLoginStatus();
   return (
     <Background>
       <Content>
@@ -34,7 +36,11 @@ const HomeMainSection = () => {
         <Text fontSize="46px" fontWeight="600" lineHeight="64.4px">
           Career.zip
         </Text>
-        <Link to="/login">사전 신청 바로하기</Link>
+        {isLoggedIn ? (
+          <Link to="/archiving-list">커리어집에서 커리어 아카이빙</Link>
+        ) : (
+          <Link to="/login">사전 신청 바로하기</Link>
+        )}
       </Content>
     </Background>
   );

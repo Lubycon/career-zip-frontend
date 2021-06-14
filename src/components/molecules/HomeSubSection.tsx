@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Flex, Text } from 'rebass';
 import { mainLoginButton } from 'styles/link';
+import useLoginStatus from 'hooks/useLoginStatus';
 
 const HomeSubSection = () => {
+  const { isLoggedIn } = useLoginStatus();
   return (
     <Flex
-      id="#about"
+      id="about"
       width="1440px"
       margin="auto"
       padding="222px 0"
@@ -23,9 +25,15 @@ const HomeSubSection = () => {
         <Text fontSize="20px" lineHeight="32px" marginBottom="56px">
           Career.zip과 함께 커리어를 아카이빙 해보세요!
         </Text>
-        <Link to="/login" css={mainLoginButton}>
-          커리어 아카이빙 하러 가기
-        </Link>
+        {isLoggedIn ? (
+          <Link to="/archiving-list" css={mainLoginButton}>
+            커리어 아카이빙 하러 가기
+          </Link>
+        ) : (
+          <Link to="/login" css={mainLoginButton}>
+            커리어 아카이빙 하러 가기
+          </Link>
+        )}
       </Flex>
     </Flex>
   );

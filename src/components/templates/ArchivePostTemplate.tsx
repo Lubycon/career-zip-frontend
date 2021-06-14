@@ -86,7 +86,7 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
         <Text color={GRAY[2]} margin="0 0 18px 0">
           이번 한 주도 고생많으셨어요! 다음주에 또 만나요 👋
         </Text>
-        <Button width="240px" height="44px" onClick={handleSubmit}>
+        <Button width="240px" height="44px" fontSize="18px" onClick={handleSubmit}>
           저장
         </Button>
       </Flex>

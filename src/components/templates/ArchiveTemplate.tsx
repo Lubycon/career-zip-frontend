@@ -96,13 +96,14 @@ const ArchiveTemplate = ({ archiveId }: ArchiveTemplateProps) => {
         <QuestionBlock key={question.id} question={question} />
       ))}
       <Flex marginTop="196px" justifyContent="center">
-        <Button width="240px" height="44px" onClick={handleClickGoBack}>
+        <Button width="240px" height="44px" fontSize="18px" onClick={handleClickGoBack}>
           뒤로가기
         </Button>
         <Button
           width="240px"
           height="44px"
           margin="0 0 0 30px"
+          fontSize="18px"
           backgroundColor={GRAY[3]}
           onClick={handleClickEdit}
         >

@@ -21,7 +21,13 @@ const CompleteArchivingModalContent = ({
         이번 주 아카이빙을 잘 마치셨군요! <br />
         다음 주에 또 만나요!
       </Text>
-      <Button width="180px" height="40px" margin="127px 0 0 0" onClick={onClickHomeButton}>
+      <Button
+        width="180px"
+        height="40px"
+        margin="127px 0 0 0"
+        fontSize="18px"
+        onClick={onClickHomeButton}
+      >
         홈으로
       </Button>
     </Flex>
