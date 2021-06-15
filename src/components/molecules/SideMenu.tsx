@@ -1,11 +1,12 @@
-import { useState } from 'react';
 import styled from '@emotion/styled';
-import BetaLogo from 'components/atoms/BetaLogo';
-import { BLUE, GRAY } from 'styles/colors';
-import ShortLogo from 'components/atoms/ShortLogo';
-import { Box } from 'rebass';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { Box } from 'rebass';
+import BetaLogo from 'components/atoms/BetaLogo';
+import ShortLogo from 'components/atoms/ShortLogo';
 import useCopyLink from 'hooks/useCopyLink';
+import { selectIsSideMenuCollapsed, toggleSideMenuCollapsed } from 'slices/common';
+import { BLUE, GRAY } from 'styles/colors';
 
 const StyledSideMenu = styled.nav`
   position: sticky;
@@ -88,10 +89,11 @@ const MenuButton = ({ className, isCollapsed = false, emoji, name, onClick }: Me
 const SideMenu = () => {
   const history = useHistory();
   const { copyLink } = useCopyLink();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const dispatch = useDispatch();
+  const isCollapsed = useSelector(selectIsSideMenuCollapsed);
 
   const handleIsCollapsed = () => {
-    setIsCollapsed(!isCollapsed);
+    dispatch(toggleSideMenuCollapsed());
   };
 
   const handleClickMenu = (page: string) => () => {
