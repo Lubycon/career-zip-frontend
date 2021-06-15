@@ -27,7 +27,8 @@
     "import/prefer-default-export": 0,
     "react/require-default-props": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
-    "consistent-return": 0
+    "consistent-return": 0,
+    "no-nested-ternary": 0
   },
   "overrides": [
     {

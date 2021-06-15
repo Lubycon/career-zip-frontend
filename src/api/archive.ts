@@ -13,3 +13,7 @@ export const getQuestionPaper = (): Promise<AxiosResponse<{ data: IQuestionPaper
   client.get('/questionpapers');
 
 export const postArchive = (params: PostArchiveParams) => client.post(`/archives`, params);
+
+export const checkIfUserArchived = (): Promise<
+  AxiosResponse<{ data: { archived: boolean; id: number } }>
+> => client.get('/accounts/post/exist');
