@@ -5,22 +5,34 @@ import Dimmer from './Dimmer';
 
 interface ModalProps {
   isVisible: boolean;
+  width?: string;
+  padding?: string;
+  borderRadius?: string;
   onOpened?: VoidFunction;
   onClosed?: VoidFunction;
   closeButton?: React.ReactNode;
   children: React.ReactNode;
 }
 
-const StyledModal = styled.div`
-  width: 950px;
+const StyledModal = styled.div<{ width: string; borderRadius: string; padding: string }>`
+  width: ${(props) => props.width};
   margin: auto;
   background-color: white;
-  border-radius: 20px;
-  padding: 30px 40px 50px 40px;
+  border-radius: ${(props) => props.borderRadius};
+  padding: ${(props) => props.padding};
   box-shadow: 0px 0px 45px rgba(0, 0, 0, 0.25);
 `;
 
-const Modal = ({ isVisible, onOpened, onClosed, closeButton, children }: ModalProps) => {
+const Modal = ({
+  isVisible,
+  width = '950px',
+  padding = '30px 40px 50px 40px',
+  borderRadius = '20px',
+  onOpened,
+  onClosed,
+  closeButton,
+  children,
+}: ModalProps) => {
   const [defaultScrollStyle, setDefaultScrollStyle] = useState({
     x: '',
     y: '',
@@ -59,7 +71,7 @@ const Modal = ({ isVisible, onOpened, onClosed, closeButton, children }: ModalPr
     <>
       {isVisible && (
         <Dimmer>
-          <StyledModal>
+          <StyledModal width={width} padding={padding} borderRadius={borderRadius}>
             <Box display="flex" justifyContent="flex-end">
               {closeButton}
             </Box>
