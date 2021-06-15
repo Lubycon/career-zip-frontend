@@ -19,6 +19,7 @@ jobs:
           echo ENV_DEV_OAUTH_GOOGLE=${{ secrets.ENV_DEV_OAUTH_GOOGLE }} >> .env
           echo ENV_DEV_OAUTH_NAVER=${{ secrets.ENV_DEV_OAUTH_NAVER }} >> .env
           echo ENV_DEV_VERSION=${{ secrets.ENV_DEV_VERSION }} >> .env
+          echo ENV_DEV_SENTRY_DSN=${{ secrets.ENV_DEV_SENTRY_DSN }} >> .env
           cat .env
       - name: NPM build
         run: npm run build
