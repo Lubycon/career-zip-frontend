@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 const Dimmer = styled.div`
   position: fixed;
   display: flex;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   bottom: 0;
   right: 0;

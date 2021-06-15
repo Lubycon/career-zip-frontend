@@ -6,14 +6,7 @@ import useLoginStatus from 'hooks/useLoginStatus';
 const HomeSubSection = () => {
   const { isLoggedIn } = useLoginStatus();
   return (
-    <Flex
-      id="about"
-      width="1440px"
-      margin="auto"
-      padding="222px 0"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Flex id="about" margin="auto" padding="222px 0" justifyContent="center" alignItems="center">
       <img alt="main page preview" src="public/images/landing_img.png" />
       <Flex flexDirection="column" marginLeft="123px">
         <Text fontSize="46px" fontWeight="bold" lineHeight="64.4px">
