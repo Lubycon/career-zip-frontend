@@ -34,7 +34,7 @@ const NavigationBar = () => {
 
   return (
     <Wrapper>
-      <Flex width="1440px;" margin="auto" justifyContent="space-between">
+      <Flex width="1440px" margin="auto" justifyContent="space-between">
         <BetaLogo />
         <Flex>
           <a href="#about" css={navButtonStyle}>
