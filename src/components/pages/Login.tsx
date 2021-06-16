@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { css } from '@emotion/react';
 import { Flex, Text } from 'rebass';
-import { useQueryStringAndParam } from 'hooks';
+import { useQueryStringAndParam } from 'hooks/useQueryStringAndParam';
 import { logger } from '@lubycon/utils';
 
 import { modal } from 'styles/element';
