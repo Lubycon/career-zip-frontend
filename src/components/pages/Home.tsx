@@ -9,6 +9,7 @@ import NavigationBar from 'components/molecules/NavigationBar';
 import LandingPageFooter from 'components/organisms/LandingPageFooter';
 import CloseButton from 'components/atoms/CloseButton';
 import MobileDeviceModalContent from 'components/organisms/MobileDeviceModalContent';
+import { useQueryStringAndParam } from 'hooks/useQueryStringAndParam';
 
 const landingPageLogger = logger.getPageLogger('landing_page');
 
@@ -20,9 +21,12 @@ const Home = () => {
     padding: '14px 16px',
     borderRadius: '10px',
   });
+  const {
+    query: { utm_source: utmSource },
+  } = useQueryStringAndParam();
 
   useEffect(() => {
-    landingPageLogger.view();
+    if (utmSource) landingPageLogger.view({ utmSource });
   }, []);
 
   useEffect(() => {
