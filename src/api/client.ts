@@ -10,9 +10,13 @@ client.interceptors.response.use(
   },
   (error) => {
     if (error.response.status === 401) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('user');
       window.location.href = '/login?error=unauthorized';
     }
-    if (error.response.status === 403) {
+    if (error.response.status === 403 || error.response.status === 419) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('user');
       window.location.href = '/login?error=expired-auth';
     }
     return Promise.reject(error);
