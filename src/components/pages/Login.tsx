@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { css } from '@emotion/react';
 import { Flex, Text } from 'rebass';
 import { useQueryStringAndParam } from 'hooks';
+import { logger } from '@lubycon/utils';
 
 import { modal } from 'styles/element';
 import LoginPageBackground from 'components/atoms/LoginPageBackground';
@@ -10,12 +11,18 @@ import HomeButton from 'components/molecules/HomeButton';
 import { DARK_GRAY } from 'styles/colors';
 import { useToast } from 'context/Toast';
 
+const loginPageLogger = logger.getPageLogger('login_page');
+
 const Login = () => {
   const { error } = useQueryStringAndParam<{
     error: string;
   }>().query;
 
   const { showToast } = useToast();
+
+  useEffect(() => {
+    loginPageLogger.view();
+  }, []);
 
   useEffect(() => {
     if (error) {
