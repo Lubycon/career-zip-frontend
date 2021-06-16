@@ -33,6 +33,7 @@ const ArchivingList = () => {
   }, []);
 
   const handleClick = () => {
+    archivingListPageLogger.click('click_go_to_archive_post_button');
     history.push('/archive/post');
   };
 
