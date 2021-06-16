@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Flex, Text } from 'rebass';
 import { useHistory } from 'react-router';
+import { logger } from '@lubycon/utils';
 import { useToast } from 'context/Toast';
 import { IArchive, IQuestion } from 'types';
 import ArchivePeriod from 'components/atoms/ArchivePeriod';
@@ -17,6 +18,8 @@ interface ArchiveTemplateProps {
 interface QuestionBlockProps {
   question: IQuestion;
 }
+
+const archivePageLogger = logger.getPageLogger('archive_page');
 
 const QuestionBlock = ({ question }: QuestionBlockProps) => {
   if (!question) return null;
@@ -71,10 +74,12 @@ const ArchiveTemplate = ({ archiveId }: ArchiveTemplateProps) => {
   }, [archiveId]);
 
   const handleClickGoBack = () => {
+    archivePageLogger.click('click_go_back_button');
     history.push('/archiving-list');
   };
 
   const handleClickEdit = () => {
+    archivePageLogger.click('click_edit_button');
     showToast({
       duration: 3000,
       message: (

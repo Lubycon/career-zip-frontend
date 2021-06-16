@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Flex } from 'rebass';
+import { logger } from '@lubycon/utils';
 import useModal from 'hooks/useModal';
 import HomeMainSection from 'components/molecules/HomeMainSection';
 import HomeShareSection from 'components/molecules/HomeShareSection';
@@ -8,6 +9,9 @@ import NavigationBar from 'components/molecules/NavigationBar';
 import LandingPageFooter from 'components/organisms/LandingPageFooter';
 import CloseButton from 'components/atoms/CloseButton';
 import MobileDeviceModalContent from 'components/organisms/MobileDeviceModalContent';
+import { useQueryStringAndParam } from 'hooks/useQueryStringAndParam';
+
+const landingPageLogger = logger.getPageLogger('landing_page');
 
 const Home = () => {
   const { userAgent } = navigator;
@@ -17,6 +21,13 @@ const Home = () => {
     padding: '14px 16px',
     borderRadius: '10px',
   });
+  const {
+    query: { utm_source: utmSource },
+  } = useQueryStringAndParam();
+
+  useEffect(() => {
+    if (utmSource) landingPageLogger.view({ utmSource });
+  }, []);
 
   useEffect(() => {
     if (isMobile) {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { logger } from '@lubycon/utils';
 import useModal from 'hooks/useModal';
 import SelectProjectModalContent from 'components/organisms/SelectProjectModalContent';
 import MainTemplate from 'components/templates/MainTemplate';
@@ -10,12 +11,18 @@ import CompleteArchivingModalContent from 'components/organisms/CompleteArchivin
 // import HasArchivedModalContent from 'components/organisms/HasArchivedModalContent';
 import { IProject } from 'types';
 
+const archivingPostPageLogger = logger.getPageLogger('archive_post_page');
+
 const ArchivePost = () => {
   const history = useHistory();
   // const { hasArchived } = useHasArchived();
   const [selectedProjects, setSelectedProjects] = useState<IProject[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const { handleOpenModal, renderModal, handleCloseModal } = useModal({});
+
+  useEffect(() => {
+    archivingPostPageLogger.view();
+  }, []);
 
   useEffect(() => {
     // if (hasArchived == null) return;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve",
-    "build": "webpack",
+    "build": "webpack --mode=development",
     "prepare": "husky install",
     "prettier": "prettier --write './src/**/*.{ts,tsx}'",
     "eslint": "eslint './src/**/*.{ts,tsx}'",
@@ -24,6 +24,7 @@
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
+    "@lubycon/utils": "^1.2.10",
     "@reduxjs/toolkit": "^1.5.1",
     "@sentry/react": "^6.7.0",
     "@sentry/tracing": "^6.7.0",

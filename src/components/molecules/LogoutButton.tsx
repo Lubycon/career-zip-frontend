@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { logger } from '@lubycon/utils';
 import { useHistory } from 'react-router';
 import { BLUE, GRAY } from 'styles/colors';
 
@@ -27,8 +28,9 @@ const StyledLogoutButton = styled.button`
 
 const LogoutButton = () => {
   const history = useHistory();
-
+  const pageLogger = logger.getPageLogger(history.location.pathname);
   const handleLogout = () => {
+    pageLogger.click('click_logout_button');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('user');
     history.push('/login');
