@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { logger } from '@lubycon/utils';
+import { useHistory } from 'react-router-dom';
 import { Text } from 'rebass';
 import useLoginStatus from 'hooks/useLoginStatus';
 
@@ -19,14 +20,26 @@ const Content = styled.div`
   margin: auto;
   color: #fff;
   margin-top: 325px;
-
-  > a {
-    ${mainLoginButton}
-  }
 `;
 
+const Button = styled.button`
+  ${mainLoginButton}
+`;
+
+const landingPageLogger = logger.getPageLogger('landing_page');
+
 const HomeMainSection = () => {
+  const history = useHistory();
   const { isLoggedIn } = useLoginStatus();
+
+  const handleClick = (path: string, title: string) => {
+    landingPageLogger.click('click_main_section_button', {
+      path,
+      title,
+    });
+    history.push(path);
+  };
+
   return (
     <Background>
       <Content>
@@ -37,9 +50,13 @@ const HomeMainSection = () => {
           Career.zip
         </Text>
         {isLoggedIn ? (
-          <Link to="/archiving-list">커리어집에서 커리어 아카이빙</Link>
+          <Button onClick={() => handleClick('/archiving-list', '커리어 아카이빙 페이지로')}>
+            커리어 아카이빙 페이지로
+          </Button>
         ) : (
-          <Link to="/login">사전 신청 바로하기</Link>
+          <Button onClick={() => handleClick('/login', '커리어집에서 커리어 아카이빙')}>
+            커리어집에서 커리어 아카이빙
+          </Button>
         )}
       </Content>
     </Background>
