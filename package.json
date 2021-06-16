@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve",
-    "build": "webpack",
+    "build": "webpack --mode=development",
     "prepare": "husky install",
     "prettier": "prettier --write './src/**/*.{ts,tsx}'",
     "eslint": "eslint './src/**/*.{ts,tsx}'",
