@@ -8,6 +8,7 @@ const TextArea = styled.textarea`
   color: ${GRAY[1]};
   resize: none;
   outline: none;
+  line-height: 1.6;
 
   :placeholder {
     color: ${GRAY[3]};
