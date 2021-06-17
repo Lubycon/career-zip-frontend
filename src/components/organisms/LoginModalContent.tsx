@@ -19,7 +19,8 @@ const SNSLoginButton = styled.a`
   width: 444px;
   height: 62px;
   font-size: 20px;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 105px;
   align-items: center;
   background-color: ${GRAY[4]};
   border: 1px solid #b0b8c1;
