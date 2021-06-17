@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: `${process.env.ENV_DEV_BASE_URL}/${process.env.ENV_DEV_VERSION}`,
+  baseURL: `${process.env.BASE_URL}/${process.env.VERSION}`,
 });
 
 client.interceptors.response.use(
