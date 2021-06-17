@@ -9,6 +9,7 @@ import { BLUE, DARK_GRAY, GRAY, LIGHT_GRAY } from 'styles/colors';
 
 const ProjectButton = styled.button`
   display: flex;
+  width: 100%;
   align-items: center;
   background-color: ${GRAY[4]};
   border-radius: 10px;
@@ -45,6 +46,7 @@ const AddProjectButton = styled.button`
 `;
 
 const AddProjectInput = styled.input`
+  width: 100%;
   background-color: ${GRAY[4]};
   border-radius: 10px;
   color: ${DARK_GRAY[2]};

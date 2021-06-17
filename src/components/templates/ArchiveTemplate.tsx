@@ -87,7 +87,7 @@ const ArchiveTemplate = ({ archiveId }: ArchiveTemplateProps) => {
     showToast({
       duration: 3000,
       message: (
-        <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
+        <Text fontWeight="bold" fontSize="14px" color={DARK_GRAY[2]} padding="0 85px">
           아카이빙한 것을 수정하거나 삭제할 수 없어요!😥 빠른시일내에 해당 기능을 추가 할게요!
         </Text>
       ),

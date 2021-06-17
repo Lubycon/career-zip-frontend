@@ -7,7 +7,7 @@ const useCopyLink = () => {
 
   const copyLink = async () => {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText('https://career-zip.com?utm_source=share');
       showToast({
         message: (
           <Text fontWeight="bold" fontSize="20px" color={DARK_GRAY[2]} padding="0 85px">
