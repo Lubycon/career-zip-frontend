@@ -5,7 +5,7 @@ import App from 'components/App';
 import 'reset-css';
 
 Sentry.init({
-  dsn: process.env.ENV_DEV_SENTRY_DSN,
+  dsn: process.env.SENTRY_DSN,
   integrations: [new Integrations.BrowserTracing()],
 
   tracesSampleRate: 1.0,

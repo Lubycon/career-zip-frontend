@@ -52,11 +52,11 @@ const LoginModalContent = () => {
         일주일에 한 번, 나의 프로젝트를 기록하는 시간을 가져봐요!
       </Text>
       <Flex flexDirection="column" marginTop="30px">
-        <SNSLoginButton href={process.env.ENV_DEV_OAUTH_GOOGLE}>
+        <SNSLoginButton href={process.env.OAUTH_GOOGLE}>
           <img alt="google icon" src="/public/icons/google_logo.svg" />
           구글계정으로 로그인
         </SNSLoginButton>
-        <SNSLoginButton href={process.env.ENV_DEV_OAUTH_NAVER}>
+        <SNSLoginButton href={process.env.OAUTH_NAVER}>
           <img alt="google icon" src="/public/icons/naver_logo.svg" />
           네이버계정으로 로그인
         </SNSLoginButton>
