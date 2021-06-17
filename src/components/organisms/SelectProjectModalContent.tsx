@@ -15,6 +15,7 @@ const ProjectButton = styled.button`
   line-height: 28.8px;
   padding: 19px 40px;
   border: 1px solid transparent;
+  text-align: left;
 
   &.selected {
     color: ${BLUE[1]};

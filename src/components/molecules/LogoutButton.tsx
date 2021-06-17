@@ -23,6 +23,7 @@ const StyledLogoutButton = styled.button`
     align-items: center;
     background-color: ${BLUE[4]};
     border-radius: 100%;
+    letter-spacing: -4px;
   }
 `;
 
