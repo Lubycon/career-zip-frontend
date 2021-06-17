@@ -34,17 +34,22 @@ const Archiving = ({ number, id, date, projects, createdAt }: IArchiving) => {
   return (
     <ListRow type="button" onClick={() => history.push(`/archive/${id}`)}>
       <Flex padding="20px 0">
-        <Text fontSize="18px" color={GRAY[3]} fontWeight="bold">
-          {number}
+        <Text fontSize="18px" color={GRAY[3]}>
+          {number}.
         </Text>
         <Flex flexDirection="column" flex="1" marginLeft="25px" textAlign="left">
-          <Text fontSize="20px" color={GRAY[1]}>
+          <Text fontSize="20px" color={GRAY[1]} fontWeight="bold">
             {date}
           </Text>
-          <Flex marginTop="10px">
+          <Flex marginTop="10px" marginLeft="10px">
             <Flex>
               {projects.map((project) => (
-                <Text key={project.id} fontSize="14px" color={GRAY[2]}>{`# ${project.title}`}</Text>
+                <Text
+                  key={project.id}
+                  fontSize="14px"
+                  color={GRAY[2]}
+                  marginRight="20px"
+                >{`#${project.title}`}</Text>
               ))}
             </Flex>
             <Text marginLeft="auto" color={GRAY[2]}>{`작성일: ${createdAt}`}</Text>
