@@ -60,6 +60,7 @@ const StyledMenuButton = styled.button`
     border-radius: 100%;
     background-color: ${BLUE[4]};
     font-size: 18px;
+    letter-spacing: -4px;
   }
 
   > span {
