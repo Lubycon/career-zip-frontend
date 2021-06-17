@@ -15,6 +15,11 @@ const global = css`
     background-color: transparent;
     border: none;
   }
+
+  b {
+    font-weight: bold;
+    font-family: inherit;
+  }
 `;
 
 export default global;
