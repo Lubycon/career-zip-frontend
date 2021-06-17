@@ -25,23 +25,28 @@ interface IAnswer {
   comment: string;
 }
 
-const generateAnswersModel = (questionIds: number[], selectedProjectIds: number[]): IAnswer[] => {
-  const array: IAnswer[] = [];
+interface IAnswers {
+  [key: string]: IAnswer;
+}
+
+const generateAnswersModel = (questionIds: number[], selectedProjectIds: number[]): IAnswers => {
+  const obj: IAnswers = {};
   questionIds.forEach((q) => {
-    selectedProjectIds.forEach((p) =>
-      array.push({
+    selectedProjectIds.forEach((p) => {
+      const key = `${q}-${p}`;
+      obj[key] = {
         questionId: q,
         projectId: p,
         comment: '',
-      })
-    );
+      };
+    });
   });
-  return array;
+  return obj;
 };
 
 const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
   const { showToast } = useToast();
-  const [answers, setAnswers] = useState<IAnswer[]>(
+  const [answers, setAnswers] = useState<IAnswers>(
     generateAnswersModel(
       questions.map((q) => q.id),
       selectedProjects.map((p) => p.id)
@@ -49,14 +54,16 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
   );
 
   const handleChangeTextArea = (questionId: number, projectId: number, comment: string) => {
-    setAnswers([
-      ...answers.filter((a) => a.questionId !== questionId || a.projectId !== projectId),
-      { questionId, projectId, comment },
-    ]);
+    setAnswers({
+      ...answers,
+      [`${questionId}-${projectId}`]: { questionId, projectId, comment },
+    });
   };
 
   const handleSubmit = () => {
-    const hasEmptyComment = answers.map((answer) => answer.comment).includes('');
+    const hasEmptyComment = Object.values(answers)
+      .map((answer) => answer.comment)
+      .includes('');
 
     if (hasEmptyComment) {
       showToast({
@@ -68,7 +75,7 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
         ),
       });
     } else {
-      onSubmit(answers);
+      onSubmit(Object.values(answers));
     }
   };
 
