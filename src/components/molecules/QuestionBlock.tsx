@@ -15,10 +15,16 @@ interface ArchiveAnswerBlockProps {
 interface AnswerBlockWrapperProps {
   questionId: number;
   project: IProject;
+  example: string;
   onChange: (questionId: number, projectId: number, value: string) => void;
 }
 
-const AnswerBlockWrapper = ({ questionId, project, onChange }: AnswerBlockWrapperProps) => {
+const AnswerBlockWrapper = ({
+  questionId,
+  project,
+  example,
+  onChange,
+}: AnswerBlockWrapperProps) => {
   const debounced = debounce(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       onChange(questionId, project.id, e.target.value);
@@ -41,7 +47,7 @@ const AnswerBlockWrapper = ({ questionId, project, onChange }: AnswerBlockWrappe
             이번주의 커리어 아카이빙
           </Text>
           <TextArea
-            placeholder="이곳에 프로젝트를 기록해보세요."
+            placeholder={example}
             name="text"
             maxLength={1000}
             onChange={(e) => handleChange(e)}
@@ -59,7 +65,7 @@ const QuestionBlock = ({
 }: ArchiveAnswerBlockProps) => {
   if (!question) return null;
 
-  const { description, priority } = question;
+  const { description, priority, example } = question;
   return (
     <Flex flexDirection="column" margin="70px 0 0 0">
       <Text
@@ -72,6 +78,7 @@ const QuestionBlock = ({
           <AnswerBlockWrapper
             key={project.id}
             questionId={question.id}
+            example={example}
             project={project}
             onChange={onChangeTextArea}
           />
