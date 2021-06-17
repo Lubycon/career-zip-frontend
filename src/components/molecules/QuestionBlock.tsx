@@ -43,6 +43,7 @@ const AnswerBlockWrapper = ({ questionId, project, onChange }: AnswerBlockWrappe
           <TextArea
             placeholder="이곳에 프로젝트를 기록해보세요."
             name="text"
+            maxLength={1000}
             onChange={(e) => handleChange(e)}
           />
         </Flex>
