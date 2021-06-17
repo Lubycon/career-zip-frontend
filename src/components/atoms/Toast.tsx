@@ -3,8 +3,9 @@ import { ReactNode } from 'react';
 
 const Wrapper = styled.div`
   position: fixed;
-  width: 100vw;
   display: flex;
+  left: 50%;
+  transform: translate(-50%, 0);
   top: -70px;
   transition: top 350ms;
   z-index: 9999;
