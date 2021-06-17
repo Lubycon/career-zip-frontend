@@ -25,7 +25,12 @@ const HomeSubSection = () => {
 
   return (
     <Flex id="about" margin="auto" padding="222px 0" justifyContent="center" alignItems="center">
-      <img alt="main page preview" src="public/images/landing_img.png" />
+      <img
+        width="659px"
+        height="496px"
+        alt="main page preview"
+        src="public/images/landing_img.jpg"
+      />
       <Flex flexDirection="column" marginLeft="123px">
         <Text fontSize="46px" fontWeight="bold" lineHeight="64.4px">
           바쁘게 돌아가는 프로젝트 속에서 <br /> 나의 커리어 중간 저장하기
