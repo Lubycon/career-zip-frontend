@@ -45,6 +45,7 @@ const AddProjectButton = styled.button`
 `;
 
 const AddProjectInput = styled.input`
+  width: 100%;
   background-color: ${GRAY[4]};
   border-radius: 10px;
   color: ${DARK_GRAY[2]};
