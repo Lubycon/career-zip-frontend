@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Flex, Text } from 'rebass';
 import { useHistory } from 'react-router';
 import { logger } from '@lubycon/utils';
@@ -36,8 +36,12 @@ const QuestionBlock = ({ question }: QuestionBlockProps) => {
         {answers.map(({ project, id, comment }) => (
           <AnswerBlock key={id} projectTitle={project.title}>
             <Flex flexDirection="column" margin="16px 28px">
-              <Text fontSize="14px" color={GRAY[1]}>
-                {comment}
+              <Text fontSize="14px" color={GRAY[1]} lineHeight="1.6">
+                {comment.split('\n').map((p, index) => (
+                  <React.Fragment key={`p-${index}`}>
+                    <p>{p}</p>
+                  </React.Fragment>
+                ))}
               </Text>
             </Flex>
           </AnswerBlock>
