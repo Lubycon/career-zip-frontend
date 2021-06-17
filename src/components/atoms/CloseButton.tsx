@@ -16,7 +16,7 @@ const StyledButton = styled.button<{ width: string; height: string }>`
   }
 `;
 
-const CloseButton = ({ width = '27px', height = '40px', onClick }: CloseButtonProps) => {
+const CloseButton = ({ width = '20px', height = '40px', onClick }: CloseButtonProps) => {
   return (
     <StyledButton width={width} height={height} onClick={onClick}>
       <img alt="close" src="/public/icons/close.svg" />
