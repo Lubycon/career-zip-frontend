@@ -9,6 +9,7 @@ import { BLUE, DARK_GRAY, GRAY, LIGHT_GRAY } from 'styles/colors';
 
 const ProjectButton = styled.button`
   display: flex;
+  width: 100%;
   align-items: center;
   background-color: ${GRAY[4]};
   border-radius: 10px;
