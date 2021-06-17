@@ -36,6 +36,11 @@ const SNSLoginButton = styled.a`
   }
 `;
 
+const Link = styled.a`
+  font-size: 10px;
+  color: ${GRAY[3]};
+`;
+
 const LoginModalContent = () => {
   return (
     <Flex flexDirection="column" height="100%" alignItems="flex-start" padding="58px">
@@ -57,7 +62,23 @@ const LoginModalContent = () => {
         </SNSLoginButton>
       </Flex>
       <Text fontSize="10px" color={GRAY[3]} marginTop="8px">
-        로그인은 <u>개인정보 수집 및 활용, 이용약관</u>에 동의함을 의미합니다.
+        로그인은
+        <Link
+          href="https://www.notion.so/ca21bfd4ba7b47f28fd5f3581b4f50bf"
+          target="_blank"
+          rel="noreferrer"
+        >
+          개인정보 수집 및 활용
+        </Link>
+        ,
+        <Link
+          href="https://www.notion.so/c78a643351b64cf0840c253e1827c97c"
+          target="_blank"
+          rel="noreferrer"
+        >
+          이용약관
+        </Link>
+        에 동의함을 의미합니다.
       </Text>
     </Flex>
   );
