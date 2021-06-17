@@ -1,9 +1,9 @@
 name: React build flows
 on:
   push:
-    branches: [dev]
+    branches: [ main ]
   pull_request:
-    branches: [dev]
+    branches: [ main ]
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -15,11 +15,11 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo ENV_DEV_BASE_URL=${{ secrets.ENV_DEV_BASE_URL }} >> .env
-          echo ENV_DEV_OAUTH_GOOGLE=${{ secrets.ENV_DEV_OAUTH_GOOGLE }} >> .env
-          echo ENV_DEV_OAUTH_NAVER=${{ secrets.ENV_DEV_OAUTH_NAVER }} >> .env
-          echo ENV_DEV_VERSION=${{ secrets.ENV_DEV_VERSION }} >> .env
-          echo ENV_DEV_SENTRY_DSN=${{ secrets.ENV_DEV_SENTRY_DSN }} >> .env
+          echo BASE_URL=${{ secrets.ENV_PROD_BASE_URL }} >> .env
+          echo OAUTH_GOOGLE=${{ secrets.ENV_PROD_OAUTH_GOOGLE }} >> .env
+          echo OAUTH_NAVER=${{ secrets.ENV_PROD_OAUTH_NAVER }} >> .env
+          echo VERSION=${{ secrets.ENV_PROD_VERSION }} >> .env
+          echo SENTRY_DSN=${{ secrets.ENV_PROD_SENTRY_DSN }} >> .env
           echo AMPLITUDE_APP_KEY=${{ secrets.AMPLITUDE_APP_KEY }} >> .env
           cat .env
       - name: NPM build
@@ -45,6 +45,6 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ${{ secrets.AWS_REGION }} \
-            dist s3://dev.career-zip.com
+            dist s3://career-zip.com
       - name: Invalidate CloudFront Cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DEV_DISTRIBUTION_ID }} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_PROD_DISTRIBUTION_ID }} --paths "/*"

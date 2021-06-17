@@ -21,6 +21,10 @@ const Button = styled.button<{
     background-color: ${GRAY[3]};
     color: white;
   }
+
+  &.is-submitting {
+    background-color: ${BLUE[2]};
+  }
 `;
 
 export default Button;

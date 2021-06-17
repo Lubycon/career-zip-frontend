@@ -52,7 +52,7 @@ const ArchivePost = () => {
         //   <HasArchivedModalContent />
         // ) :
         isCompleted ? (
-          <CompleteArchivingModalContent onClickHomeButton={handleClickCloseButton} />
+          <CompleteArchivingModalContent />
         ) : (
           <SelectProjectModalContent onClickNextButton={handleClickNextButton} />
         ),
