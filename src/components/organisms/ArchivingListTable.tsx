@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import styled from '@emotion/styled';
+import EmptyListBlock from 'components/molecules/EmptyListBlock';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Flex, Text } from 'rebass';
@@ -65,6 +66,7 @@ const ArchivingListTable = () => {
 
   return (
     <Flex flexDirection="column" marginTop="15px">
+      {list.length === 0 && <EmptyListBlock />}
       {list.map(({ id, startDate, endDate, createdDateTime, projects }, i) => (
         <Archiving
           key={id}

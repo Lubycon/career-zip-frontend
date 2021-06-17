@@ -23,7 +23,7 @@ const AnswerBlockWrapper = ({ questionId, project, onChange }: AnswerBlockWrappe
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       onChange(questionId, project.id, e.target.value);
     },
-    300,
+    100,
     { leading: false, trailing: true }
   );
 
