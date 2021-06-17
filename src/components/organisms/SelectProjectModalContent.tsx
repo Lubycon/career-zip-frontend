@@ -8,6 +8,8 @@ import { addProject, getProjectList } from 'api/project';
 import { BLUE, DARK_GRAY, GRAY, LIGHT_GRAY } from 'styles/colors';
 
 const ProjectButton = styled.button`
+  display: flex;
+  align-items: center;
   background-color: ${GRAY[4]};
   border-radius: 10px;
   color: ${GRAY[2]};

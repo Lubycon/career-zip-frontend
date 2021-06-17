@@ -9,7 +9,7 @@ const initialState: TInitialState = {
   isSideMenuCollapsed: false,
 };
 
-export const toggleSideMenuCollapsed = createAction('setAccountInfo');
+export const toggleSideMenuCollapsed = createAction('toggleSideMenuCollapsed');
 
 const commonSlice = createSlice({
   name: 'common',

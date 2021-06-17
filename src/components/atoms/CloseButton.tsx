@@ -12,10 +12,11 @@ const StyledButton = styled.button<{ width: string; height: string }>`
 
   img {
     width: 100%;
+    height: 100%;
   }
 `;
 
-const CloseButton = ({ width = '32px', height = '32px', onClick }: CloseButtonProps) => {
+const CloseButton = ({ width = '27px', height = '40px', onClick }: CloseButtonProps) => {
   return (
     <StyledButton width={width} height={height} onClick={onClick}>
       <img alt="close" src="/public/icons/close.svg" />
