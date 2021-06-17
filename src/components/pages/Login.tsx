@@ -41,7 +41,7 @@ const Login = () => {
 
   return (
     <LoginPageBackground>
-      <Flex width="1440px" padding="30px 0" height="100%" margin="auto" flexDirection="column">
+      <Flex minWidth="1440px" padding="30px 0" height="100%" margin="auto" flexDirection="column">
         <HomeButton />
         <div
           css={css`
