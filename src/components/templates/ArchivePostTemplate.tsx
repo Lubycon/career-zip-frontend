@@ -18,6 +18,7 @@ interface ArchivePostFormProps {
 interface FormBlockProps {
   questions: IQuestion[];
   selectedProjects: IProject[];
+  isSubmitting: boolean;
   onSubmit: (T: any) => void;
 }
 
@@ -46,7 +47,7 @@ const generateAnswersModel = (questionIds: number[], selectedProjectIds: number[
   return obj;
 };
 
-const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
+const Form = ({ questions, selectedProjects, onSubmit, isSubmitting }: FormBlockProps) => {
   const { showToast } = useToast();
   const [answers, setAnswers] = useState<IAnswers>(
     generateAnswersModel(
@@ -95,7 +96,13 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
         <Text color={GRAY[2]} margin="0 0 18px 0">
           이번 한 주도 고생많으셨어요! 다음주에 또 만나요 👋
         </Text>
-        <Button width="240px" height="44px" fontSize="18px" onClick={handleSubmit}>
+        <Button
+          width="240px"
+          height="44px"
+          fontSize="18px"
+          className={isSubmitting ? 'is-submitting' : undefined}
+          onClick={isSubmitting ? undefined : handleSubmit}
+        >
           저장
         </Button>
       </Flex>
@@ -106,6 +113,7 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
 const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePostFormProps) => {
   const { showToast } = useToast();
   const [formData, setFormData] = useState<IQuestionPaper>();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const isSideMenuCollapsed = useSelector(selectIsSideMenuCollapsed);
 
   useEffect(() => {
@@ -121,9 +129,12 @@ const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePost
   const handleSubmit = useCallback(
     async (answers: IAnswer[]) => {
       try {
+        setIsSubmitting(true);
         await postArchive({ questionPaperId: formData.id, answers });
         onSubmitCallback();
+        setIsSubmitting(false);
       } catch (err) {
+        setIsSubmitting(false);
         showToast({
           duration: 4000,
           message: (
@@ -159,7 +170,12 @@ const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePost
         description="선택된 프로젝트를 변경하시려면 뒤로 가기를 클릭해 프로젝트 설정 팝업에서 재선택해주세요."
         projectList={selectedProjects}
       />
-      <Form questions={questions} selectedProjects={selectedProjects} onSubmit={handleSubmit} />
+      <Form
+        questions={questions}
+        selectedProjects={selectedProjects}
+        isSubmitting={isSubmitting}
+        onSubmit={handleSubmit}
+      />
     </Box>
   );
 };
