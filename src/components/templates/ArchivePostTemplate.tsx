@@ -8,6 +8,8 @@ import ProjectsBlock from 'components/molecules/ProjectsBlock';
 import QuestionBlock from 'components/molecules/QuestionBlock';
 import Button from 'components/atoms/Button';
 import { DARK_GRAY, GRAY } from 'styles/colors';
+import { useSelector } from 'react-redux';
+import { selectIsSideMenuCollapsed } from 'slices/common';
 
 interface ArchivePostFormProps {
   selectedProjects: IProject[];
@@ -104,6 +106,7 @@ const Form = ({ questions, selectedProjects, onSubmit }: FormBlockProps) => {
 const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePostFormProps) => {
   const { showToast } = useToast();
   const [formData, setFormData] = useState<IQuestionPaper>();
+  const isSideMenuCollapsed = useSelector(selectIsSideMenuCollapsed);
 
   useEffect(() => {
     const getQuestionPaperAsync = async () => {
@@ -140,9 +143,16 @@ const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePost
   return (
     <Box>
       <ArchivePeriod>{`${startDate} ~ ${endDate}`}</ArchivePeriod>
-      <Text fontSize="14px" color={GRAY[2]} margin="10px 0 0 0">
-        커리어집은 일주일을 주기로 작성할 수 있어요. 이번 주를 떠올리며 아카이빙을 해볼까요? 자세히
-        적는 것 보단 꾸준히 적는 게 중요해요! 💪
+      <Text fontSize="14px" color={GRAY[2]} margin="10px 0 0 0" lineHeight="1.6">
+        {isSideMenuCollapsed ? (
+          '커리어집은 일주일을 주기로 작성할 수 있어요. 이번 주를 떠올리며 아카이빙을 해볼까요? 자세히 적는 것 보단 꾸준히 적는 게 중요해요! 💪'
+        ) : (
+          <>
+            커리어집은 일주일을 주기로 작성할 수 있어요. 이번 주를 떠올리며 아카이빙을 해볼까요?
+            <br />
+            자세히 적는 것 보단 꾸준히 적는 게 중요해요! 💪
+          </>
+        )}
       </Text>
       <ProjectsBlock
         title="작성중인 프로젝트"
