@@ -7,6 +7,7 @@ import ShortLogo from 'components/atoms/ShortLogo';
 import useCopyLink from 'hooks/useCopyLink';
 import { selectIsSideMenuCollapsed, toggleSideMenuCollapsed } from 'slices/common';
 import { BLUE, GRAY } from 'styles/colors';
+import useLogger from 'hooks/useLogger';
 
 const StyledSideMenu = styled.nav`
   position: sticky;
@@ -91,17 +92,23 @@ const SideMenu = () => {
   const history = useHistory();
   const { copyLink } = useCopyLink();
   const dispatch = useDispatch();
+  const { logger } = useLogger();
   const isCollapsed = useSelector(selectIsSideMenuCollapsed);
 
   const handleIsCollapsed = () => {
     dispatch(toggleSideMenuCollapsed());
   };
 
-  const handleClickMenu = (page: string) => () => {
+  const handleClickMenu = (page: string, title: string) => () => {
+    logger.click('click_button_in_sidebar', {
+      page,
+      title,
+    });
     history.push(page);
   };
 
   const handleClickCopyURL = () => {
+    logger.click('click_share_button');
     copyLink();
   };
 
@@ -126,13 +133,13 @@ const SideMenu = () => {
         isCollapsed={isCollapsed}
         emoji="🗄"
         name="아카이빙 리스트"
-        onClick={handleClickMenu('/archiving-list')}
+        onClick={handleClickMenu('/archiving-list', '아카이빙 리스트')}
       />
       <MenuButton
         isCollapsed={isCollapsed}
         emoji="📝"
         name="커리어 아카이빙"
-        onClick={handleClickMenu('/archive/post')}
+        onClick={handleClickMenu('/archive/post', '커리어 아카이빙')}
       />
       {!isCollapsed && (
         <MenuButton
