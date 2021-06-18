@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   left: 50%;
   transform: translate(-50%, 0);
-  top: -70px;
+  top: -200px;
   transition: top 350ms;
   z-index: 9999;
   &.show {
@@ -22,6 +22,7 @@ const ToastContent = styled.div`
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0px 0px 30px 0px rgba(196, 196, 196, 0.4);
+  white-space: nowrap;
 `;
 
 export interface ToastProps {
