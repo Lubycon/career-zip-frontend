@@ -7,11 +7,13 @@ import global from 'styles/global';
 import { ToastProvider } from 'context/Toast';
 import { logger } from '@lubycon/utils';
 import { isProduction } from 'utils/misc';
+import { firebaseConfig } from 'constants/firbase';
 
 const App = () => {
   useEffect(() => {
     logger.init({
       services: {
+        ...(isProduction && { firebase: firebaseConfig }),
         amplitude: process.env.AMPLITUDE_APP_KEY,
       },
       mode: isProduction ? 'production' : 'development',
