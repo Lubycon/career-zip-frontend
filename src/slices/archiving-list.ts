@@ -90,6 +90,7 @@ const archivingList = createSlice({
   },
 });
 
+export const selectIsLoading = (state: RootState) => state.archivingList.isLoading;
 export const selectArchivingList = (state: RootState) => state.archivingList.list;
 export const selectOrderBy = (state: RootState) => state.archivingList.orderBy;
 

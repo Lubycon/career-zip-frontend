@@ -4,7 +4,7 @@ import EmptyListBlock from 'components/molecules/EmptyListBlock';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Flex, Text } from 'rebass';
-import { selectArchivingList } from 'slices/archiving-list';
+import { selectArchivingList, selectIsLoading } from 'slices/archiving-list';
 import { GRAY, LIGHT_GRAY } from 'styles/colors';
 
 interface IArchiving {
@@ -62,8 +62,10 @@ const Archiving = ({ number, id, date, projects, createdAt }: IArchiving) => {
 };
 
 const ArchivingListTable = () => {
+  const isLoading = useSelector(selectIsLoading);
   const list = useSelector(selectArchivingList);
 
+  if (isLoading) return null;
   return (
     <Flex flexDirection="column" marginTop="15px">
       {list.length === 0 && <EmptyListBlock />}
