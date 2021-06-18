@@ -21,6 +21,13 @@ jobs:
           echo VERSION=${{ secrets.ENV_PROD_VERSION }} >> .env
           echo SENTRY_DSN=${{ secrets.ENV_PROD_SENTRY_DSN }} >> .env
           echo AMPLITUDE_APP_KEY=${{ secrets.AMPLITUDE_APP_KEY }} >> .env
+          echo FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }} >> .env
+          echo FIREBASE_AUTH_DOMAIN=${{ secrets.FIREBASE_AUTH_DOMAIN }} >> .env
+          echo FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }} >> .env
+          echo FIREBASE_STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }} >> .env
+          echo FIREBASE_MESSAGE_SENDER_ID=${{ secrets.FIREBASE_MESSAGE_SENDER_ID }} >> .env
+          echo FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }} >> .env
+          echo FIREBASE_MEASUREMENT_ID=${{ secrets.FIREBASE_MEASUREMENT_ID }} >> .env
           cat .env
       - name: NPM build
         run: npm run build:prod
