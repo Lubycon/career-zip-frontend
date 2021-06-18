@@ -169,7 +169,7 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
   const handleKeyDownInput = (e: React.KeyboardEvent) => {
     const projectTitle = inputEl.current.value;
 
-    if (e.code === 'Enter' && projectTitle) {
+    if (e.code === 'Enter' && projectTitle.trim()) {
       setIsAddProjectInputActive(false);
       addProjectAsync(projectTitle);
     }
@@ -177,7 +177,7 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
 
   const handleBlurInput = () => {
     const projectTitle = inputEl.current.value;
-    if (projectTitle === '') {
+    if (projectTitle.trim() === '') {
       setIsAddProjectInputActive(false);
       return;
     }
