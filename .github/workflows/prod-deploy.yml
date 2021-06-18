@@ -1,9 +1,9 @@
 name: React build flows
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -23,7 +23,7 @@ jobs:
           echo AMPLITUDE_APP_KEY=${{ secrets.AMPLITUDE_APP_KEY }} >> .env
           cat .env
       - name: NPM build
-        run: npm run build
+        run: npm run build:prod
       - name: Setup Python for AWS CLI
         uses: actions/setup-python@v1
         with:
