@@ -11,7 +11,7 @@ const Background = styled.div`
   display: flex;
   height: 700px;
   background-color: ${BLUE[4]};
-  background-image: url('/public/images/landing_img.svg');
+  background-image: url('/public/images/section01_bg.png');
   background-position: center;
 `;
 
