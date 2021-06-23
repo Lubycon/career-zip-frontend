@@ -25,12 +25,18 @@ const ArchivePost = () => {
     archivingPostPageLogger.view();
   }, []);
 
+  // useEffect(() => {
+  //   if (hasArchived == null) return;
+  //   if (isCompleted || hasArchived || selectedProjects.length === 0) {
+  //     handleOpenModal();
+  //   }
+  // }, [isCompleted, selectedProjects, hasArchived]);
+
   useEffect(() => {
-    if (hasArchived == null) return;
-    if (isCompleted || hasArchived || selectedProjects.length === 0) {
+    if (isCompleted || selectedProjects.length === 0) {
       handleOpenModal();
     }
-  }, [isCompleted, selectedProjects, hasArchived]);
+  }, [isCompleted, selectedProjects]);
 
   const handleClickCloseButton = () => {
     handleCloseModal();
@@ -50,9 +56,10 @@ const ArchivePost = () => {
   return (
     <>
       {renderModal(
-        hasArchived ? (
-          <HasArchivedModalContent />
-        ) : isCompleted ? (
+        // hasArchived ? (
+        //   <HasArchivedModalContent />
+        // ) :
+        isCompleted ? (
           <CompleteArchivingModalContent isFirstArchive={isFirstArchive} />
         ) : (
           <SelectProjectModalContent onClickNextButton={handleClickNextButton} />
@@ -60,7 +67,8 @@ const ArchivePost = () => {
         <CloseButton onClick={handleClickCloseButton} />
       )}
       <MainTemplate>
-        {!hasArchived && !isCompleted && selectedProjects.length !== 0 && (
+        {/* {!hasArchived && !isCompleted && selectedProjects.length !== 0 && ( */}
+        {!isCompleted && selectedProjects.length !== 0 && (
           <ArchivePostTemplate
             selectedProjects={selectedProjects}
             onSubmitCallback={handleSubmitCallback}
