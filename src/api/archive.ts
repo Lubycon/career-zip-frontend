@@ -7,10 +7,18 @@ interface PostArchiveParams {
   answers: { questionId: number; projectId: number; comment: string }[];
 }
 
+interface GetPreviousAnswersParams {
+  questionPaperId: number;
+  projectIds: number[];
+}
+
 export const getArchive = (id: number) => client.get(`/archives/${id}`);
 
 export const getQuestionPaper = (): Promise<AxiosResponse<{ data: IQuestionPaper }>> =>
   client.get('/questionpapers');
+
+export const getPreviousAnswers = (params: GetPreviousAnswersParams) =>
+  client.post('/answers/previous', params);
 
 export const postArchive = (params: PostArchiveParams) => client.post(`/archives`, params);
 
