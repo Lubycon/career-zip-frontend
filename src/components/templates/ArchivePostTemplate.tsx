@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { getQuestionPaper, postArchive } from 'api/archive';
+import { getPreviousAnswers, getQuestionPaper, postArchive } from 'api/archive';
 import { Box, Flex, Text } from 'rebass';
 import { useToast } from 'context/Toast';
-import { IProject, IQuestion, IQuestionPaper } from 'types';
+import { IPreviousAnswers, IProject, IQuestion, IQuestionPaper } from 'types';
 import ArchivePeriod from 'components/atoms/ArchivePeriod';
 import ProjectsBlock from 'components/molecules/ProjectsBlock';
 import QuestionBlock from 'components/molecules/QuestionBlock';
@@ -19,6 +19,7 @@ interface FormBlockProps {
   questions: IQuestion[];
   selectedProjects: IProject[];
   isSubmitting: boolean;
+  previousAnswers?: IPreviousAnswers[];
   onSubmit: (T: any) => void;
 }
 
@@ -47,7 +48,13 @@ const generateAnswersModel = (questionIds: number[], selectedProjectIds: number[
   return obj;
 };
 
-const Form = ({ questions, selectedProjects, onSubmit, isSubmitting }: FormBlockProps) => {
+const Form = ({
+  questions,
+  selectedProjects,
+  previousAnswers,
+  onSubmit,
+  isSubmitting,
+}: FormBlockProps) => {
   const { showToast } = useToast();
   const [answers, setAnswers] = useState<IAnswers>(
     generateAnswersModel(
@@ -81,17 +88,21 @@ const Form = ({ questions, selectedProjects, onSubmit, isSubmitting }: FormBlock
       onSubmit(Object.values(answers));
     }
   };
-
   return (
     <>
-      {questions.map((question) => (
-        <QuestionBlock
-          key={question.id}
-          question={question}
-          selectedProjects={selectedProjects}
-          onChangeTextArea={handleChangeTextArea}
-        />
-      ))}
+      {questions.map((question) => {
+        const previousAnswersByQuestion = previousAnswers?.find((q) => q.id === question.id)
+          ?.answers;
+        return (
+          <QuestionBlock
+            key={question.id}
+            question={question}
+            selectedProjects={selectedProjects}
+            previousAnswers={previousAnswersByQuestion}
+            onChangeTextArea={handleChangeTextArea}
+          />
+        );
+      })}
       <Flex flexDirection="column" margin="130px 0 0 0" alignItems="center">
         <Text color={GRAY[2]} margin="0 0 18px 0">
           이번 한 주도 고생많으셨어요! 다음주에 또 만나요 👋
@@ -113,18 +124,25 @@ const Form = ({ questions, selectedProjects, onSubmit, isSubmitting }: FormBlock
 const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePostFormProps) => {
   const { showToast } = useToast();
   const [formData, setFormData] = useState<IQuestionPaper>();
+  const [previousAnswers, setPreviousAnswers] = useState<IPreviousAnswers[]>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const isSideMenuCollapsed = useSelector(selectIsSideMenuCollapsed);
 
   useEffect(() => {
     const getQuestionPaperAsync = async () => {
       const {
-        data: { data },
+        data: { data: questionData },
       } = await getQuestionPaper();
-      setFormData(data);
+      const questionPaperId = questionData.id;
+      const projectIds = selectedProjects.map((p) => p.id);
+      const {
+        data: { data: answersData },
+      } = await getPreviousAnswers({ questionPaperId, projectIds });
+      setFormData(questionData);
+      setPreviousAnswers(answersData);
     };
     getQuestionPaperAsync();
-  }, []);
+  }, [selectedProjects]);
 
   const handleSubmit = useCallback(
     async (answers: IAnswer[]) => {
@@ -173,6 +191,7 @@ const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePost
       <Form
         questions={questions}
         selectedProjects={selectedProjects}
+        previousAnswers={previousAnswers}
         isSubmitting={isSubmitting}
         onSubmit={handleSubmit}
       />
