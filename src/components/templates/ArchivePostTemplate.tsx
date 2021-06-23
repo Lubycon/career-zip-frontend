@@ -13,7 +13,7 @@ import { selectIsSideMenuCollapsed } from 'slices/common';
 
 interface ArchivePostFormProps {
   selectedProjects: IProject[];
-  onSubmitCallback: VoidFunction;
+  onSubmitCallback: (T: any) => void;
 }
 interface FormBlockProps {
   questions: IQuestion[];
@@ -148,8 +148,10 @@ const ArchivePostTemplate = ({ selectedProjects, onSubmitCallback }: ArchivePost
     async (answers: IAnswer[]) => {
       try {
         setIsSubmitting(true);
-        await postArchive({ questionPaperId: formData.id, answers });
-        onSubmitCallback();
+        const {
+          data: { data },
+        } = await postArchive({ questionPaperId: formData.id, answers });
+        onSubmitCallback(data.firstArchive);
         setIsSubmitting(false);
       } catch (err) {
         setIsSubmitting(false);
