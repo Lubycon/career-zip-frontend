@@ -214,13 +214,7 @@ const SelectProjectModalContent = ({ onClickNextButton }: SelectProjectModalCont
           checked={selectedProjects.length !== 0 && selectedProjects.length === projectList.length}
           onClick={handleClickCheckBox}
         />
-        <Flex
-          flexDirection="column"
-          width="594px"
-          margin="14px 0 10px 0"
-          maxHeight="312px"
-          overflowY="auto"
-        >
+        <Flex flexDirection="column" margin="14px 0 10px 0" maxHeight="312px" overflowY="auto">
           {projectList?.map((project) => (
             <ProjectButton
               key={project.id}
