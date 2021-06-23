@@ -2,7 +2,11 @@ import { Flex, Text } from 'rebass';
 import Button from 'components/atoms/Button';
 import { GRAY } from 'styles/colors';
 
-const CompleteArchivingModalContent = () => {
+interface CompleteArchivingModalContentProps {
+  isFirstArchive: boolean;
+}
+
+const CompleteArchivingModalContent = ({ isFirstArchive }: CompleteArchivingModalContentProps) => {
   const handleClick = () => {
     window.open('https://forms.gle/sUpjYuEaYWqdT3g98', '_blank');
   };
@@ -10,13 +14,16 @@ const CompleteArchivingModalContent = () => {
   return (
     <Flex flexDirection="column" textAlign="center" justifyContent="center" alignItems="center">
       <Text fontSize="72px" fontWeight="bold" marginTop="123px">
-        🎉
+        {isFirstArchive ? '🎉' : '✍️'}
       </Text>
       <Text fontSize="32px" fontWeight="bold" color={GRAY[1]} marginTop="11px" lineHeight="1.4">
-        첫 커리어 아카이빙 완료!
+        {isFirstArchive ? '첫 커리어 아카이빙 완료!' : '커리어 아카이빙 완료!'}
       </Text>
       <Text fontSize="18px" color={GRAY[2]} marginTop="13px" lineHeight="1.6">
-        이번 주 아카이빙을 잘 마치셨군요. <br />
+        {isFirstArchive
+          ? '이번 주 아카이빙을 잘 마치셨군요.'
+          : '이번 주도 아카이빙을 잘 마치셨네요!'}
+        <br />
         기록하는 만큼 더더욱 성장하실 거에요. 다음 주에도 또 만나요!
       </Text>
       <Button width="260px" height="44px" margin="92px 0 0 0" fontSize="18px" onClick={handleClick}>

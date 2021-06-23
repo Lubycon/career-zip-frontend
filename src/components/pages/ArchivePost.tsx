@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { logger } from '@lubycon/utils';
 import useModal from 'hooks/useModal';
-import SelectProjectModalContent from 'components/organisms/SelectProjectModalContent';
-import MainTemplate from 'components/templates/MainTemplate';
 import CloseButton from 'components/atoms/CloseButton';
-import ArchivePostTemplate from 'components/templates/ArchivePostTemplate';
+import SelectProjectModalContent from 'components/organisms/SelectProjectModalContent';
 import CompleteArchivingModalContent from 'components/organisms/CompleteArchivingModalContent';
-import useHasArchived from 'hooks/useHasArchived';
 import HasArchivedModalContent from 'components/organisms/HasArchivedModalContent';
+import MainTemplate from 'components/templates/MainTemplate';
+import ArchivePostTemplate from 'components/templates/ArchivePostTemplate';
+import useHasArchived from 'hooks/useHasArchived';
 import { IProject } from 'types';
 
 const archivingPostPageLogger = logger.getPageLogger('archive_post_page');
@@ -18,6 +18,7 @@ const ArchivePost = () => {
   const { hasArchived } = useHasArchived();
   const [selectedProjects, setSelectedProjects] = useState<IProject[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [isFirstArchive, setIsFirstArchive] = useState(false);
   const { handleOpenModal, renderModal, handleCloseModal } = useModal({});
 
   useEffect(() => {
@@ -41,7 +42,8 @@ const ArchivePost = () => {
     handleCloseModal();
   };
 
-  const handleSubmitCallback = () => {
+  const handleSubmitCallback = (isFirst: boolean) => {
+    setIsFirstArchive(isFirst);
     setIsCompleted(true);
   };
 
@@ -51,7 +53,7 @@ const ArchivePost = () => {
         hasArchived ? (
           <HasArchivedModalContent />
         ) : isCompleted ? (
-          <CompleteArchivingModalContent />
+          <CompleteArchivingModalContent isFirstArchive={isFirstArchive} />
         ) : (
           <SelectProjectModalContent onClickNextButton={handleClickNextButton} />
         ),
