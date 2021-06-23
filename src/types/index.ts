@@ -3,6 +3,13 @@ export interface IProject {
   title: string;
 }
 
+export interface IAnswer {
+  id: number;
+  comment: string;
+  important: number;
+  project: IProject;
+}
+
 export interface IQuestion {
   id: number;
   priority: number;
@@ -10,12 +17,7 @@ export interface IQuestion {
   description: string;
   example: string;
   selectOptions: string[];
-  answers?: {
-    id: number;
-    comment: string;
-    important: number;
-    project: IProject;
-  }[];
+  answers?: IAnswer[];
 }
 
 export interface IQuestionPaper {
@@ -50,4 +52,9 @@ export interface IArchive {
   createdDateTime: string;
   selectedProjects: IProject[];
   questions: IQuestion[];
+}
+
+export interface IPreviousAnswers {
+  id: number;
+  answers: IAnswer[];
 }
