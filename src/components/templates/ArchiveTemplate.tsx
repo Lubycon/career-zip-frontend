@@ -38,8 +38,9 @@ const QuestionBlock = ({ question }: QuestionBlockProps) => {
             <Flex flexDirection="column" margin="16px 28px">
               <Text fontSize="14px" color={GRAY[1]} lineHeight="1.6">
                 {comment.split('\n').map((p, index) => (
-                  <React.Fragment key={`p-${index}`}>
-                    <p>{p}</p>
+                  <React.Fragment key={`span-${index}`}>
+                    <span>{p}</span>
+                    <br />
                   </React.Fragment>
                 ))}
               </Text>
