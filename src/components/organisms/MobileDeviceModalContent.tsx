@@ -1,7 +1,14 @@
+import { useEffect } from 'react';
 import { Flex, Text } from 'rebass';
 import { GRAY } from 'styles/colors';
 
 const MobileDeviceModalContent = () => {
+  useEffect(() => {
+    document.body.style.touchAction = 'none';
+    return () => {
+      document.body.style.touchAction = 'auto';
+    };
+  }, []);
   return (
     <Flex
       flexDirection="column"
