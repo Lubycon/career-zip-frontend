@@ -26,7 +26,7 @@ const Home = () => {
   } = useQueryStringAndParam();
 
   useEffect(() => {
-    if (utmSource) landingPageLogger.view({ utmSource });
+    landingPageLogger.view({ utmSource: utmSource ?? 'none' });
   }, []);
 
   useEffect(() => {
