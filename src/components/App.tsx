@@ -7,7 +7,7 @@ import global from 'styles/global';
 import { ToastProvider } from 'context/Toast';
 import { logger } from '@lubycon/utils';
 import { isProduction } from 'utils/misc';
-import { firebaseConfig } from 'constants/firbase';
+import { firebaseConfig } from 'constants/firebase';
 
 const App = () => {
   useEffect(() => {
