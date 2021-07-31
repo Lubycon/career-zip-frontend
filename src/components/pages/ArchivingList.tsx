@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import styled from '@emotion/styled';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import { getArchivingListAsync } from 'slices/archiving-list';
 import MainTemplate from 'components/templates/MainTemplate';
 import OrderByButtons from 'components/molecules/OrderByButtons';

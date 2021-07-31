@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Flex, Text } from 'rebass';
 import { useHistory } from 'react-router';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import { useToast } from 'context/Toast';
 import { IArchive, IQuestion } from 'types';
 import ArchivePeriod from 'components/atoms/ArchivePeriod';

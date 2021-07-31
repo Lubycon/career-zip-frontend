@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import { useHistory } from 'react-router-dom';
 import { Text } from 'rebass';
 import useLoginStatus from 'hooks/useLoginStatus';

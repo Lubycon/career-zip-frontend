@@ -5,7 +5,7 @@ import Router from 'router';
 import store from 'slices';
 import global from 'styles/global';
 import { ToastProvider } from 'context/Toast';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import { isProduction } from 'utils/misc';
 import { firebaseConfig } from 'constants/firebase';
 

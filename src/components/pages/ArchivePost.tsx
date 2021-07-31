@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import useModal from 'hooks/useModal';
 import CloseButton from 'components/atoms/CloseButton';
 import SelectProjectModalContent from 'components/organisms/SelectProjectModalContent';

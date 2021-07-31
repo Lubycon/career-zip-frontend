@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useHistory } from 'react-router-dom';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import { Flex, Text } from 'rebass';
 import { mainLoginButton } from 'styles/link';
 import useLoginStatus from 'hooks/useLoginStatus';

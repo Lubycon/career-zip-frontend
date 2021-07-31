@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { css } from '@emotion/react';
 import { Flex, Text } from 'rebass';
 import { useQueryStringAndParam } from 'hooks/useQueryStringAndParam';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 
 import { modal } from 'styles/element';
 import LoginPageBackground from 'components/atoms/LoginPageBackground';
