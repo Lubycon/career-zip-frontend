@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 
 const useLogger = () => {
   const location = useLocation();

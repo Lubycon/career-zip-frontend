@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import { useHistory } from 'react-router';
 import { BLUE, GRAY } from 'styles/colors';
 

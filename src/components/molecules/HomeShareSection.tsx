@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import { Flex, Text } from 'rebass';
 import { BLUE, GRAY } from 'styles/colors';
 import { getLocalStorageItem, setLocalStorageItem } from 'utils/localstorage';

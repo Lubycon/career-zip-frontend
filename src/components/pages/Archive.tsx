@@ -1,4 +1,4 @@
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import ArchiveTemplate from 'components/templates/ArchiveTemplate';
 import MainTemplate from 'components/templates/MainTemplate';
 import { useQueryStringAndParam } from 'hooks/useQueryStringAndParam';

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Flex } from 'rebass';
-import { logger } from '@lubycon/utils';
+import { logger } from '@lubycon/logger';
 import useModal from 'hooks/useModal';
 import HomeMainSection from 'components/molecules/HomeMainSection';
 import HomeShareSection from 'components/molecules/HomeShareSection';

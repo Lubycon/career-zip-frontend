@@ -1,4 +1,4 @@
-import { FirebaseConfig } from '@lubycon/utils';
+import { FirebaseConfig } from '@lubycon/logger';
 
 export const firebaseConfig: FirebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY ?? '',
