@@ -91,8 +91,9 @@ const Form = ({
   return (
     <>
       {questions.map((question) => {
-        const previousAnswersByQuestion = previousAnswers?.find((q) => q.id === question.id)
-          ?.answers;
+        const previousAnswersByQuestion = previousAnswers?.find(
+          (q) => q.id === question.id
+        )?.answers;
         return (
           <QuestionBlock
             key={question.id}
