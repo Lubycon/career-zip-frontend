@@ -24,8 +24,10 @@ __metadata:
     "@sentry/react": ^6.7.0
     "@sentry/tracing": ^6.7.0
     "@types/lodash": ^4.14.170
+    "@types/node": ^16.4.10
     "@types/react": ^17.0.3
     "@types/react-dom": ^17.0.3
+    "@types/react-redux": ^7.1.18
     "@types/react-router": ^5.1.16
     "@types/react-router-dom": ^5.1.7
     "@types/rebass": ^4.0.8
@@ -2679,6 +2681,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^16.4.10":
+  version: 16.4.10
+  resolution: "@types/node@npm:16.4.10"
+  checksum: b2b550c2330df479a41b2c166814df6f1be45a62535742ad88a42bc0739897b79c1b2fef716635ae0ccd77c42af9a5e1e7c891215e909e10980c469bceebbfdc
+  languageName: node
+  linkType: hard
+
 "@types/parse-json@npm:^4.0.0":
   version: 4.0.0
   resolution: "@types/parse-json@npm:4.0.0"
@@ -2702,7 +2711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-redux@npm:^7.1.16":
+"@types/react-redux@npm:^7.1.16, @types/react-redux@npm:^7.1.18":
   version: 7.1.18
   resolution: "@types/react-redux@npm:7.1.18"
   dependencies:
