@@ -8,10 +8,9 @@
     "sourceMap": true,
     "baseUrl": "src",
     "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "lib": ["es5", "dom", "es2015.promise"]
   },
   "include": ["src/**/*"],
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*"]
+  "exclude": ["node_modules", "**/node_modules/*"]
 }
