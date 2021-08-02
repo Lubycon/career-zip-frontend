@@ -1,15 +1,13 @@
 name: React build flows
 on:
   push:
-    branches: [ dev ]
+    branches: [dev]
 jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout main source code
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
       - name: create env file
         run: |
           touch .env
@@ -20,8 +18,8 @@ jobs:
           echo SENTRY_DSN=${{ secrets.ENV_DEV_SENTRY_DSN }} >> .env
           echo AMPLITUDE_APP_KEY=${{ secrets.AMPLITUDE_APP_KEY }} >> .env
           cat .env
-      - name: NPM build
-        run: npm run build
+      - name: yarn build
+        run: yarn run build
       - name: Setup Python for AWS CLI
         uses: actions/setup-python@v1
         with:

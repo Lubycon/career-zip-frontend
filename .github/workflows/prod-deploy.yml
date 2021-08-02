@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Checkout main source code
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
       - name: create env file
         run: |
           touch .env
@@ -27,8 +25,8 @@ jobs:
           echo FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }} >> .env
           echo FIREBASE_MEASUREMENT_ID=${{ secrets.FIREBASE_MEASUREMENT_ID }} >> .env
           cat .env
-      - name: NPM build
-        run: npm run build:prod
+      - name: yarn build
+        run: yarn run build:prod
       - name: Setup Python for AWS CLI
         uses: actions/setup-python@v1
         with:
