@@ -46,6 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:11.4.0"],
             ["@emotion/styled", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:11.3.0"],
             ["@lubycon/logger", "npm:1.8.8"],
+            ["@lubycon/react", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:1.20.1"],
             ["@reduxjs/toolkit", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:1.6.1"],
             ["@sentry/react", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:6.10.0"],
             ["@sentry/tracing", "npm:6.10.0"],
@@ -116,6 +117,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:11.4.0"],
             ["@emotion/styled", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:11.3.0"],
             ["@lubycon/logger", "npm:1.8.8"],
+            ["@lubycon/react", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:1.20.1"],
             ["@reduxjs/toolkit", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:1.6.1"],
             ["@sentry/react", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:6.10.0"],
             ["@sentry/tracing", "npm:6.10.0"],
@@ -3614,13 +3616,66 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@juggle/resize-observer", [
+        ["npm:3.3.1", {
+          "packageLocation": "./.yarn/cache/@juggle-resize-observer-npm-3.3.1-f36d80a4f0-ddabc40442.zip/node_modules/@juggle/resize-observer/",
+          "packageDependencies": [
+            ["@juggle/resize-observer", "npm:3.3.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@lubycon/logger", [
+        ["npm:1.8.17", {
+          "packageLocation": "./.yarn/cache/@lubycon-logger-npm-1.8.17-7e68a4180d-ba57d47cd9.zip/node_modules/@lubycon/logger/",
+          "packageDependencies": [
+            ["@lubycon/logger", "npm:1.8.17"],
+            ["amplitude-js", "npm:8.4.0"],
+            ["firebase", "npm:8.8.1"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:1.8.8", {
           "packageLocation": "./.yarn/cache/@lubycon-logger-npm-1.8.8-07f9d240d2-3c9ed1b5ae.zip/node_modules/@lubycon/logger/",
           "packageDependencies": [
             ["@lubycon/logger", "npm:1.8.8"],
             ["amplitude-js", "npm:8.4.0"],
             ["firebase", "npm:8.8.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@lubycon/react", [
+        ["npm:1.20.1", {
+          "packageLocation": "./.yarn/cache/@lubycon-react-npm-1.20.1-771be5e5c3-0e7f56c678.zip/node_modules/@lubycon/react/",
+          "packageDependencies": [
+            ["@lubycon/react", "npm:1.20.1"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:1.20.1", {
+          "packageLocation": "./.yarn/__virtual__/@lubycon-react-virtual-01fad8c562/0/cache/@lubycon-react-npm-1.20.1-771be5e5c3-0e7f56c678.zip/node_modules/@lubycon/react/",
+          "packageDependencies": [
+            ["@lubycon/react", "virtual:f1e7ed1079c07a245c27d7498883c006c0e8f19da83f8fbfaaee1c64c1ffb5f116e5be43cbc02d1d4e2b1423fe24ae842902b028f9a4bec0f2d7be72b75c2668#npm:1.20.1"],
+            ["@juggle/resize-observer", "npm:3.3.1"],
+            ["@lubycon/logger", "npm:1.8.17"],
+            ["@lubycon/utils", "npm:1.15.0"],
+            ["@types/react", "npm:17.0.15"],
+            ["react", "npm:17.0.2"]
+          ],
+          "packagePeers": [
+            "@types/react",
+            "react"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@lubycon/utils", [
+        ["npm:1.15.0", {
+          "packageLocation": "./.yarn/cache/@lubycon-utils-npm-1.15.0-7d52eb0ee1-1a8da64dae.zip/node_modules/@lubycon/utils/",
+          "packageDependencies": [
+            ["@lubycon/utils", "npm:1.15.0"],
+            ["date-fns", "npm:2.25.0"]
           ],
           "linkType": "HARD",
         }]
@@ -6590,6 +6645,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/damerau-levenshtein-npm-1.0.7-dec33bdde6-ec8161cb38.zip/node_modules/damerau-levenshtein/",
           "packageDependencies": [
             ["damerau-levenshtein", "npm:1.0.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["date-fns", [
+        ["npm:2.25.0", {
+          "packageLocation": "./.yarn/cache/date-fns-npm-2.25.0-fe211b387d-8896dc1dde.zip/node_modules/date-fns/",
+          "packageDependencies": [
+            ["date-fns", "npm:2.25.0"]
           ],
           "linkType": "HARD",
         }]

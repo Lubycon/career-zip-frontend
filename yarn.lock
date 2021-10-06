@@ -20,6 +20,7 @@ __metadata:
     "@emotion/react": ^11.1.5
     "@emotion/styled": ^11.3.0
     "@lubycon/logger": ^1.8.8
+    "@lubycon/react": ^1.20.1
     "@reduxjs/toolkit": ^1.5.1
     "@sentry/react": ^6.7.0
     "@sentry/tracing": ^6.7.0
@@ -2160,6 +2161,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@juggle/resize-observer@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "@juggle/resize-observer@npm:3.3.1"
+  checksum: ddabc4044276a2cb57d469c4917206c7e39f2463aa8e3430e33e4eda554412afe29c22afa40e6708b49dad5d56768dc83acd68a704b1dcd49a0906bb96b991b2
+  languageName: node
+  linkType: hard
+
+"@lubycon/logger@npm:^1.8.17":
+  version: 1.8.17
+  resolution: "@lubycon/logger@npm:1.8.17"
+  dependencies:
+    amplitude-js: ^8.3.1
+    firebase: ^8.8.1
+  checksum: ba57d47cd93177d6cf1202118931e4554d3be343fe4e8c095e0f3284d3f82f4e3d53cf0851ff29d522a95de596ce3fb28770f0520606b56ad7b287b7223b0d4d
+  languageName: node
+  linkType: hard
+
 "@lubycon/logger@npm:^1.8.8":
   version: 1.8.8
   resolution: "@lubycon/logger@npm:1.8.8"
@@ -2167,6 +2185,28 @@ __metadata:
     amplitude-js: ^8.3.1
     firebase: ^8.8.1
   checksum: 3c9ed1b5ae7c24ca685df2eb9e07fc70f6aa4628548f157d74aa338171b7a712f38ecb6e19b1d4d9b0878ca719c4f274a388ab4d9f3859f5160b394c778e6a45
+  languageName: node
+  linkType: hard
+
+"@lubycon/react@npm:^1.20.1":
+  version: 1.20.1
+  resolution: "@lubycon/react@npm:1.20.1"
+  dependencies:
+    "@juggle/resize-observer": ^3.3.1
+    "@lubycon/logger": ^1.8.17
+    "@lubycon/utils": ^1.15.0
+  peerDependencies:
+    react: ^17.0.2
+  checksum: 0e7f56c678eabe7d735e2d4d6b1ad3bc339949099394b1f2142ee6220387bb57efb7f47e4c25490bc8282f592ca2af34cf735877e6b4628639e246437a397374
+  languageName: node
+  linkType: hard
+
+"@lubycon/utils@npm:^1.15.0":
+  version: 1.15.0
+  resolution: "@lubycon/utils@npm:1.15.0"
+  dependencies:
+    date-fns: ^2.22.1
+  checksum: 1a8da64dae252360c26c4ce06becc13912a15166adc2d85044ea5ee33eba9938b1d15e6c2691f5cddf0102fca0befe561b5d919c841e2b7e9d3f948044a2f39f
   languageName: node
   linkType: hard
 
@@ -4587,6 +4627,13 @@ __metadata:
   version: 1.0.7
   resolution: "damerau-levenshtein@npm:1.0.7"
   checksum: ec8161cb381523e0db9b5c9b64863736da3197808b6fdc4a3a2ca764c0b4357e9232a4c5592220fb18755a91240b8fee7b13ab1b269fbbdc5f68c36f0053aceb
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.22.1":
+  version: 2.25.0
+  resolution: "date-fns@npm:2.25.0"
+  checksum: 8896dc1dde0ee5ef77616942423bfa11fa2017a5ac19457293b7aaedc8822ff94f0a14eaf93da573b09b601dc0149eb430988a046cc9f79a2eb15f8c66c9c50c
   languageName: node
   linkType: hard
 
