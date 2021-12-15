@@ -2,19 +2,36 @@ import styled from '@emotion/styled';
 import { BLUE, GRAY } from 'styles/colors';
 
 interface CheckBoxProps {
-  name: string;
+  name?: string;
   margin?: string;
   checked: boolean;
-  onClick: VoidFunction;
+  onClick: (...args: any[]) => void;
+  width?: string;
+  height?: string;
+  border?: string;
+  borderRadius?: string;
+  fontColor?: string;
+  checkedFontColor?: string;
+  type?: 'check' | 'square';
+  onlyCheckBox?: boolean;
 }
 
-const Wrapper = styled.div<{ margin: string }>`
+const Wrapper = styled.div<{
+  margin: string;
+  width: string;
+  height: string;
+  border: string;
+  borderRadius: string;
+  fontColor: string;
+  type: string;
+  checkedFontColor: string;
+}>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
   margin: ${(props) => props.margin};
   font-size: 13px;
-  color: ${GRAY[3]};
+  color: ${(props) => props.fontColor};
   cursor: pointer;
   user-select: none;
 
@@ -24,11 +41,11 @@ const Wrapper = styled.div<{ margin: string }>`
 
   > label {
     content: '';
-    width: 14px;
-    height: 14px;
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
     background: #fff;
-    border-radius: 2px;
-    border: 1px solid ${GRAY[3]};
+    border-radius: ${(props) => props.borderRadius};
+    border: ${(props) => props.border};
     background-color: ${GRAY[4]};
     display: inline-block;
     vertical-align: middle;
@@ -37,27 +54,76 @@ const Wrapper = styled.div<{ margin: string }>`
   }
 
   label.checked {
-    background-color: ${BLUE[1]};
-    border: 1px solid ${BLUE[1]};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ${(props) =>
+      props.type === 'check' &&
+      `
+      background-color: ${BLUE[1]};
+      border: 1px solid ${BLUE[1]}; 
+    `};
+    ${(props) =>
+      props.type === 'squre' &&
+      `
+      background-color: #ffffff; 
+    `};
   }
 
-  label.checked > span::before {
+  ${(props) =>
+    props.type === 'check' &&
+    `label.checked > span::before {
     content: url('/public/icons/checkmark.svg');
+  }`}
+
+  ${(props) =>
+    props.type === 'square' &&
+    `
+    label.checked > span {
+    min-width: 8px;
+    min-height: 8px;
+    background: ${BLUE[1]};
+    border-radius: 2px;
   }
+  `};
 
   label.checked + span {
-    color: ${GRAY[1]};
+    color: ${(props) => props.checkedFontColor};
   }
 `;
 
-const CheckBox = ({ margin = '', name, checked, onClick }: CheckBoxProps) => {
+const CheckBox = ({
+  margin = '',
+  name,
+  checked = false,
+  onClick,
+  width = '14px',
+  height = '14px',
+  border = `1px solid ${GRAY[3]}`,
+  borderRadius = '2px',
+  fontColor = `${GRAY[3]}`,
+  checkedFontColor = `${GRAY[1]}`,
+  type = 'check',
+  onlyCheckBox = false,
+}: CheckBoxProps) => {
   return (
-    <Wrapper margin={margin} onClick={onClick}>
+    <Wrapper
+      type={type}
+      margin={margin}
+      onClick={onClick}
+      width={width}
+      height={height}
+      border={border}
+      borderRadius={borderRadius}
+      fontColor={fontColor}
+      checkedFontColor={checkedFontColor}
+    >
       <label htmlFor={name} className={checked ? 'checked' : undefined}>
         <input type="checkbox" className="checkbox-custom" name={name} checked={checked} readOnly />
         <span />
       </label>
-      <span>{name}</span>
+      {!onlyCheckBox && <span>{name}</span>}
     </Wrapper>
   );
 };
