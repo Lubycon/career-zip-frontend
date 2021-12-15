@@ -7,12 +7,14 @@ const TextButton = ({
   padding = '10px',
   children,
   onClick,
+  color,
 }: {
   fontSize?: string;
   fontWeight?: string;
   margin?: string;
   padding?: string;
   children: React.ReactNode;
+  color?: string;
   onClick: () => void;
 }) => (
   <button
@@ -23,6 +25,7 @@ const TextButton = ({
       padding: ${padding};
       font-size: ${fontSize};
       font-weight: ${fontWeight};
+      color: ${color};
       background-color: transparent;
       border: none;
       outline: none;
