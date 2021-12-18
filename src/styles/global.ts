@@ -8,6 +8,7 @@ const global = css`
     letter-spacing: -0.02em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 1.4;
   }
   button {
     cursor: pointer;
