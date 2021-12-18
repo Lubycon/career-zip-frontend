@@ -89,30 +89,38 @@ const ArchivingList = () => {
           <StyledButton onClick={handleClick}>커리어 아카이빙 하기</StyledButton>
         </Flex>
         <Flex marginTop="50px">
-          <CheckBox
-            type="square"
-            width="18px"
-            height="18px"
-            borderRadius="4px"
-            border="2px solid #B0B8C1"
-            fontColor={GRAY[2]}
-            name={
-              selectedAll || checkedList.length === 0 ? '전체 선택' : `${checkedList.length}개 선택`
-            }
-            checked={selectedAll}
-            checkedFontColor={BLUE[1]}
-            onClick={handleSelectAll}
-          />
-          <VerticalLine width="1px" height="100%" margin="0 8px" />
-          <TextButton padding="0" fontSize="13px" color={GRAY[2]} onClick={handleClear}>
-            선택해제
-          </TextButton>
+          {list.length !== 0 && (
+            <>
+              <CheckBox
+                type="square"
+                width="18px"
+                height="18px"
+                borderRadius="4px"
+                border="2px solid #B0B8C1"
+                fontColor={GRAY[2]}
+                name={
+                  selectedAll || checkedList.length === 0
+                    ? '전체 선택'
+                    : `${checkedList.length}개 선택`
+                }
+                checked={selectedAll}
+                checkedFontColor={BLUE[1]}
+                onClick={handleSelectAll}
+              />
+              <VerticalLine width="1px" height="100%" margin="0 8px" />
+              <TextButton padding="0" fontSize="13px" color={GRAY[2]} onClick={handleClear}>
+                선택해제
+              </TextButton>
+            </>
+          )}
           <OrderByButtons />
         </Flex>
         {!isLoading && (
           <>
             <ArchivingListTable checkedList={checkedList} onClickCheckBox={handleSelect} />
-            <DeleteButton onClick={handleDelete}>선택 아카이빙 삭제</DeleteButton>
+            {list.length !== 0 && (
+              <DeleteButton onClick={handleDelete}>선택 아카이빙 삭제</DeleteButton>
+            )}
           </>
         )}
       </Flex>
