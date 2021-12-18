@@ -13,6 +13,8 @@ import CheckBox from 'components/atoms/CheckBox';
 import VerticalLine from 'components/atoms/VerticalLine';
 import { deleteArchiving } from 'api/archiving-list';
 import TextButton from 'components/atoms/TextButton';
+import useModal from 'hooks/useModal';
+import DeleteConfirmModalContent from 'components/organisms/DeleteConfirmModalContent';
 
 const archivingListPageLogger = logger.getPageLogger('archiving_list_page');
 
@@ -44,6 +46,11 @@ const ArchivingList = () => {
   const history = useHistory();
   const [selectedAll, setSelectedAll] = useState(false);
   const [checkedList, setCheckedList] = useState<number[]>([]);
+  const { handleOpenModal, renderModal, handleCloseModal } = useModal({
+    width: '440px',
+    padding: '15px 24px 0 24px',
+    borderRadius: '10px',
+  });
 
   useEffect(() => {
     archivingListPageLogger.view();
@@ -73,14 +80,21 @@ const ArchivingList = () => {
     }
   };
 
-  const handleDelete = async () => {
+  const handleOpenDeleteModal = () => {
     if (checkedList.length === 0) return;
+    handleOpenModal();
+  };
+
+  const handleDelete = async () => {
     await deleteArchiving({ deleteArchiveIds: checkedList });
     dispatch(getArchivingListAsync());
   };
 
   return (
     <MainTemplate>
+      {renderModal(
+        <DeleteConfirmModalContent onCancel={handleCloseModal} onDelete={handleDelete} />
+      )}
       <Flex flexDirection="column">
         <Flex justifyContent="space-between">
           <Text as="h1" fontSize="32px" fontWeight="bold" color={GRAY[1]}>
@@ -119,7 +133,7 @@ const ArchivingList = () => {
           <>
             <ArchivingListTable checkedList={checkedList} onClickCheckBox={handleSelect} />
             {list.length !== 0 && (
-              <DeleteButton onClick={handleDelete}>선택 아카이빙 삭제</DeleteButton>
+              <DeleteButton onClick={handleOpenDeleteModal}>선택 아카이빙 삭제</DeleteButton>
             )}
           </>
         )}
