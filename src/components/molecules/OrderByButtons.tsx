@@ -26,7 +26,7 @@ const OrderByButtons = () => {
   }, []);
 
   return (
-    <Flex marginTop="50px" marginLeft="auto" fontSize="13px" alignItems="center">
+    <Flex marginLeft="auto" fontSize="13px" alignItems="center">
       <Text color={GRAY[2]} marginRight="20px">
         정렬
       </Text>
