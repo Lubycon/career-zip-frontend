@@ -51,10 +51,15 @@ const Archiving = ({
 }: IArchiving) => {
   const history = useHistory();
   return (
-    <Flex padding="20px 0" alignItems="flex-start">
+    <Flex
+      padding="23px 0"
+      alignItems="flex-start"
+      sx={{ borderBottom: `1px solid ${LIGHT_GRAY[2]}` }}
+    >
       <CheckBox
         width="18px"
         height="18px"
+        padding="2px 0"
         borderRadius="4px"
         border="2px solid #B0B8C1"
         checked={isChecked}
