@@ -3,7 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import styled from '@emotion/styled';
 import { logger } from '@lubycon/logger';
-import { getArchivingListAsync, selectArchivingList, selectIsLoading } from 'slices/archiving-list';
+import {
+  getArchivingListAsync,
+  selectArchivingList,
+  selectCurrentPage,
+  selectIsLoading,
+  selectPageInfo,
+  setCurrentPage,
+} from 'slices/archiving-list';
 import MainTemplate from 'components/templates/MainTemplate';
 import OrderByButtons from 'components/molecules/OrderByButtons';
 import ArchivingListTable from 'components/organisms/ArchivingListTable';
@@ -15,6 +22,7 @@ import { deleteArchiving } from 'api/archiving-list';
 import TextButton from 'components/atoms/TextButton';
 import useModal from 'hooks/useModal';
 import DeleteConfirmModalContent from 'components/organisms/DeleteConfirmModalContent';
+import Pagination from 'components/organisms/Pagination';
 
 const archivingListPageLogger = logger.getPageLogger('archiving_list_page');
 
@@ -42,6 +50,8 @@ const DeleteButton = styled.button`
 const ArchivingList = () => {
   const list = useSelector(selectArchivingList);
   const isLoading = useSelector(selectIsLoading);
+  const currentPage = useSelector(selectCurrentPage);
+  const { totalPages } = useSelector(selectPageInfo);
   const dispatch = useDispatch();
   const history = useHistory();
   const [selectedAll, setSelectedAll] = useState(false);
@@ -56,6 +66,11 @@ const ArchivingList = () => {
     archivingListPageLogger.view();
     dispatch(getArchivingListAsync());
   }, []);
+
+  useEffect(() => {
+    setSelectedAll(false);
+    setCheckedList([]);
+  }, [currentPage]);
 
   const handleClick = () => {
     archivingListPageLogger.click('click_go_to_archive_post_button');
@@ -87,6 +102,12 @@ const ArchivingList = () => {
 
   const handleDelete = async () => {
     await deleteArchiving({ deleteArchiveIds: checkedList });
+    handleCloseModal();
+    dispatch(getArchivingListAsync());
+  };
+
+  const handleChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
     dispatch(getArchivingListAsync());
   };
 
@@ -132,9 +153,16 @@ const ArchivingList = () => {
         {!isLoading && (
           <>
             <ArchivingListTable checkedList={checkedList} onClickCheckBox={handleSelect} />
-            {list.length !== 0 && (
-              <DeleteButton onClick={handleOpenDeleteModal}>선택 아카이빙 삭제</DeleteButton>
-            )}
+            <Flex marginTop="24px">
+              {list.length !== 0 && (
+                <DeleteButton onClick={handleOpenDeleteModal}>선택 아카이빙 삭제</DeleteButton>
+              )}
+              <Pagination
+                currentPage={currentPage}
+                totalPage={totalPages}
+                onClickPage={handleChangePage}
+              />
+            </Flex>
           </>
         )}
       </Flex>
