@@ -14,6 +14,7 @@ interface IInitialState {
   isLoading: boolean;
   orderBy: TOrderBy;
   totalDataCount: number;
+  currentPage: number;
   list: {
     id: number;
     startDate: string;
@@ -29,12 +30,13 @@ interface IInitialState {
   };
 }
 
-const PAGE_SIZE = 50;
+const PAGE_SIZE = 7;
 const initialState: IInitialState = {
   isLoading: false,
   orderBy: ORDER_BY.DESC,
   totalDataCount: 0,
   list: [],
+  currentPage: 1,
   page: {
     totalPages: 1,
     currentPage: 1,
@@ -44,14 +46,12 @@ const initialState: IInitialState = {
 };
 
 export const setOrderBy = createAction<TOrderBy>('setOrderBy');
+export const setCurrentPage = createAction<number>('setCurrentPage');
 
 export const getArchivingListAsync = createAsyncThunk<IArchivingList, void, { state: RootState }>(
   'getArchivingListAsync',
   async (args, thunkAPI) => {
-    const {
-      page: { currentPage },
-      orderBy,
-    } = thunkAPI.getState().archivingList;
+    const { currentPage, orderBy } = thunkAPI.getState().archivingList;
     const params = { page: currentPage, direction: orderBy, size: PAGE_SIZE };
     try {
       const {
@@ -73,6 +73,9 @@ const archivingList = createSlice({
       .addCase(setOrderBy, (state, action) => {
         state.orderBy = action.payload;
       })
+      .addCase(setCurrentPage, (state, action) => {
+        state.currentPage = action.payload;
+      })
       .addCase(getArchivingListAsync.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -93,5 +96,7 @@ const archivingList = createSlice({
 export const selectIsLoading = (state: RootState) => state.archivingList.isLoading;
 export const selectArchivingList = (state: RootState) => state.archivingList.list;
 export const selectOrderBy = (state: RootState) => state.archivingList.orderBy;
+export const selectCurrentPage = (state: RootState) => state.archivingList.currentPage;
+export const selectPageInfo = (state: RootState) => state.archivingList.page;
 
 export default archivingList.reducer;
