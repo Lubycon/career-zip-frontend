@@ -153,16 +153,16 @@ const ArchivingList = () => {
         {!isLoading && (
           <>
             <ArchivingListTable checkedList={checkedList} onClickCheckBox={handleSelect} />
-            <Flex marginTop="24px">
-              {list.length !== 0 && (
+            {list.length !== 0 && (
+              <Flex marginTop="24px">
                 <DeleteButton onClick={handleOpenDeleteModal}>선택 아카이빙 삭제</DeleteButton>
-              )}
-              <Pagination
-                currentPage={currentPage}
-                totalPage={totalPages}
-                onClickPage={handleChangePage}
-              />
-            </Flex>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPage={totalPages}
+                  onClickPage={handleChangePage}
+                />
+              </Flex>
+            )}
           </>
         )}
       </Flex>
